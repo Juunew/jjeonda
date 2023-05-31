@@ -1,12 +1,15 @@
 package com.fintech.jjeondaproject.entity;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -51,4 +54,14 @@ public class UserEntity {
 	
 	@Column(name = "aggrement_yn", nullable = false, length = 1)
 	private String agreementYn;
+	
+	@OneToMany(mappedBy = "userEntity")
+	List<BookEntity> bookEntity = new ArrayList<BookEntity>();
+	
+	@OneToMany(mappedBy = "userEntity")
+	List<BankEntity> bankEntity = new ArrayList<BankEntity>();
+	
+	@OneToMany(mappedBy = "userEntity")
+	List<CardEntity> cardEntity = new ArrayList<CardEntity>();
+	
 }
