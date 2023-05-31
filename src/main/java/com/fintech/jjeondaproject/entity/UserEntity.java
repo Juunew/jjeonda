@@ -7,16 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
-@NoArgsConstructor
+
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "user")
+@Getter
+@Entity
 public class UserEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // identity, sequence, table, auto
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) // identity, sequence, table, auto
+	@Column
 	private Long userId;
 	
 	@Column(nullable = false, length = 200)
@@ -40,9 +46,9 @@ public class UserEntity {
 	@Column(nullable = false, length = 200)
 	private String email;
 	
-	@Column(nullable = false, length = 200)
+	@Column(name = "reg_date", nullable = false, length = 200)
 	private Date regDate;
 	
-	@Column(nullable = false, length = 1)
+	@Column(name = "aggrement_yn", nullable = false, length = 1)
 	private String agreementYn;
 }
