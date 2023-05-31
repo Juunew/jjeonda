@@ -19,22 +19,31 @@ public class UserEntity {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // identity, sequence, table, auto
 	private Long userId;
+	
 	@Column(nullable = false, length = 200)
 	private String id;
+	
 	@Column(nullable = false, length = 200)
 	private String password;
+	
 	@Column(nullable = false, length = 200)
 	private String name;
+	
 	@Column(nullable = false, length = 200)
 	private String phone;
+	
 	@Column(nullable = false, length = 200)
 	private String gender;
+	
 	@Column(nullable = false, length = 200)
 	private String birth;
+	
 	@Column(nullable = false, length = 200)
 	private String email;
+	
 	@Column(nullable = false, length = 200)
 	private Date regDate;
+	
 	@Column(nullable = false, length = 200)
 	private Character agreementYn;
 }
