@@ -8,15 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "book")
 @Getter
-
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+//소스트리연습중
 public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
