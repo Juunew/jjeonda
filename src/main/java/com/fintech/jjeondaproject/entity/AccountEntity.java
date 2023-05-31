@@ -31,7 +31,7 @@ public class AccountEntity {
 	@Column(nullable=false)
 	private Long accountNum;
 	
-	@Column(nullable=false)
+	@Column(nullable=false) 
 	private Long availableAmt;
 	
 	@Column(nullable=false)
