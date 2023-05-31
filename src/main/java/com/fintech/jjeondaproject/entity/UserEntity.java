@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserEntity {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // identity, sequence, table, auto
 	private Long userId;
 	
@@ -44,6 +43,6 @@ public class UserEntity {
 	@Column(nullable = false, length = 200)
 	private Date regDate;
 	
-	@Column(nullable = false, length = 200)
-	private Character agreementYn;
+	@Column(nullable = false, length = 1)
+	private String agreementYn;
 }
