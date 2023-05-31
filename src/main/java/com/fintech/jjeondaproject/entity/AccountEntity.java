@@ -20,25 +20,25 @@ public class AccountEntity {
 	@Column(nullable=false)
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long accountId;
+	private Long accountId;
 	
 	@Column(nullable=false)
-	private long userId;
+	private Long userId;
 	
 	@Column(nullable=false)
-	private long bankId;
+	private Long bankId;
 	
 	@Column(nullable=false)
-	private long accountNum;
+	private Long accountNum;
 	
 	@Column(nullable=false)
-	private long availableAmt;
+	private Long availableAmt;
 	
 	@Column(nullable=false)
-	Date tranDate;
+	private Date tranDate;
 	
 	@Column(nullable=false)
-	Time tranTime;
+	private Time tranTime;
 	
 	@Column(nullable=false, length=2)
 	private String inoutType;
