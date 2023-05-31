@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -17,14 +19,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "book")
 @Getter
 @Entity
-//소스트리연습중
+
 public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
 	private Long bookId;
 	
-	private Long userId;
+	@ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 	
 	@Column(nullable = false)
 	private int budget;
