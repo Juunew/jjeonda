@@ -58,14 +58,5 @@ public class UserEntity {
 	
 	@Column(name = "agreement_yn", nullable = false, length = 1)
 	private String agreementYn;
-	
-	@OneToMany(mappedBy = "userEntity")
-	List<BookEntity> bookEntity = new ArrayList<BookEntity>();
-	
-	@OneToMany(mappedBy = "userEntity")
-	List<BankEntity> bankEntity = new ArrayList<BankEntity>();
-	
-	@OneToMany(mappedBy = "userEntity")
-	List<CardEntity> cardEntity = new ArrayList<CardEntity>();
-	
+
 }

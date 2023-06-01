@@ -19,11 +19,13 @@ public class CardEntity {
     @Column(name = "card_id")
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    @Column(name = "bank_id")
-    private Long bankId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank_id")
+    private BankEntity bank;
 
     @Column(name = "card_name", nullable = false)
     private String cardName;
