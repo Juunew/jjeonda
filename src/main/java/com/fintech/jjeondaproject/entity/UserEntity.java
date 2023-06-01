@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "user")
@@ -50,9 +53,10 @@ public class UserEntity {
 	private String email;
 	
 	@Column(name = "reg_date", nullable = false, length = 200)
+	@CreationTimestamp // update는 UpdateTimestamp
 	private Date regDate;
 	
-	@Column(name = "aggrement_yn", nullable = false, length = 1)
+	@Column(name = "agreement_yn", nullable = false, length = 1)
 	private String agreementYn;
 	
 	@OneToMany(mappedBy = "userEntity")
