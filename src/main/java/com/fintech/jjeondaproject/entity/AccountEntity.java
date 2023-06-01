@@ -8,25 +8,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="account")
+@Getter
+@Entity
 public class AccountEntity {
 	
-	@Column(nullable=false)
 	@Id
+	@Column(nullable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long accountId;
 	
-	@Column(nullable=false)
-	private Long userId;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private UserEntity user;
 	
-	@Column(nullable=false)
-	private Long bankId;
+	@ManyToOne
+	@JoinColumn(name = "bank_id")
+	private BankEntity bank;
 	
 	@Column(nullable=false)
 	private Long accountNum;
