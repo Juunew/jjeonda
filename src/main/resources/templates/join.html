@@ -1,62 +1,149 @@
-<!--회원가입 페이지-->
-<!--signup.html-->
 <!DOCTYPE html>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-</head>
-<body>
-<form method="post" action="/join1">
-    <div class="container">
-        <h1>회원가입</h1>
-        <div class="form-group">
-            <label for="inputEmail4">userId</label>
-            <input type="text" class="form-control" id="inputEmail4" name="id" placeholder="사용자 아이디">
-        </div>
-        <div class="form-group">
-            <label for="inputPassword4">password</label>
-            <input type="password" class="form-control" id="inputPassword4" name="password" placeholder="사용자 비밀번호">
-        </div>
-        <div class="form-group">
-            <label for="inputName">userName</label>
-            <input type="text" class="form-control" id="inputName" name="name" placeholder="사용자 이름">
-        </div>
-        <div class="form-group">
-            <label for="inputTel">tel</label>
-            <input type="tel" class="form-control" id="inputTel" name="phone" placeholder="사용자 전화번호">
-        </div>
-        <div class="form-group">
-            <label for="inputTel">성별</label>
-            <input type="text" class="form-control" id="inputTel" name="gender" placeholder="사용자 전화번호">
-        </div>
-        <!-- <div class="form-group">
-        <label for="inputTel">성별  </label>
-	    <input type="radio" id="contactChoice1" name="contact" value="male">
-	    <label for="contactChoice1">남</label>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>JJEONDA_JOIN</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 	
-	    <input type="radio" id="contactChoice2" name="contact" value="female">
-	    <label for="contactChoice2">여</label>
-	  </div> -->
-        <div class="form-group"> 
-            <label for="inputBirth">birth</label>
-            <input type="text" class="form-control" id="inputBirth" name="birth" placeholder="사용자 전화번호">
+	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript">
+
+	</script>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
+                            </div>
+                            <form method="post" action="/sign-up">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-user" id="id" name="id"
+                                            placeholder="사용자 아이디">
+                                        <button class="btn btn-outline-primary" type="button" id="checkIdBtn">중복확인</button>
+                                    </div>
+                                    <div>
+                                    	<span id="idMsg"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user"
+                                        id="password" name="password" placeholder="사용자 비밀번호">
+                                </div>
+                                <div>
+                                    	<span id="pwd1Msg"></span>
+                                 </div>
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user"
+                                        id="passwordChk" name="repassword" placeholder="사용자 비밀번호 확인">
+                                </div>
+                                <div>
+                                    	<span id="pwdMsg"></span>
+                                 </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="name" name="name"
+                                        placeholder="사용자 이름">
+                                    <span id="nameMsg"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="phone" name="phone"
+                                        placeholder="사용자 전화번호">
+                                    <span id="phoneMsg"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                	<label for="gender">성별</label>
+			                        <input type="radio" name="gender" value="남">남
+									<input type="radio" name="gender" value="여">여
+                                   	<span id="genderMsg"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="date" class="form-control form-control-user" id="birth" name="birth"
+                                        placeholder="생년월일">
+                                </div>
+                                <!-- <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="email" name="email"
+                                        placeholder="Email Address">
+                                </div> -->
+                                
+                                <div class="form-group last mb-4 email_input">
+                                	<div class="input-group">
+										<input type="text" class="form-control form-control-user" name="email" id="email"
+										placeholder="이메일을 입력해주세요">
+										<button class="btn btn-outline-primary" type="button" id="checkEmail">인증번호</button>
+									</div>
+									<input type="text" class="form-control" id="memailconfirm" placeholder="인증번호를 입력해주세요">
+								</div>
+	
+							
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="agreementYn" name="agreementYn"
+                                        placeholder="약관동의여부">
+                                </div>
+                                
+                                
+                                <hr>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    회원가입
+                                </button>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with KakaoTalk
+                                </a>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="inputTel">email</label>
-            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="사용자 전화번호">
-        </div>
-        <div class="form-group"> 
-            <label for="inputBirth">약관동의여부</label>
-            <input type="text" class="form-control" id="inputBirth" name="agreementYn" placeholder="약관동의여부">
-        </div>
-        <!-- <div class="form-group">
-            <label for="inputAggrement">약관동의여부</label>
-            <input type="checkbox" class="form-control" id="inputAggrement" name="agreement_yn" placeholder="사용자 전화번호">
-        </div> -->
-        <button type="submit" class="btn btn-primary">가입 완료</button>
+
     </div>
-</form>
+	<script rel="script" src="jjeonda/user/signUp.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>

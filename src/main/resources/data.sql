@@ -12,20 +12,7 @@ VALUES ('N', '19960415', "user5@gmail.com", "male", "user5", "user5", "password5
 INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
 VALUES ('N', '19970515', "user6@gmail.com", "female", "user6", "user6", "password6", "01066666666", "2016-06-05 11:06:03");
 
--- USER
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', 'password1', '01011111111', '2011-08-21 14:11:09');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19930115', 'user2@gmail.com', 'female', 'user2', 'user2', 'password2', '01022222222', '2012-03-13 11:07:15');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19940215', 'user3@gmail.com', 'male', 'user3', 'user3', 'password3', '01033333333', '2013-05-24 16:25:57');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19950315', 'user4@gmail.com', 'female', 'user4', 'user4', 'password4', '01044444444', '2014-02-17 18:37:47');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('N', '19960415', 'user5@gmail.com', 'male', 'user5', 'user5', 'password5', '01055555555', '2015-08-06 15:58:35');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('N', '19970515', 'user6@gmail.com', 'female', 'user6', 'user6', 'password6', '01066666666', '2016-06-05 11:06:03');
-
+-- BANK
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '001', '한국', null WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '001');
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '002', '산업', '002' WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '002');
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '003', '기업', '003' WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '003');
@@ -120,7 +107,6 @@ INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '452', '삼성생명',
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '454', '한화손해보험', null WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '454');
 
 -- ACCOUNT
-
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
 VALUES (1, 4, 1111111111, 3000000, now(), current_time, 'DI', 'CU', 20000, 280000);
 
@@ -136,6 +122,7 @@ VALUES (1, 10, 1111999991, 20000, now(), current_time, 'DI', 'CU', 12300, 99132)
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
 VALUES (1, 11, 1123411111, 1000, now(), current_time, 'DI', 'CU', 5550, 12340098);
 
+-- CARD
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
 VALUES ('카드별명1', 10000, '2023-06-01 11:24:43', '05', 1, 1);
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)

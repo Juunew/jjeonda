@@ -7,5 +7,5 @@ import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
-	
+	boolean existsById(String id);
 }
