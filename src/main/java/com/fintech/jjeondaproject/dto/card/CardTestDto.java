@@ -7,6 +7,8 @@ import lombok.Setter;
 @Getter
 public class CardTestDto {
 
-    private Long cardId;
-    private String dsakljlsadjf;
+    private Long id;
+    private String user;
+
+
 }
