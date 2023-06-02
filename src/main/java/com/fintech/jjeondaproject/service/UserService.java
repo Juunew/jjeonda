@@ -25,9 +25,15 @@ public class UserService {
 				.regDate(userDto.getRegDate())
 				.agreementYn(userDto.getAgreementYn())
 				.build();
-		
+		System.out.println("userEntity.getId() :"+userEntity.getId());
+		String nullCheck = userEntity.getId() == null ? "null":"not Null";
+		System.out.println("nullCheck:"+nullCheck);
 		userRepository.save(userEntity);
 		
+	}
+	
+	public boolean checkId(String id) {
+		return userRepository.existsById(id);
 	}
 
 	

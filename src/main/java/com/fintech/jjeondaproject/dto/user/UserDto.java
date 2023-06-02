@@ -3,19 +3,22 @@ package com.fintech.jjeondaproject.dto.user;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import com.fintech.jjeondaproject.entity.UserEntity;
 
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Builder
+@Data
 public class UserDto {
 	private Long userId;
 	
-	@NotEmpty(message = "사용자ID는 필수항목입니다.")
+	@NotBlank()
 	private String id;
 	private String password;
 	private String name;
