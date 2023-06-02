@@ -9,17 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "book")
 @Getter
 @Entity
-
 public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,21 +27,30 @@ public class BookEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private int budget;
-	private int income;
-	private int fixedCost;
-	private int variableCost;
+
+	@Column(name = "cost_type", length = 2)
+	private String costType;
+
+	// 수입-> in
+	// 고정지출 -> fc
+	// 변동지출 ->
+
+	//private int income;
+	//private int fixedCost;
+	//private int variableCost;
+
 	private int balance;
 	private int cost;
 	
-	@Column(length = 4, nullable = false)
+	//@Column(length = 4, nullable = false)
 	private String year;
 	
-	@Column(length = 2, nullable = false)
+	//@Column(length = 2, nullable = false)
 	private String month;
 	
-	@Column(length = 4000, nullable = false)
+	//@Column(length = 4000, nullable = false)
 	private String content;
 	
 	private String memo;
