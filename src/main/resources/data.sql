@@ -12,7 +12,7 @@ VALUES ('N', '19960415', "user5@gmail.com", "male", "user5", "user5", "password5
 INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
 VALUES ('N', '19970515', "user6@gmail.com", "female", "user6", "user6", "password6", "01066666666", "2016-06-05 11:06:03");
 
--- Bank 테이블 DATA
+-- BANK
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '001', '한국', null WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '001');
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '002', '산업', '002' WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '002');
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '003', '기업', '003' WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '003');
