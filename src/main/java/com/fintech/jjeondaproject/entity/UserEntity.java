@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -31,6 +34,7 @@ public class UserEntity {
 	@Column
 	private Long userId;
 	
+//	@NotBlank(message = "사용자ID는 필수항목입니다.")
 	@Column(nullable = false, length = 200)
 	private String id;
 	
