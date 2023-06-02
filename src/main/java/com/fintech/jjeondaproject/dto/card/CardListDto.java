@@ -18,7 +18,7 @@ public class CardListDto {
     private UserEntity user;
     private BankEntity bank;
     private String cardName;
-    private String settleMentDay;
+    private String settlementDay;
     private LocalDateTime settlementDate;
     private int paymentAmt;
 
