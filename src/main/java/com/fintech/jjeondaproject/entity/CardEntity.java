@@ -17,7 +17,7 @@ public class CardEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "card_id")
-    private Long id;
+    private Long cardId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

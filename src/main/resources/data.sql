@@ -12,20 +12,6 @@ VALUES ('N', '19960415', "user5@gmail.com", "male", "user5", "user5", "password5
 INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
 VALUES ('N', '19970515', "user6@gmail.com", "female", "user6", "user6", "password6", "01066666666", "2016-06-05 11:06:03");
 
--- USER
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', 'password1', '01011111111', '2011-08-21 14:11:09');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19930115', 'user2@gmail.com', 'female', 'user2', 'user2', 'password2', '01022222222', '2012-03-13 11:07:15');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19940215', 'user3@gmail.com', 'male', 'user3', 'user3', 'password3', '01033333333', '2013-05-24 16:25:57');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('Y', '19950315', 'user4@gmail.com', 'female', 'user4', 'user4', 'password4', '01044444444', '2014-02-17 18:37:47');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('N', '19960415', 'user5@gmail.com', 'male', 'user5', 'user5', 'password5', '01055555555', '2015-08-06 15:58:35');
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
-VALUES ('N', '19970515', 'user6@gmail.com', 'female', 'user6', 'user6', 'password6', '01066666666', '2016-06-05 11:06:03');
-
 -- BANK
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '001', '한국', null WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '001');
 INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '002', '산업', '002' WHERE NOT EXISTS(SELECT 1 FROM BANK WHERE BANK_CODE = '002');
