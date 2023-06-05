@@ -40,11 +40,11 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <form method="post" action="/sign-up">
+                            <form id="signup-form" method="post" action="/sign-up">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input type="text" class="form-control form-control-user" id="id" name="id"
-                                            placeholder="사용자 아이디">
+                                            placeholder="사용자 아이디 *">
                                         <button class="btn btn-outline-primary" type="button" id="checkIdBtn">중복확인</button>
                                     </div>
                                     <div>
@@ -54,33 +54,30 @@
                                 
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="password" name="password" placeholder="사용자 비밀번호">
+                                        id="password" name="password" placeholder="사용자 비밀번호 *">
+                                   	<span id="pwd1Msg"></span>
                                 </div>
-                                <div>
-                                    	<span id="pwd1Msg"></span>
-                                 </div>
                                 
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="passwordChk" name="repassword" placeholder="사용자 비밀번호 확인">
+                                        id="passwordChk" name="repassword" placeholder="사용자 비밀번호 확인 *">
+                                       <span id="pwdMsg"></span>
                                 </div>
-                                <div>
-                                    	<span id="pwdMsg"></span>
-                                 </div>
+                                
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="name" name="name"
-                                        placeholder="사용자 이름">
+                                        placeholder="사용자 이름 *">
                                     <span id="nameMsg"></span>
                                 </div>
                                 
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="phone" name="phone"
-                                        placeholder="사용자 전화번호">
+                                        placeholder="사용자 전화번호 *">
                                     <span id="phoneMsg"></span>
                                 </div>
                                 
                                 <div class="form-group">
-                                	<label for="gender">성별</label>
+                                	<label for="gender">성별 *        </label>
 			                        <input type="radio" name="gender" value="남">남
 									<input type="radio" name="gender" value="여">여
                                    	<span id="genderMsg"></span>
@@ -88,31 +85,38 @@
                                 
                                 <div class="form-group">
                                     <input type="date" class="form-control form-control-user" id="birth" name="birth"
-                                        placeholder="생년월일">
+                                        placeholder="생년월일 *">
+                                    <span id="birthMsg"></span>
                                 </div>
                                 <!-- <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="email" name="email"
                                         placeholder="Email Address">
                                 </div> -->
                                 
-                                <div class="form-group last mb-4 email_input">
-                                	<div class="input-group">
+								
+								<div class="form-group last mb-4 email_input">
+									<div class="input-group">
 										<input type="text" class="form-control form-control-user" name="email" id="email"
-										placeholder="이메일을 입력해주세요">
+										placeholder="이메일을 입력해주세요 *">
 										<button class="btn btn-outline-primary" type="button" id="checkEmail">인증번호</button>
 									</div>
-									<input type="text" class="form-control" id="memailconfirm" placeholder="인증번호를 입력해주세요">
+									<span id="emailMsg"></span>
+									
+									<div style="height: 5px"></div>
+									<input type="text" class="form-control" id="memailconfirm" placeholder="인증번호를 입력해주세요 *">
+									<span id="emailMsg1"></span>
 								</div>
+								
 	
 							
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="agreementYn" name="agreementYn"
-                                        placeholder="약관동의여부">
+                                    <!-- <input type="hidden" class="form-control form-control-user" id="agreementYn" name="agreementYn"/> -->
+                                    <input type="hidden" name="agreementYn" id="agreementYn">
                                 </div>
                                 
                                 
                                 <hr>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                <button type="button" class="btn btn-primary btn-user btn-block" id="signup-btn">
                                     회원가입
                                 </button>
                                 <a href="index.html" class="btn btn-facebook btn-user btn-block">
