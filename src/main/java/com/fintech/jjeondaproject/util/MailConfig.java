@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.config;
+package com.fintech.jjeondaproject.util;
 
 import java.util.Properties;
 
@@ -12,12 +12,12 @@ public class MailConfig {
 	@Bean
 	public JavaMailSender javaMailService() {
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-		
-		javaMailSender.setHost("smtp.naver.com");
-		javaMailSender.setUsername("hrs0518");
-		javaMailSender.setPassword("dnlvhxmrnrrl1!");
-		javaMailSender.setPort(465); // 메일 인증서버 포트
-
+		String configPath = ".\\src\\main\\resources\\config.yml";
+		Properties config = new MyConfigReader().readConfig(configPath);
+		javaMailSender.setHost(config.getProperty("host"));
+		javaMailSender.setUsername(config.getProperty("username"));
+		javaMailSender.setPassword(config.getProperty("password"));
+		javaMailSender.setPort(Integer.parseInt(config.getProperty("port"))); // 메일 인증서버 포트
         javaMailSender.setJavaMailProperties(getMailProperties()); // 메일 인증서버 정보 가져오기
 		return javaMailSender;
 	}
