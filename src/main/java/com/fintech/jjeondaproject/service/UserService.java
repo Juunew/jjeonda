@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.entity.UserEntity;
 import com.fintech.jjeondaproject.repository.UserRepository;
+import com.fintech.jjeondaproject.util.Encryption;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,11 +13,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
 	private final UserRepository userRepository;
+	private final Encryption encryption;
 
-	public void join(UserDto userDto) {
+	public void join(UserDto userDto){
+		String myEncryption = encryption.encryptSHA512(userDto.getPassword());
 		UserEntity userEntity = UserEntity.builder()
 				.id(userDto.getId())
-				.password(userDto.getPassword())
+				.password(myEncryption)
 				.name(userDto.getName())
 				.phone(userDto.getPhone())
 				.gender(userDto.getGender())
