@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}" lang="ko">
+
+<th:block layout:fragment="content">
+    <div class="container-fluid">
+        <p>카드별명 : </p><input type="text" id="cardName" th:value="${cardDetail.getCardName()}">
+        <button id="editButton">카드별명 수정하기</button>
+        <p>결제 예정일 : </p><p th:text="${cardDetail.getSettlementDay()}"></p>
+        <p>결제 예정 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
+        <p>전월 결제 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
+        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
+        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
+    </div>
+    <script th:inline="javascript">
+        document.getElementById("editButton").addEventListener("click", function() {
+            var cardName = document.getElementById("cardName").value;
+            var cardId = [[${cardDetail.getCardId()}]];
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", "/cards/" + cardId + "/nickname");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            var data = {
+                nickName: cardName
+            };
+
+            xhr.send(JSON.stringify(data));
+
+
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 수정 성공한 경우의 처리
+                }
+            };
+        });
+    </script>
+
+</th:block>
+</html>

@@ -10,17 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CardTestRepository extends JpaRepository<CardEntity, Long> {
-
+public interface CardRepository extends JpaRepository<CardEntity, Long> {
     CardEntity findByCardId(Long cardId);
 
-//    CardEntity
+    List<CardEntity> findByBankId(long bank_id);
 
-    Optional<CardEntity> findAllBy();
+//    Optional<CardEntity> findAllBy();
 
-    @Query(value = "select card_id from card where id= :id", nativeQuery = true)
-    List<CardEntity> selectCard_id(@Param("id") Long id);
-
-
+//    @Query(value = "select card_id from card where id= :id", nativeQuery = true)
+//    List<CardEntity> selectCard_id(@Param("id") Long id);
 
 }

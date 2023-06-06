@@ -1,32 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <p>카드이름 : </p><p id="cardName" th:text="${cardDetail.getCardName()}"></p>
-    <button id="editButton" onclick="editCardName()">Edit</button>
-    <p>결제 예정일 : </p><p th:text="${cardDetail.getSettlementDay()}"></p>
-    <p>결제 예정 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
-    <p>전월 결제 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
-    <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}" lang="ko">
 
-    <script>
-        function editCardName() {
-            var cardNameElement = document.getElementById("cardName");
-            var editButton = document.getElementById("editButton");
+<th:block layout:fragment="content">
+    <div class="container-fluid">
+        <p>카드별명 : </p><p id="cardName" th:text="${cardDetail.getCardName()}"></p>
+        <a th:href="@{/cards/edit/{cardId}(cardId=${cardDetail.getCardId()})}"><button id="editButton">카드별명 수정하기</button></a>
+        <p>결제 예정일 : </p><p th:text="${cardDetail.getSettlementDay()}"></p>
+        <p>결제 예정 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
+        <p>전월 결제 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
+        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
+        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
+    </div>
 
-            if (cardNameElement.contentEditable === "true") {
-                // 변경 모드에서 원래 상태로 돌아감
-                cardNameElement.contentEditable = "false";
-                editButton.innerText = "Edit";
-            } else {
-                // 원래 상태에서 변경 모드로 전환
-                cardNameElement.contentEditable = "true";
-                editButton.innerText = "Save";
-            }
-        }
-    </script>
-</body>
+</th:block>
 </html>
