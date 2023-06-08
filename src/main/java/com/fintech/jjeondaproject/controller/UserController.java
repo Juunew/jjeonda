@@ -1,5 +1,6 @@
 package com.fintech.jjeondaproject.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -8,17 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fintech.jjeondaproject.dto.user.UserDto;
+import com.fintech.jjeondaproject.dto.user.UserLoginDto;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.service.RegisterMail;
 import com.fintech.jjeondaproject.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class UserController {
@@ -70,14 +76,26 @@ public class UserController {
 	
 	// 메인페이지
 	@GetMapping("/")
-	public String home() {
+	public String home(HttpServletResponse res, HttpServletRequest req) {
+//		System.out.println("indexToken:"+token);
+		System.out.println("indexCookie:"+req.getCookies());
+		
 		return "index";
 	}
 	
 	// 로그인 페이지
-	@GetMapping("/login")
+	@GetMapping("/sign-in")
 	public String loginForm() {
 		return "login";
+	}
+	
+	@PostMapping("/sign-in")
+	public String login(UserLoginDto userDto, HttpServletResponse response) {
+		String token = userService.signIn(userDto);
+		Cookie tokenCookie = new Cookie("JwToken",token);
+		response.addCookie(tokenCookie);
+		
+		return "redirect:/";
 	}
 	
 }
