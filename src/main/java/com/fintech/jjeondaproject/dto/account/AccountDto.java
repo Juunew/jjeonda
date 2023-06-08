@@ -14,13 +14,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class AccountDto {
 	
 	private Long accountId;			//pk
 	
 	private UserEntity user;				
 	private BankEntity bank;				
-	private Long accountNum;		//계좌번호
+	private String accountNum;		//계좌번호
 	private Long availableAmt;		//잔액(출금가능)
 	private Date tranDate;			//거래일
 	private Time tranTime;			//거래시각

@@ -40,28 +40,28 @@ public class AccountEntity {
 	private BankEntity bank;
 	
 	@Column(nullable=false)
-	private Long accountNum;
+	private String accountNum;		//계좌번호
 	
 	@Column(nullable=false)   
-	private Long availableAmt;
+	private Long availableAmt;		//잔액(출금가능)
 	
 	@Column(nullable=false)
-	private Date tranDate;
+	private Date tranDate;			//거래일
 	
 	@Column(nullable=false)
-	private Time tranTime;
-	
-	@Column(nullable=false, length=2)
-	private String inoutType;
+	private Time tranTime;			//거래시각
 	
 	@Column(nullable=false)
-	private String content;
+	private String inoutType;		//입출금구분
 	
 	@Column(nullable=false)
-	private int tranAmt;
+	private String content;			//사용처
 	
 	@Column(nullable=false)
-	private int tranAfterAmt;
+	private int tranAmt;			//거래금액
+	
+	@Column(nullable=false)
+	private int tranAfterAmt;		//거래후잔액
 
 	
 }

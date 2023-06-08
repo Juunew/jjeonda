@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+	h1, h2 {
+ 	 text-align: center;
+	}
+</style>
+<meta charset="UTF-8">
+<title>잔액 상세보기</title>
+</head>
+<body>
+	<div class="class1" th:each="index: ${accountList}">
+		<h1 th:text="${index.accountNum}"></h1>
+		<h2 th:text="${index.bank.getBankName()}"></h2>
+	</div>
+
+	<div>
+		<table border="2" >
+			<thead>
+				<tr>
+					<th>거래일</th>
+					<th>거래 시각</th>
+					<th>입/출금</th>
+					<th>사용처</th>
+					<th>거래 금액</th>
+					<th>거래 후 잔액</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="index : ${accountList}">
+					<td th:text="${index.tranDate}"></td>
+					<td th:text="${index.tranTime}"></td>
+					<td th:text="${index.inoutType}"></td>
+					<td th:text="${index.content}"></td>
+					<td th:text="${index.tranAmt}"></td>
+					<td th:text="${index.tranAfterAmt}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+
+</html>
