@@ -7,8 +7,8 @@ import java.util.Properties;
 import org.springframework.stereotype.Component;
 @Component
 public class Encryption {
-	static String configPath = ".\\src\\main\\resources\\config.yml";
-	static Properties config = new MyConfigReader().readConfig(configPath);
+	private static String configPath = ".\\src\\main\\resources\\config.yml";
+	private static Properties config = new MyConfigReader().readConfig(configPath);
 	private static String SALT = config.getProperty("salt");
 	public static String encryptSHA512(String password){
 		try {

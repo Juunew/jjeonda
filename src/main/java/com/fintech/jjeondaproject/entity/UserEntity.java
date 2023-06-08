@@ -62,5 +62,12 @@ public class UserEntity {
 	
 	@Column(name = "agreement_yn", nullable = false, length = 1)
 	private String agreementYn;
+	
+	@Column(name = "refresh_token")
+	private String refreshToken;
+	
+	public void updateRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
 
 }
