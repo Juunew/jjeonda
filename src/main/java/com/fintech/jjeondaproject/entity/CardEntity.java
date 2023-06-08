@@ -39,4 +39,8 @@ public class CardEntity {
     @Column(name = "payment_amt")
     private int paymentAmt;
 
+
+    public void changeNickname(String cardName){
+        this.cardName = cardName;
+    }
 }
