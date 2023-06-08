@@ -1,15 +1,15 @@
 -- USER
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
+INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone, reg_date)
 VALUES ('Y', '19920915', "user1@gmail.com", "male", "user1", "user1", "password1", "01011111111", "2011-08-21 14:11:09");
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
+INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone, reg_date)
 VALUES ('Y', '19930115', "user2@gmail.com", "female", "user2", "user2", "password2", "01022222222", "2012-03-13 11:07:15");
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
+INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone, reg_date)
 VALUES ('Y', '19940215', "user3@gmail.com", "male", "user3", "user3", "password3", "01033333333", "2013-05-24 16:25:57");
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
+INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone, reg_date)
 VALUES ('Y', '19950315', "user4@gmail.com", "female", "user4", "user4", "password4", "01044444444", "2014-02-17 18:37:47");
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
+INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone, reg_date)
 VALUES ('N', '19960415', "user5@gmail.com", "male", "user5", "user5", "password5", "01055555555", "2015-08-06 15:58:35");
-INSERT INTO USER (agreement_yn, birth, email, gender, id, name, password, phone, reg_date)
+INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone, reg_date)
 VALUES ('N', '19970515', "user6@gmail.com", "female", "user6", "user6", "password6", "01066666666", "2016-06-05 11:06:03");
 
 -- BANK
@@ -133,3 +133,16 @@ INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_
 VALUES ('카드별명4', 40000, '2023-04-13 19:56:31', '10', 7, 4);
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
 VALUES ('카드별명5', 50000, '2023-05-30 20:45:51', '11', 9, 5);
+
+-- Book
+INSERT INTO total_book (user_id, year, month, budget, remain_budget)
+VALUES (1, '2023', '06', 3000000, 2345500);
+
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+VALUES (1, 'FC', 100000, '주택청약', '주택청약');
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+VALUES (1, 'FC', 50000, '보험', '현대해상');
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+VALUES (1, 'FC', 500000, '적금', '절망적금');
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+VALUES (1, 'VC', 4500, '담배', '편의점');

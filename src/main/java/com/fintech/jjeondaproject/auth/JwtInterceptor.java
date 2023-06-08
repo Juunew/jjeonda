@@ -1,23 +1,13 @@
 package com.fintech.jjeondaproject.auth;
 
-import java.io.IOException;
-import java.net.http.HttpHeaders;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.fintech.jjeondaproject.repository.UserRepository;
+import com.fintech.jjeondaproject.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fintech.jjeondaproject.repository.UserRepository;
-import com.fintech.jjeondaproject.service.UserService;
-
-import io.jsonwebtoken.Claims;
-import lombok.RequiredArgsConstructor;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Component
 @RequiredArgsConstructor
@@ -29,13 +19,13 @@ public class JwtInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 
-		String reqToken = jwtProvider.getJwtfromCookie(request); // 쿠키에서 key값이 "JwToken"인 value 가져오기
-		System.out.println("interceptor_userNo:"+jwtProvider.getClaims(reqToken).get("UserNo"));
-		Long userNo = (Long.parseLong(jwtProvider.getClaims(reqToken).get("UserNo").toString()));
+		String reqToken = jwtProvider.getJwtFromCookie(request); // 쿠키에서 key값이 "JwToken"인 value 가져오기
+		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
+		Long userId = (Long.parseLong(jwtProvider.getClaims(reqToken).get("UserId").toString()));
 		if (reqToken == null) {
 			return false;
 		}
-		if (userNo == null || !userRepository.existsById(userNo) ) {
+		if (userId == null || !userRepository.existsById(userId) ) {
 			return false;
 		}
 		

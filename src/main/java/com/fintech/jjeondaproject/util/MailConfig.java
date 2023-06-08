@@ -13,6 +13,8 @@ public class MailConfig {
 	public JavaMailSender javaMailService() {
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 		String configPath = ".\\src\\main\\resources\\config.yml";
+		// 혁준 경로 - 지우지 말 것
+		//String configPath = "./src/main/resources/config.yml";
 		Properties config = new MyConfigReader().readConfig(configPath);
 		javaMailSender.setHost(config.getProperty("host"));
 		javaMailSender.setUsername(config.getProperty("username"));

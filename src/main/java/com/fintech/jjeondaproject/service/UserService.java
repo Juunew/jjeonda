@@ -27,7 +27,7 @@ public class UserService {
 	public void join(UserDto userDto){
 		String myEncryption = encryption.encryptSHA512(userDto.getPassword());
 		UserEntity userEntity = UserEntity.builder()
-				.id(userDto.getId())
+				.accountId(userDto.getAccountId())
 				.password(myEncryption)
 				.name(userDto.getName())
 				.phone(userDto.getPhone())
@@ -48,7 +48,7 @@ public class UserService {
 
 	public String signIn(UserLoginDto userDto) {
 //		log.info("userDto={}",userDto.getPassword());
-		UserEntity savedUser =  userRepository.findById(userDto.getId());
+		UserEntity savedUser =  userRepository.findById(userDto.getAccountId());
 		
 		if(savedUser == null) {
 			return "로그인 실패";
@@ -58,9 +58,14 @@ public class UserService {
 //			log.info("@@@@@@@@@@@@@@@savedUser.getUserId()={}",savedUser.getUserId());
 //			log.info("@@@@@@@@@@@@@@@userDto.getId()={}",userDto.getId());
 			Map<String, Object> claims = new HashMap<>();
-			claims.put("UserId", savedUser.getId()); // claims 내용 추가1
+
+			/**
+			 * 이 부분 UserId -> UserAccountId 로 변경됨으로 인해 Error 발생할 수 있음.
+			 * 확인 바람
+			 */
+			claims.put("UserAccountId", savedUser.getAccountId()); // claims 내용 추가1
 			claims.put("UserName", savedUser.getName()); // claims 내용 추가2
-			claims.put("UserNo", savedUser.getUserId()); // claims 내용 추가3(userPk값)
+			claims.put("UserId", savedUser.getId()); // claims 내용 추가3(userPk값)
 			Jwt jwt = jwtProvider.createJwt(claims); // JWT 생성
 			savedUser.updateRefreshToken(jwt.getRefreshToken()); // 발급된 refreshToken을 user에게 주입
 			userRepository.save(savedUser); // refreshToken db에 저장
