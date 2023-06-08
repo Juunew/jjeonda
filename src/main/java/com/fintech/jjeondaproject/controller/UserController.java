@@ -60,9 +60,9 @@ public class UserController {
 	@ResponseBody
 	@PostMapping("/checkId")
 	public boolean checkId(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		System.out.println("id:"+id);
-		return userService.checkId(id);
+		String accountId = request.getParameter("id");
+		System.out.println("accountId:"+accountId);
+		return userService.checkAccountId(accountId);
 	}
 	
 	// email 인증

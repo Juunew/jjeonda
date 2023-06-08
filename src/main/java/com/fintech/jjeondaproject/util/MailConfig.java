@@ -2,6 +2,7 @@ package com.fintech.jjeondaproject.util;
 
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -9,17 +10,30 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
 public class MailConfig {
+
+	@Value(("${spring.mail.host}"))
+	private String host;
+
+	@Value(("${spring.mail.username}"))
+	private String username;
+
+	@Value(("${spring.mail.password}"))
+	private String password;
+
+	@Value(("${spring.mail.port}"))
+	private int port;
+
 	@Bean
 	public JavaMailSender javaMailService() {
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-		String configPath = ".\\src\\main\\resources\\config.yml";
+		//String configPath = ".\\src\\main\\resources\\config.yml";
 		// 혁준 경로 - 지우지 말 것
 		//String configPath = "./src/main/resources/config.yml";
-		Properties config = new MyConfigReader().readConfig(configPath);
-		javaMailSender.setHost(config.getProperty("host"));
-		javaMailSender.setUsername(config.getProperty("username"));
-		javaMailSender.setPassword(config.getProperty("password"));
-		javaMailSender.setPort(Integer.parseInt(config.getProperty("port"))); // 메일 인증서버 포트
+		//Properties config = new MyConfigReader().readConfig(configPath);
+		javaMailSender.setHost(host);
+		javaMailSender.setUsername(username);
+		javaMailSender.setPassword(password);
+		javaMailSender.setPort(port); // 메일 인증서버 포트
         javaMailSender.setJavaMailProperties(getMailProperties()); // 메일 인증서버 정보 가져오기
 		return javaMailSender;
 	}
