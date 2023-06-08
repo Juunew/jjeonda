@@ -3,6 +3,10 @@ package com.fintech.jjeondaproject.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +39,24 @@ public class AccountService {
 		                m.getTranAfterAmt()
 		                ))
 		        .collect(Collectors.toList());
+	}
+	
+	public AccountDto selectOneByAccountId(Long accountId) {
+		AccountEntity accountEntity = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("error"));
+		AccountDto accountDto = AccountDto.builder()
+		        .accountId(accountEntity.getAccountId())
+		        .user(accountEntity.getUser())
+		        .bank(accountEntity.getBank())
+		        .accountNum(accountEntity.getAccountNum())
+		        .availableAmt(accountEntity.getAvailableAmt())
+		        .tranDate(accountEntity.getTranDate())
+		        .tranTime(accountEntity.getTranTime())
+		        .inoutType(accountEntity.getInoutType())
+		        .content(accountEntity.getContent())
+		        .tranAmt(accountEntity.getTranAmt())
+		        .tranAfterAmt(accountEntity.getTranAfterAmt())
+		        .build();
+		return accountDto;
 	}
 	
 	
