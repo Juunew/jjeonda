@@ -31,12 +31,12 @@ import lombok.NoArgsConstructor;
 @Entity
 public class UserEntity {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) // identity, sequence, table, auto
-	@Column
-	private Long userId;
+	@Column(name = "user_id")
+	private Long id;
 	
 //	@NotBlank(message = "사용자ID는 필수항목입니다.")
-	@Column(nullable = false, length = 200)
-	private String id;
+	@Column(nullable = false, length = 200, name = "account_id")
+	private String accountId;
 	
 	@Column(nullable = false, length = 200)
 	private String password;

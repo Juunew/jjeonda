@@ -28,8 +28,8 @@ public class CardController {
 
     //    카드사 별 보유 카드 목록
     @GetMapping("/list/{bankId}")
-    public String cardList(@PathVariable("bankId") String bankId, Model model){
-        List<CardListDto> cardListDto = cardService.cardListByBankId(Long.parseLong(bankId));
+    public String cardList(@PathVariable Long bankId, Model model){
+        List<CardListDto> cardListDto = cardService.cardListByBankId(bankId);
         model.addAttribute("cardList", cardListDto);
         System.out.println(cardListDto);
         return "card/cardList";
@@ -37,16 +37,16 @@ public class CardController {
 
     //    카드 별 상세 조회
     @GetMapping("/detail/{cardId}")
-    public String cardDetail(@PathVariable("cardId") String cardId, Model model){
-        CardDto cardDto = cardService.selectOneByCardId(Long.parseLong(cardId));
+    public String cardDetail(@PathVariable Long cardId, Model model){
+        CardDto cardDto = cardService.selectOneByCardId(cardId);
         model.addAttribute("cardDetail", cardDto);
         System.out.println(cardDto);
         return "card/cardDetail";
     }
 
     @GetMapping("/edit/{cardId}")
-    public String cardEditScreen(@PathVariable("cardId") String cardId, Model model){
-        CardDto cardDto = cardService.selectOneByCardId(Long.parseLong(cardId));
+    public String cardEditScreen(@PathVariable Long cardId, Model model){
+        CardDto cardDto = cardService.selectOneByCardId(cardId);
         model.addAttribute("cardDetail", cardDto);
         System.out.println(cardDto);
         return "card/cardEdit";
@@ -54,8 +54,8 @@ public class CardController {
 
     // 카드 별명 설정 페이지
     @PutMapping("/{cardId}/nickname")
-    public String EditNickname(@PathVariable("cardId") String cardId, @RequestBody CardTestDto.test data, Model model){
-        CardDto cardDto = cardService.changeNickname(Long.parseLong(cardId), data.getNickName());
+    public String EditNickname(@PathVariable Long cardId, @RequestBody CardTestDto.test data, Model model){
+        CardDto cardDto = cardService.changeNickname(cardId, data.getNickName());
         model.addAttribute("cardDetail", cardDto);
         System.out.println(cardDto);
         return "card/cardDetail";

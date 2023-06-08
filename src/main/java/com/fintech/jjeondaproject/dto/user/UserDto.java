@@ -16,10 +16,10 @@ import lombok.Setter;
 @Builder
 @Data
 public class UserDto {
-	private Long userId;
+	private Long id;
 	
 	@NotBlank()
-	private String id;
+	private String accountId;
 	private String password;
 	private String name;
 	private String phone;

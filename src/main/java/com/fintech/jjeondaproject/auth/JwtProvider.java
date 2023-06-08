@@ -62,7 +62,7 @@ public class JwtProvider {
 		return new Date(System.currentTimeMillis() + expireTimeMils);
 	}
 	
-	public String getJwtfromCookie(HttpServletRequest request) { // 쿠키에서 jwt 추출
+	public String getJwtFromCookie(HttpServletRequest request) { // 쿠키에서 jwt 추출
 		Cookie[] cookies = request.getCookies(); // 쿠키에서 key값이 "JwToken"인 value 가져오기
 		if(cookies != null) {
 			for(Cookie c : cookies) {

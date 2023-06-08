@@ -26,7 +26,7 @@ public class AccountService {
 		List<AccountEntity> accountEntity = accountRepository.findAll();
 		return accountEntity.stream().
 		        map(m->new AccountDto(
-		        		m.getAccountId(),
+		        		m.getId(),
 		                m.getUser(),
 		                m.getBank(),
 		                m.getAccountNum(),
@@ -44,7 +44,7 @@ public class AccountService {
 	public AccountDto selectOneByAccountId(Long accountId) {
 		AccountEntity accountEntity = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("error"));
 		AccountDto accountDto = AccountDto.builder()
-		        .accountId(accountEntity.getAccountId())
+		        .accountId(accountEntity.getId())
 		        .user(accountEntity.getUser())
 		        .bank(accountEntity.getBank())
 		        .accountNum(accountEntity.getAccountNum())
