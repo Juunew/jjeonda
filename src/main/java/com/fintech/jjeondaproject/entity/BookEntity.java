@@ -33,7 +33,7 @@ public class BookEntity {
 	// 이번 달 예산
 	private int budget;
 
-	@Column(name = "cost_type", length = 2)
+	@Column(name = "cost_type", length = 100)
 	private String costType;
 
 	// 수입-> in
@@ -45,6 +45,7 @@ public class BookEntity {
 	//private int variableCost;
 
 	//남은예산
+	@Column
 	private int balance;
 	//사용금액
 	private int cost;
@@ -60,4 +61,14 @@ public class BookEntity {
 	private String content;
 	
 	private String memo;
+
+
+
+
+
+
+
 }
+
+
+

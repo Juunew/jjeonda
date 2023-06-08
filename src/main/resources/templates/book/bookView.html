@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--가계부 조회 페이지-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}" lang="ko">
+<head>
+    <meta charset="UTF-8">
+</head>
+<th:block layout:fragment="content">
+    <div class="container-fluid">
+        <body>
+        <div class="container">
+            <h1>가계부</h1>
+            <div> 작성 된 총 건 수 : <span th:text="${#lists.size(books)}"> </span></div>
+            <table class="table caption-top">
+                <caption>List of users</caption>
+                <thead>
+                <tr>
+                    <th scope="col">유형</th>
+                    <th scope="col">사용 내역 및 용도</th>
+                    <th scope="col">사용 금액</th>
+                    <th scope="col">남은 예산</th>
+                    <th scope="col">메모</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.costType}">유형</td>
+                    <td th:text="${book.content}">사용 내역 및 용도</td>
+                    <td th:text="${book.cost}">사용 금액</td>
+                    <td th:text="${book.balance}">남은 예산</td>
+                    <td th:text="${book.memo}">메모</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">수정</button>
+            <button type="submit" class="btn btn-primary">작성</button>
+        </div>
+        </body>
+    </div>
+</th:block>
+</html>
