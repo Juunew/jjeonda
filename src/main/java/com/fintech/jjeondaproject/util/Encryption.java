@@ -3,6 +3,7 @@ package com.fintech.jjeondaproject.util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 @Component
@@ -15,9 +16,12 @@ public class Encryption {
 		SALT = salt;
 	}
 
+
 	public static String encryptSHA512(String password){
+		System.out.println("password인크립션:"+ password);
 		try {
 			if(password != null && SALT != null) {
+				System.out.println("salt:"+SALT);
 				MessageDigest md = MessageDigest.getInstance("SHA-512");
 				md.reset();
 				
@@ -27,6 +31,8 @@ public class Encryption {
 				
 				return String.format("%0128x", new BigInteger(1, digested));
 			} else {
+				System.out.println("salt:"+SALT);
+				System.out.println("널이야");
 				return "";
 			}
 		} catch (Exception e) {
@@ -39,4 +45,5 @@ public class Encryption {
 		
 		return encryptSHA512(pwd).equals(dbPwd);
 	}
+
 }

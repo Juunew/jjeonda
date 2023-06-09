@@ -13,6 +13,15 @@
 				return false;
 			}
 			
+			if(id !== ''){
+				var regexp = /^[a-z0-9][a-z0-9_\-]{4,19}$/ //구성된 길이 4 ~ 19자리 사이 문자열
+				if(!regexp.test(id)){
+					showErrorMsg(idMsg,'5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.');
+					return false;
+				}
+				hideMsg(idMsg);
+			}
+			
  			$.ajax({
 				type:'post',
 				url:'/checkId',

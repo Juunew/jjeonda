@@ -1,3 +1,16 @@
+
+$(function(){
+	$('#kakaoBtn').click(function(){
+		$.ajax({
+			type: 'post',
+			url: '/login/kakao',
+			success:function(data){
+				console.log(data);
+			}
+		})
+	})
+})
+
 /*$(function() {
 	$('#loginBtn').click(function() {
 		var id = $('#id').val();

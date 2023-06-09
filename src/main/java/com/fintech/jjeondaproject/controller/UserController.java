@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
 import com.fintech.jjeondaproject.repository.UserRepository;
@@ -33,8 +34,7 @@ public class UserController {
 	
 	@GetMapping("/sign-up")
 	public String joinForm(String agreementYn) {
-		System.out.println("agreementYn:"+agreementYn);
-		return "join";
+		return "user/join";
 	}
 	
 	@PostMapping("/sign-up")
@@ -46,7 +46,7 @@ public class UserController {
 	// 약관동의
 	@GetMapping("/agreement")
 	public String agreement() {
-		return "agreement";
+		return "user/agreement";
 	}
 	@PostMapping("/agreement")
 	public String agreements(@RequestParam("agreementYn") String agreementYn, RedirectAttributes re) {
@@ -60,9 +60,9 @@ public class UserController {
 	@ResponseBody
 	@PostMapping("/checkId")
 	public boolean checkId(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		System.out.println("id:"+id);
-		return userService.checkId(id);
+		String accountId = request.getParameter("id");
+		System.out.println("accountId:"+accountId);
+		return userService.checkAccountId(accountId);
 	}
 	
 	// email 인증
@@ -86,7 +86,7 @@ public class UserController {
 	// 로그인 페이지
 	@GetMapping("/sign-in")
 	public String loginForm() {
-		return "login";
+		return "user/login";
 	}
 	
 	@PostMapping("/sign-in")
@@ -97,5 +97,12 @@ public class UserController {
 		
 		return "redirect:/";
 	}
+	
+	// 카카오로그인
+	@PostMapping("/login/kakao")
+	public ProfileResponseDto getCode(@RequestParam String code) {
+		return userService.getRequireUrl();
+	}
+	
 	
 }

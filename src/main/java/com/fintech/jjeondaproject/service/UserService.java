@@ -5,13 +5,16 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.fintech.jjeondaproject.util.jwt.Jwt;
-import com.fintech.jjeondaproject.util.jwt.JwtProvider;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
+
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
 import com.fintech.jjeondaproject.entity.UserEntity;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.util.Encryption;
+import com.fintech.jjeondaproject.util.jwt.Jwt;
+import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +23,13 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserService {
 	private final UserRepository userRepository;
-	private final Encryption encryption;
+//	private final Encryption encryption;
 	private final JwtProvider jwtProvider;
 	
 	public void join(UserDto userDto){
-		String myEncryption = encryption.encryptSHA512(userDto.getPassword());
+		System.out.println("userDto.getPassword():"+userDto.getPassword());
+		String myEncryption = Encryption.encryptSHA512(userDto.getPassword());
+		System.out.println("myEn:"+ myEncryption);
 		UserEntity userEntity = UserEntity.builder()
 				.accountId(userDto.getAccountId())
 				.password(myEncryption)
@@ -41,21 +46,20 @@ public class UserService {
 	}
 	
 	// id중복확인
-	public boolean checkId(String id) {
-		return userRepository.existsById(id);
+	public boolean checkAccountId(String accountId) {
+		return userRepository.existsByAccountId(accountId);
 	}
 
 	public String signIn(UserLoginDto userDto) {
-//		log.info("userDto={}",userDto.getPassword());
-		UserEntity savedUser =  userRepository.findById(userDto.getAccountId());
+		log.info("userDto={}",userDto.getPassword());
+		UserEntity savedUser =  userRepository.findByAccountId(userDto.getAccountId());
 		
 		if(savedUser == null) {
 			return "로그인 실패";
 		}
 //		log.info("Encryption.encryptSHA512(userDto.getPassword()):{}",encryption.encryptSHA512(userDto.getPassword()));
 		if(Encryption.comparePwd(userDto.getPassword(), savedUser.getPassword())) { // input pwd와 db pwd가 같다면..
-//			log.info("@@@@@@@@@@@@@@@savedUser.getUserId()={}",savedUser.getUserId());
-//			log.info("@@@@@@@@@@@@@@@userDto.getId()={}",userDto.getId());
+			log.info("@@@@@@@@@@@@@@@savedUser.getAccountId()={}",savedUser.getAccountId());
 			Map<String, Object> claims = new HashMap<>();
 
 			/**
@@ -72,6 +76,11 @@ public class UserService {
 			return jwt.getAccessToken();
 		}
 		return "로그인 실패";
+	}
+
+	public ProfileResponseDto getRequireUrl() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
