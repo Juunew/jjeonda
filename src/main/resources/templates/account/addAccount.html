@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}" lang="ko">
+<th:block layout:fragment="content">
+	<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	</head>
+	<div class="container-fluid">
+		<body>			
+			<form>
+			<div class="container">
+				<h2>계좌 추가</h2>
+				
+				<div class="accuntNum">
+					<lable for="accountNum">계좌번호</lable>
+					<input type="text" class="form-control" id="accountNum" name="accountNum" placeholder="계좌번호">
+				</div>
+				<div class="form-group">
+					<label for="bank">은행</label> 
+						<select id="bank" class="form-control">
+							<option value="">선택하세요</option>
+							
+					</select>
+				</div>
+				<div class="availableAmt">
+					<lable for="availableAmt">잔액</lable>
+					<input type="text" class="form-control" id="availableAmt" name="availableAmt" placeholder="잔액">
+				</div>
+				
+				<div style="display: inline-block; margin: 0 5px; float: right;">
+					<button type="submit" class="btn btn-primary">등록</button>
+				</div>
+			</div>
+			</form>
+			
+		<!-- 	<script>
+				//드롭다운 메뉴
+				var bankDropdown = document.getElementById('bank');
+				// AJAX 요청 생성
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', '/banks', true);
+				// 요청 완료 시 처리	
+				 xhr.onload = function() {
+				   if (xhr.status === 200) {
+				     var banks = JSON.parse(xhr.responseText);
+				// 옵션 추가
+				 banks.forEach(function(bank) {
+				 	var option = document.createElement('option');
+				       option.value = bank.name;
+				       option.text = bank.name;
+				       bankDropdown.appendChild(option);
+				      	});
+				   	 	}
+				 	};
+				 	// 요청 전송
+				 	xhr.send();
+				
+			</script> -->
+			
+		</body>
+	</div>
+</th:block>
+</html>
