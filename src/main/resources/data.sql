@@ -136,7 +136,7 @@ VALUES ('카드별명5', 50000, '2023-05-30 20:45:51', '11', 9, 5);
 
 -- Book
 INSERT INTO total_book (user_id, year, month, budget, remain_budget)
-VALUES (1, '2023', '06', 3000000, 2345500);
+VALUES (1, '2023', '06', 3000000, 3000000);
 
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
 VALUES (1, 'FC', 100000, '주택청약', '주택청약');

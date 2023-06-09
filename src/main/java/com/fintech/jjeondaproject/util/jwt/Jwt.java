@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.auth;
+package com.fintech.jjeondaproject.util.jwt;
 
 import java.util.Date;
 import java.util.Map;
