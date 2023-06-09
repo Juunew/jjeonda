@@ -22,12 +22,16 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional
+//트랜잭션 : 예상치 못한 엔티티의 등록, 변경, 삭제를 예방할 수 있고,
+// 성능을 최적화 할 수 있다
 @Service
 public class BookTestService {
 
     private final TotalBookRepository totalBookRepository;
     private final DetailBookRepository detailBookRepository;
 
+    //읽기 전용 트랜잭션으로 실행
+    //사용자의 가계부 목록을 조회
     @Transactional(readOnly = true)
     public BookListDto findMyBookList(Long userId, BookDateQueryDto queryDto) {
         TotalBookEntity totalBook = totalBookRepository.findAllByUserIdAndYearAndMonth(userId, queryDto.getYear(), queryDto.getMonth());
@@ -54,7 +58,6 @@ public class BookTestService {
     // 수정
     public BookMonthlyResDto updateMonthlyPlan(Long bookId, BookMonthlyModDto modDto) {
         TotalBookEntity totalBook = getTotalBookInfoOrException(bookId);
-        totalBook.updateBudget(modDto);
 
         /**
          * update 시 처리해줘야 할 내용
@@ -84,6 +87,8 @@ public class BookTestService {
 
             }
         }
+
+        totalBook.updateBudget(modDto);
 
         return BookMonthlyResDto.fromEntity(totalBook);
     }

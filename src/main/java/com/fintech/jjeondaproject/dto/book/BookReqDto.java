@@ -13,8 +13,4 @@ public class BookReqDto {
     private int cost;
     private String memo;
 
-    // setCost 메서드 추가
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
 }

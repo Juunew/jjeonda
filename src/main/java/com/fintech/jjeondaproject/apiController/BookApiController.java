@@ -15,8 +15,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
+// 생성자 주입
+// final이 붙거나 @NotNull 이 붙은 필드의 생성자를 자동 생성해주는 롬복 어노테이션
 @RequestMapping("/api/v1/books")
+// 요청 매핑의 경로 설정
 @RestController
+//spring MVC의 컨트롤러를 사용하면서 Data를 반환해야 하는 경우 사용하는 어노테이션
+// Json 형태로 데이터를 반환할 수 있게 해준다
 public class BookApiController {
 
     private final BookTestService bookService;

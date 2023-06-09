@@ -23,10 +23,10 @@ public class BookListDto {
     public static BookListDto fromEntities(TotalBookEntity totalBook, List<DetailBookEntity> detailBook) {
         return new BookListDto(
                 totalBook.getId(),
-                totalBook.getYear(),
-                totalBook.getMonth(),
-                totalBook.getBudget(),
-                totalBook.getRemainBudget(),
+                totalBook.getYear(), //년
+                totalBook.getMonth(), //달
+                totalBook.getBudget(), //예산
+                totalBook.getRemainBudget(), //남은예산
                 detailBook.stream()
                         .map(BookDetailsDto::fromEntity)
                         .collect(Collectors.toList())

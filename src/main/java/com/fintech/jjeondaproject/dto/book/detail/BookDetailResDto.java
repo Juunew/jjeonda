@@ -13,6 +13,10 @@ public class BookDetailResDto {
     private int cost;
     private String content;
     private String memo;
+    private Long bookId;
+    private Long userId;
+    private String year;
+    private String month;
 
     public static BookDetailResDto fromEntity(DetailBookEntity detailBook) {
         return new BookDetailResDto(
@@ -20,7 +24,11 @@ public class BookDetailResDto {
                 detailBook.getCostType(),
                 detailBook.getCost(),
                 detailBook.getContent(),
-                detailBook.getMemo()
+                detailBook.getMemo(),
+                detailBook.getTotalBook().getId(),
+                detailBook.getTotalBook().getUser().getId(),
+                detailBook.getTotalBook().getYear(),
+                detailBook.getTotalBook().getMonth()
         );
     }
 }
