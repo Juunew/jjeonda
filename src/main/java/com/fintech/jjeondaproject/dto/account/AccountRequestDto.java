@@ -1,24 +1,17 @@
 package com.fintech.jjeondaproject.dto.account;
 
-import java.sql.Time;
-import java.util.Date;
+import com.fintech.jjeondaproject.entity.BankEntity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@Builder
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class AccountRequestDto {
-
-	private Date tranDate;
-	private Time tranTime;
-	private String inoutType;
-	private String content;
-	private int tranAmt;
-	private int tranAfterAmt;
+	
+	private BankEntity bankId;		//기관식별자
+	private BankEntity bankCode;	//은행코드	
+	private BankEntity bankName;	//은행명
+	private Long availableAmt;		//잔액
 	
 }

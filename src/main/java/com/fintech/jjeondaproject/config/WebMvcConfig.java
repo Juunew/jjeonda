@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.fintech.jjeondaproject.auth.JwtInterceptor;
+import com.fintech.jjeondaproject.util.jwt.JwtInterceptor;
 
 import lombok.RequiredArgsConstructor;
 @Configuration
