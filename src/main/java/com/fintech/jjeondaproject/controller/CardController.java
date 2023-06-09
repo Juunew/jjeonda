@@ -1,14 +1,20 @@
 package com.fintech.jjeondaproject.controller;
 
+import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
-import com.fintech.jjeondaproject.dto.card.CardTestDto;
+import com.fintech.jjeondaproject.dto.card.CardModDto;
+import com.fintech.jjeondaproject.dto.openBanking.BankCodeDto;
+import com.fintech.jjeondaproject.entity.openBanking.CardTokenEntity;
+//import com.fintech.jjeondaproject.feign.BankingFeign;
+import com.fintech.jjeondaproject.service.BankingService;
 import com.fintech.jjeondaproject.service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -16,10 +22,16 @@ import java.util.List;
 @RequestMapping("/cards")
 public class CardController {
     private  final CardService cardService;
+    private final JwtProvider jwtProvider;
+
+//    private final BankingFeign bankingFeign;
+    private final BankingService bankingService;
 
     //전체 카드 리스트 조회
     @GetMapping("/list")
-    public String cardList(Model model){
+    public String cardList(Model model, HttpServletRequest request){
+        String cookie = jwtProvider.getJwtFromCookie(request);
+        System.out.println("cookie" + cookie);
         List<CardListDto> cardListDto = cardService.cardList();
         model.addAttribute("cardList", cardListDto);
         System.out.println(cardListDto);
@@ -54,10 +66,36 @@ public class CardController {
 
     // 카드 별명 설정 페이지
     @PutMapping("/{cardId}/nickname")
-    public String EditNickname(@PathVariable Long cardId, @RequestBody CardTestDto.test data, Model model){
+    public String EditNickname(@PathVariable Long cardId, @RequestBody CardModDto data, Model model){
         CardDto cardDto = cardService.changeNickname(cardId, data.getNickName());
         model.addAttribute("cardDetail", cardDto);
         System.out.println(cardDto);
         return "card/cardDetail";
     }
+
+//    open_banking Accesstoken 받기
+//    @GetMapping("/requesttoken")
+//    public String requesttoken(@RequestParam("code") String code,
+//                               @RequestParam("scope") String scope,
+//                               @RequestParam("state") String state
+//    ) {
+//        System.out.println("code : " + code);
+//        System.out.println("scope : " + scope);
+//        System.out.println("state : " + state);
+//
+////        BankCodeDto = bankingService.findClientSecret();
+//
+//        CardTokenEntity cardTokenEntity =
+//                bankingFeign.requestToken(code,"86dd1ec4-2394-4815-963f-0e5d2c28428a"
+//                        , "c3cb34d6-8b7d-4e3e-b2e7-aabf2f3d9f2d"
+//                        , "http://localhost:8080/requesttoken", "authorization_code");
+//
+////		System.out.println("토큰responseVO : " + tokenResponseVO.toString());
+////		bankingService.insertToken(tokenResponseVO);
+//
+//        System.out.println("토큰responseVO : " + cardTokenEntity.toString());
+//        bankingService.insertToken(cardTokenEntity);
+//
+//        return "home";
+//    }
 }
