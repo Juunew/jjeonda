@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fintech.jjeondaproject.dto.account.AccountDto;
+import com.fintech.jjeondaproject.dto.account.AccountRequestDto;
 import com.fintech.jjeondaproject.entity.AccountEntity;
 import com.fintech.jjeondaproject.repository.AccountRepository;
 
@@ -57,6 +58,10 @@ public class AccountService {
 		        .tranAfterAmt(accountEntity.getTranAfterAmt())
 		        .build();
 		return accountDto;
+	}
+
+	public static void addAccount(AccountRequestDto accountDto) {
+		
 	}
 	
 	
