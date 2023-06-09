@@ -10,16 +10,18 @@
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 <body>
-	<form method="post" action="/books/details">
+	<form method="post" action="/books/expenditure-detail">
 
 		<div class="container">
 			<h1>가계부 작성</h1>
 			<div class="form-group">
+				<input type="hidden" id="bookId" name="bookId" th:value="${bookId}">
+
 				<label for="costType">유형</label>
 				<select class="form-control" id="costType" name="costType">
-					<option value="수입">수입</option>
-					<option value="고정지출">고정 지출</option>
-					<option value="변동지출">변동 지출</option>
+					<option value="IC">수입</option>
+					<option value="FC">고정 지출</option>
+					<option value="VC">변동 지출</option>
 				</select>
 			</div>
 		</div>
@@ -45,7 +47,8 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">등록</button>
+			<button type="submit" class="btn btn-primary" onclick="location.href='/books/list/{userId}'">등록</button>
+
 		</div>
 
 	</form>

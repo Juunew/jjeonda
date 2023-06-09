@@ -1,0 +1,55 @@
+<!--가계부 내용 수정 페이지-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<th:block layout:fragment="content">
+    <div class="container-fluid">
+        <body>
+        <form method="post" action="/books/details">
+
+            <div class="container">
+                <h1>가계부 수정</h1>
+                <div class="form-group">
+                    <label for="costType">유형</label>
+                    <select class="form-control" id="costType" name="costType">
+                        <option value="수입">수입</option>
+                        <option value="고정지출">고정 지출</option>
+                        <option value="변동지출">변동 지출</option>
+                    </select>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="content">사용 내역</label>
+                            <input type="text" class="form-control" id="content" name="content" placeholder="내역">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="cost">사용 금액</label>
+                            <input type="cash" class="form-control" id="cost" name="cost" placeholder="금액">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="memo">메모</label>
+                            <input type="text" class="form-control" id="memo" name="memo" placeholder="메모">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">수정완료</button>
+            </div>
+
+        </form>
+        </body>
+    </div>
+</th:block>
+</html>

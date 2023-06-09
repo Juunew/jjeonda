@@ -1,0 +1,39 @@
+<!--월간 예산 계획 페이지 페이지-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}" lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+<th:block layout:fragment="content">
+	<div class="container-fluid">
+		<body>
+		<form method="post" action="/books/month-plan">
+
+			<div class="container">
+				<h1>월간 예산 계획</h1>
+			<div class="container">
+
+				<div class="row">
+					<div class="col-6">
+						<div class="form-group">
+							<label for="month">목표 월</label>
+							<input type="text" class="form-control" id="month" name="month" placeholder="월">
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="form-group">
+							<label for="budget">목표 예산</label>
+							<input type="cash" class="form-control" id="budget" name="budget" placeholder="예산">
+						</div>
+					</div>
+				<button type="submit" class="btn btn-primary">등록</button>
+			</div>
+
+		</form>
+		</body>
+	</div>
+</th:block>
+</html>
