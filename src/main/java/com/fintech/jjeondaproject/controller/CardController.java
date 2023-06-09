@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.controller;
 
-import com.fintech.jjeondaproject.auth.JwtProvider;
+import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
