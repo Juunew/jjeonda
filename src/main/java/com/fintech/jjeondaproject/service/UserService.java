@@ -6,14 +6,14 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fintech.jjeondaproject.auth.Jwt;
-import com.fintech.jjeondaproject.auth.JwtProvider;
 import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
 import com.fintech.jjeondaproject.entity.UserEntity;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.util.Encryption;
+import com.fintech.jjeondaproject.util.jwt.Jwt;
+import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
