@@ -21,15 +21,16 @@
         </div>
         <div class="row">
           <div th:each="index : ${cardList}" class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">Link</a>
-<!--              <a href="javascript:void(0);" th:onclick="openPopup([[${index.cardId}]])">Link</a>-->
-            </div>
+            <img src="/img/card/card.png" class="card-img-top" alt="My Image">
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Card title</h5>-->
+<!--              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--              <a th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">Link</a>-->
+<!--&lt;!&ndash;              <a href="javascript:void(0);" th:onclick="openPopup([[${index.cardId}]])">Link</a>&ndash;&gt;-->
+<!--            </div>-->
+            <a th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">Link</a>
             <p th:text="${index.cardId}"></p>
-            <p th:text="${index.user.getUserId()}"></p>
+            <p th:text="${index.user.getId()}"></p>
             <p th:text="${index.bank.getId()}"></p>
             <p th:text="${index.cardName}"></p>
             <p th:text="${index.settlementDay}"></p>

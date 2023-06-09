@@ -12,7 +12,7 @@ public class MailConfig {
 	@Bean
 	public JavaMailSender javaMailService() {
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-		String configPath = ".\\src\\main\\resources\\config.yml";
+		String configPath = ".\\src\\main\\resources\\application.yml";
 		// 혁준 경로 - 지우지 말 것
 		//String configPath = "./src/main/resources/config.yml";
 		Properties config = new MyConfigReader().readConfig(configPath);

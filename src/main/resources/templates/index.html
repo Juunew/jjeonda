@@ -10,12 +10,28 @@
 </head>
 
 
-<!--   <div class="container-fluid">
-    <h1>Fxxk Fragment</h1>
-    <h2>Index.html 제외하고는 전부 각 도메인 별 폴더 구분해주세요.</h2>
-    <h2>layout은 index.html을 참고하시면 됩니다.</h2>
-    <h2>layout은 index.html의 상단 html 태그를 가져다 쓰면 사용하실 수 있어요.</h2>
-    <h2>layout은 content를 선언하고 그 안에서 view page code 작성해주세요. </h2>
-  </div> -->
+<div class="container-fluid">
+    <button onclick="authorization()">오픈뱅킹인증하기</button>
+
+</div>
+
+<script>
+    function authorization() {
+        var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+            +"response_type=code&"
+            +"client_id=86dd1ec4-2394-4815-963f-0e5d2c28428a&"
+            +"redirect_uri=http://localhost:8080/requesttoken&"
+            +"scope=login cardinfo&"
+            +"state=12345678123456781234567812345678&"
+            +"auth_type=0";
+// 			var tmpWindow = window.open('about:blank')
+// 			tmpWindow.location = url;
+        window.location.href = url;
+        // var newWindow = window.open(url,"인증하기","width=800px,height=800px");
+    }
+
+
+</script>
 </th:block>
+
 </html>
