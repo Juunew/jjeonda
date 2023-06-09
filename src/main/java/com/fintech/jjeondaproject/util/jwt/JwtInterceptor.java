@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.auth;
+package com.fintech.jjeondaproject.util.jwt;
 
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.service.UserService;

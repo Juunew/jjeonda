@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.auth;
+package com.fintech.jjeondaproject.util.jwt;
 // Jwt를 생성하고 파싱하는 클래스
 // AccessToken과 RefreshToken을 생성하고 생성된 토큰을  parsing해서 Claims로 반환하는 메서드 구현
 // jjwt라이브러리 사용
