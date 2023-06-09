@@ -1,5 +1,6 @@
 package com.fintech.jjeondaproject.controller;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fintech.jjeondaproject.dto.account.AccountDto;
+import com.fintech.jjeondaproject.dto.account.AccountRequestDto;
 import com.fintech.jjeondaproject.entity.AccountEntity;
 import com.fintech.jjeondaproject.repository.AccountRepository;
 import com.fintech.jjeondaproject.service.AccountService;
@@ -26,6 +29,12 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class AccountController {
 	private final AccountService accountService;
+	
+	// 천단위 콤마
+	//public static String toNumFormat(int num) {
+		 DecimalFormat df = new DecimalFormat("#,###");
+	/*  return df.format(num);
+	}	*/
 	
 	//전체계좌목록
 	@GetMapping("/list")
@@ -43,21 +52,17 @@ public class AccountController {
 											//단일객체를 리스트로 감싸는 것은 일관성있는 데이터 처리를 위해 권장방법
 		return "account/accountDetail";
 	}
-	
 
-	/*
-	 * //거래내역조회 API
-	 * 
-	 * @GetMapping("/transaction") public String transacton() { return ("/"); }
-	 * 
-	 * //잔액조회 API
-	 * 
-	 * @GetMapping("/balance") public String balance() { return balance(); }
-	 */
-	
+	// 계좌 직접 추가
+	@GetMapping("/addAccount") 
+	public String AddAccount() {
+		return "account/addAccount"; 
+	}
 	 
 	
-	
+
+}	
+
 	
 		/*
 		 * model.addAttribute("accountDetail", accountDetail(model)); return
@@ -72,7 +77,6 @@ public class AccountController {
 		 * accountId); return ("account/accountDetail"); }
 		 */
 
-}
 
 	
 	  
