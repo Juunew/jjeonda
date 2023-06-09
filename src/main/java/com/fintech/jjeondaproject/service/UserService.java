@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fintech.jjeondaproject.auth.Jwt;
 import com.fintech.jjeondaproject.auth.JwtProvider;
+import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
 import com.fintech.jjeondaproject.entity.UserEntity;
@@ -58,7 +59,6 @@ public class UserService {
 //		log.info("Encryption.encryptSHA512(userDto.getPassword()):{}",encryption.encryptSHA512(userDto.getPassword()));
 		if(Encryption.comparePwd(userDto.getPassword(), savedUser.getPassword())) { // input pwd와 db pwd가 같다면..
 			log.info("@@@@@@@@@@@@@@@savedUser.getAccountId()={}",savedUser.getAccountId());
-			log.info("@@@@@@@@@@@@@@@userDto.getId()={}",userDto.getId());
 			Map<String, Object> claims = new HashMap<>();
 
 			/**
@@ -75,6 +75,11 @@ public class UserService {
 			return jwt.getAccessToken();
 		}
 		return "로그인 실패";
+	}
+
+	public ProfileResponseDto getRequireUrl() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -5,7 +5,6 @@ import lombok.Data;
 @Builder
 @Data
 public class UserLoginDto {
-	private Long id;
 	private String accountId;
 	private String password;
 }
