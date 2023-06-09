@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.util;
+package com.fintech.jjeondaproject.util.mail;
 
 import java.io.UnsupportedEncodingException;
 

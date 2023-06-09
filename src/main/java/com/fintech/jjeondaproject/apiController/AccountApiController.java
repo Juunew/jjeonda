@@ -3,8 +3,8 @@ package com.fintech.jjeondaproject.apiController;
 import com.fintech.jjeondaproject.common.response.ResBody;
 import com.fintech.jjeondaproject.dto.account.AccountListDto;
 import com.fintech.jjeondaproject.dto.account.AccountResDto;
-import com.fintech.jjeondaproject.service.AccountService;
 import com.fintech.jjeondaproject.service.AccountTestService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Accounts", description = "계좌 관리 API")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/accounts")
 @RestController

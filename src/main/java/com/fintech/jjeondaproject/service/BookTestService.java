@@ -54,7 +54,6 @@ public class BookTestService {
     // 수정
     public BookMonthlyResDto updateMonthlyPlan(Long bookId, BookMonthlyModDto modDto) {
         TotalBookEntity totalBook = getTotalBookInfoOrException(bookId);
-        totalBook.updateBudget(modDto);
 
         /**
          * update 시 처리해줘야 할 내용
@@ -84,6 +83,8 @@ public class BookTestService {
 
             }
         }
+
+        totalBook.updateBudget(modDto);
 
         return BookMonthlyResDto.fromEntity(totalBook);
     }
