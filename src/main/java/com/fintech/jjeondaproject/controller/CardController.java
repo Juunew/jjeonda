@@ -34,7 +34,6 @@ public class CardController {
         System.out.println("cookie" + cookie);
         List<CardListDto> cardListDto = cardService.cardList();
         model.addAttribute("cardList", cardListDto);
-        System.out.println(cardListDto);
         return "card/cardList";
     }
 
