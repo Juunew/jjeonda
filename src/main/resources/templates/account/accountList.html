@@ -7,14 +7,9 @@
 	text-align: center;
 	}
 </style>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<h1>전체 계좌</h1>
-		<body>
 			<table class="table table-hover">
 				<thead class="p-3 mb-2 bg-primary text-white">
 					<tr>
@@ -46,7 +41,7 @@
 				<button type="button" class="btn btn-primary"
 						onclick="location.href='/accounts/addAccount'">추가</button>
 				<button type="button" class="btn btn-primary"
-						onclick="">삭제</button>
+						onclick="location.href='/accounts/addAccount'">삭제</button>
 			</div>
 			<script>
 				function openPopup(accountId) {
@@ -56,7 +51,6 @@
 				}
 				
 			</script>
-		</body>
 	</div>
 </th:block>
 </html>

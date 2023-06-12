@@ -11,7 +11,6 @@ public class BankDto {
 	
 	private Long id;
 	private String bankCode;
-	private String cardCode;
 	private String bankName;
 	
 }
