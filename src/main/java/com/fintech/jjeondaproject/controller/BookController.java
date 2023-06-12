@@ -39,8 +39,7 @@ public class BookController {
 
     // 가계부 작성 폼
     @GetMapping("/expenditure-detail/{bookId}")
-    public String getExpenditureDetailForm(@PathVariable("bookId") Long bookId, @ModelAttribute BookDetailResDto bookDetailReqDto, Model model) {
-        model.addAttribute("bookId", bookId);
+    public String getExpenditureDetailForm( @ModelAttribute BookDetailResDto bookDetailReqDto, Model model) {
         return "book/bookWrite";
     }
 
