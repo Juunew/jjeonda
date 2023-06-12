@@ -1,6 +1,5 @@
 package com.fintech.jjeondaproject.controller;
 
-
 import com.fintech.jjeondaproject.dto.book.BookDateQueryDto;
 import com.fintech.jjeondaproject.dto.book.BookListDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
@@ -13,18 +12,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/books")
 @Controller
 public class BookController {
 
-
     private final BookTestService bookService;
-
-
 
     // 가계부 목록 조회
     @GetMapping("/list/{userId}")
@@ -36,7 +32,6 @@ public class BookController {
 
         return "book/bookView";
     }
-
     // 가계부 작성 폼
     @GetMapping("/expenditure-detail/{bookId}")
     public String getExpenditureDetailForm( @ModelAttribute BookDetailResDto bookDetailReqDto, Model model) {
@@ -82,3 +77,5 @@ public class BookController {
         return "book/bookEdit";
     }
 }
+
+

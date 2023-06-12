@@ -38,29 +38,23 @@ public class UserEntity {
 	@Column(nullable = false, length = 200, name = "account_id")
 	private String accountId;
 	
-	@Column(nullable = false, length = 200)
 	private String password;
 	
-	@Column(nullable = false, length = 200)
 	private String name;
 	
-	@Column(nullable = false, length = 200)
 	private String phone;
 	
-	@Column(nullable = false, length = 200)
 	private String gender;
 	
-	@Column(nullable = false, length = 200)
 	private String birth;
 	
-	@Column(nullable = false, length = 200)
 	private String email;
 	
-	@Column(name = "reg_date", nullable = false, length = 200)
+	@Column(name = "reg_date")
 	@CreationTimestamp // update는 UpdateTimestamp
 	private Date regDate;
 	
-	@Column(name = "agreement_yn", nullable = false, length = 1)
+	@Column(name = "agreement_yn")
 	private String agreementYn;
 	
 	@Column(name = "refresh_token")
@@ -69,5 +63,15 @@ public class UserEntity {
 	public void updateRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
 	}
+
+	public UserEntity(String name, String phone, String gender, String birth, String email) {
+		this.name = name;
+		this.phone = phone;
+		this.gender = gender;
+		this.birth = birth;
+		this.email = email;
+	}
+	
+	
 
 }

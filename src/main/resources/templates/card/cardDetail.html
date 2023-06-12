@@ -4,15 +4,48 @@
       layout:decorate="~{layout/layout}" lang="ko">
 
 <th:block layout:fragment="content">
-    <div class="container-fluid">
-        <p>카드별명 : </p><p id="cardName" th:text="${cardDetail.getCardName()}"></p>
-        <a th:href="@{/cards/edit/{cardId}(cardId=${cardDetail.getCardId()})}"><button id="editButton">카드별명 수정하기</button></a>
-        <p>결제 예정일 : </p><p th:text="${cardDetail.getSettlementDay()}"></p>
-        <p>결제 예정 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
-        <p>전월 결제 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>
-        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
-        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>
+    <div class="container-lg">
+    <div class="d-flex justify-content-between my-3">
+        <h2 class="h2" th:text="${cardDetail.getCardName()}">h2. Bootstrap heading</h2>
+        <a class="btn btn-primary" th:href="@{/cards/edit/{cardId}(cardId=${cardDetail.getCardId()})}">카드정보 수정</a>
     </div>
 
+    <!--    <div class="container-fluid d-flex flex-column align-items-center justify-content-center">-->
+<!--        <div class="d-flex align-items-center mb-3">-->
+<!--            <p class="mb-0 mr-3">카드별명 : </p>-->
+<!--            <p id="cardName" th:text="${cardDetail.getCardName()}" class="mb-0 mr-3"></p>-->
+<!--            <a th:href="@{/cards/edit/{cardId}(cardId=${cardDetail.getCardId()})}"><button id="editButton">카드별명 수정하기</button></a>-->
+<!--        </div>-->
+<!--        <p>결제 예정일 : </p><p th:text="${cardDetail.getSettlementDay()}"></p>-->
+<!--        <p>결제 예정 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>-->
+<!--        <p>전월 결제 금액 : </p><p th:text="${cardDetail.getPaymentAmt()}"></p>-->
+<!--        <p>전월 대비 감소 금액 : </p><p th:text="${cardDetail.getCardName()}"></p>-->
+<!--    </div>-->
+
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="py-1">
+            <th scope="row"></th>
+            <td style="width: 30%;">결제 예정일 : </td>
+            <td th:text="${cardDetail.getSettlementDay()}"></td>
+            <td></td>
+        </tr>
+        <tr class="py-1">
+            <th scope="row"></th>
+            <td style="width: 30%;">결제 예정 금액 : </td>
+            <td th:text="${cardDetail.getPaymentAmt()}"></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 </th:block>
 </html>

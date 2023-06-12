@@ -5,7 +5,7 @@ import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
 import com.fintech.jjeondaproject.dto.openBanking.BankCodeDto;
-import com.fintech.jjeondaproject.entity.openBanking.CardTokenEntity;
+import com.fintech.jjeondaproject.entity.TokenEntity;
 //import com.fintech.jjeondaproject.feign.BankingFeign;
 import com.fintech.jjeondaproject.service.BankingService;
 import com.fintech.jjeondaproject.service.CardService;
@@ -29,20 +29,37 @@ public class CardController {
 
     //전체 카드 리스트 조회
     @GetMapping("/list")
-    public String cardList(Model model, HttpServletRequest request){
-        String cookie = jwtProvider.getJwtFromCookie(request);
-        System.out.println("cookie" + cookie);
+    public String cardList(Model model, HttpServletRequest request){// , HttpServletRequest request){
+//        String cookie = jwtProvider.getJwtFromCookie(request);
+//        System.out.println("cookie" + cookie);
+
+        String token = jwtProvider.getJwtFromCookie(request);
+        Long id = jwtProvider.getClaims(token).get("UserId", Long.class);
+
         List<CardListDto> cardListDto = cardService.cardList();
+        List<CardListDto> category = cardService.cardList();
         model.addAttribute("cardList", cardListDto);
-        System.out.println(cardListDto);
+        model.addAttribute("category", category);
+        return "card/cardList";
+    }
+    //(로그인한 유저) 전체 카드 리스트 조회
+    @GetMapping("/list/user/{userId}")
+    public String cardListByUserId(@PathVariable Long userId, Model model){
+        List<CardListDto> result = cardService.cardListByUserId(userId);
+        List<CardListDto> category = cardService.cardList();
+        model.addAttribute("cardList", result);
+        model.addAttribute("category", category);
+        System.out.println(result);
         return "card/cardList";
     }
 
     //    카드사 별 보유 카드 목록
-    @GetMapping("/list/{bankId}")
+    @GetMapping("/list/bank/{bankId}")
     public String cardList(@PathVariable Long bankId, Model model){
         List<CardListDto> cardListDto = cardService.cardListByBankId(bankId);
+        List<CardListDto> category = cardService.cardList();
         model.addAttribute("cardList", cardListDto);
+        model.addAttribute("category", category);
         System.out.println(cardListDto);
         return "card/cardList";
     }
@@ -66,8 +83,8 @@ public class CardController {
 
     // 카드 별명 설정 페이지
     @PutMapping("/{cardId}/nickname")
-    public String EditNickname(@PathVariable Long cardId, @RequestBody CardModDto data, Model model){
-        CardDto cardDto = cardService.changeNickname(cardId, data.getNickName());
+    public String EditNickname(@PathVariable Long cardId, @RequestParam("cardName") String data, Model model){
+        CardDto cardDto = cardService.changeNickname(cardId, data);
         model.addAttribute("cardDetail", cardDto);
         System.out.println(cardDto);
         return "card/cardDetail";

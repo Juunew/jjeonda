@@ -20,8 +20,8 @@ public class CardService {
         return cardEntityList.stream().
                 map(m->new CardListDto(
                         m.getCardId(),
-                        m.getUser(),
-                        m.getBank(),
+                        m.getUser().getId(),
+                        m.getBank().getId(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
@@ -36,15 +36,14 @@ public class CardService {
         return cardEntityList.stream().
                 map(m->new CardListDto(
                         m.getCardId(),
-                        m.getUser(),
-                        m.getBank(),
+                        m.getUser().getId(),
+                        m.getBank().getId(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
                         m.getPaymentAmt()
                 ))
                 .collect(Collectors.toList());
-//        return null;
     }
 
 
@@ -53,8 +52,8 @@ public class CardService {
         CardEntity cardEntity = cardRepository.findByCardId(cardId);
         CardDto cardDto = CardDto.builder()
                 .cardId(cardEntity.getCardId())
-                .user(cardEntity.getUser())
-                .bank(cardEntity.getBank())
+                .userId(cardEntity.getUser().getId())
+                .bankId(cardEntity.getBank().getId())
                 .cardName(cardEntity.getCardName())
                 .settlementDay(cardEntity.getSettlementDay())
                 .settlementDate(cardEntity.getSettlementDate())
@@ -69,13 +68,28 @@ public class CardService {
         cardEntity.changeNickname(nickname);
         CardDto cardDto = CardDto.builder()
                 .cardId(cardEntity.getCardId())
-                .user(cardEntity.getUser())
-                .bank(cardEntity.getBank())
+                .userId(cardEntity.getUser().getId())
+                .bankId(cardEntity.getBank().getId())
                 .cardName(cardEntity.getCardName())
                 .settlementDay(cardEntity.getSettlementDay())
                 .settlementDate(cardEntity.getSettlementDate())
                 .paymentAmt(cardEntity.getPaymentAmt())
                 .build();
         return cardDto;
+    }
+
+    public List<CardListDto> cardListByUserId(Long userId) {
+        List<CardEntity> cardEntityList = cardRepository.findByUserId(userId);
+        return cardEntityList.stream().
+                map(m->new CardListDto(
+                        m.getCardId(),
+                        m.getUser().getId(),
+                        m.getBank().getId(),
+                        m.getCardName(),
+                        m.getSettlementDay(),
+                        m.getSettlementDate(),
+                        m.getPaymentAmt()
+                ))
+                .collect(Collectors.toList());
     }
 }

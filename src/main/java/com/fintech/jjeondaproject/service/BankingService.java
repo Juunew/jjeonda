@@ -1,7 +1,7 @@
 package com.fintech.jjeondaproject.service;
 
 import com.fintech.jjeondaproject.dto.openBanking.BankCodeDto;
-import com.fintech.jjeondaproject.entity.openBanking.CardTokenEntity;
+import com.fintech.jjeondaproject.entity.TokenEntity;
 import com.fintech.jjeondaproject.repository.BankingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ public class BankingService {
     private final BankingRepository bankingRepository;
 
     //    public void insertToken(TokenReponseVO tokenReponseVO){
-    public void insertToken(CardTokenEntity tokenEntity){
+    public void insertToken(TokenEntity tokenEntity){
 //        TokenEntity tokenEntity = TokenEntity.builder()
 //                        .accessToken(tokenReponseVO.getAccess_token())
 //                        .tokenType(tokenReponseVO.getToken_type())
