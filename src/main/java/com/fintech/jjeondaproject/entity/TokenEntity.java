@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.entity.openBanking;
+package com.fintech.jjeondaproject.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,18 +13,17 @@ import javax.persistence.*;
 @Data
 @Builder
 @Entity
-public class CardTokenEntity {
+public class TokenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "access_token", columnDefinition = "text")
-    private String access_token;
+    private String accessToken;
     @Column(name = "expires_in")
-    private int expires_in;
+    private int expiresIn;
     @Column(name = "refresh_token", columnDefinition = "text")
-    private String refresh_token;
+    private String refreshToken;
     @Column(name = "user_seq_no")
-    private Long user_seq_no;
+    private Long userSeqNo;
 }
-

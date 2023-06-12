@@ -59,21 +59,20 @@ public class CardApiController {
         return ResBody.success(result);
     }
 
+    //카드 별멍 설정 페이지
     @GetMapping("/edit/{cardId}")
-    public String cardEditScreen(@PathVariable Long cardId, Model model){
-        CardDto cardDto = cardService.selectOneByCardId(cardId);
-        model.addAttribute("cardDetail", cardDto);
-        System.out.println(cardDto);
-        return "card/cardEdit";
+    public ResBody<?> cardEditScreen(@PathVariable Long cardId){
+        CardDto result = cardService.selectOneByCardId(cardId);
+        System.out.println(result);
+        return ResBody.success(result);
     }
 
-    // 카드 별명 설정 페이지
+    // 카드 별명 완료 후 페이지
     @PutMapping("/{cardId}/nickname")
-    public String EditNickname(@PathVariable Long cardId, @RequestBody CardModDto data, Model model){
-        CardDto cardDto = cardService.changeNickname(cardId, data.getNickName());
-        model.addAttribute("cardDetail", cardDto);
-        System.out.println(cardDto);
-        return "card/cardDetail";
+    public ResBody<?> EditNickname(@PathVariable Long cardId, @RequestBody CardModDto data){
+        CardDto result = cardService.changeNickname(cardId, data.getNickName());
+        System.out.println(result);
+        return ResBody.success(result);
     }
 
 }
