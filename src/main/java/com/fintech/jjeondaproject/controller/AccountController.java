@@ -34,7 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/accounts")
 @Controller
 public class AccountController {
-	private final AccountService accountService;
+	/*private final AccountService accountService;
 	
 	//전체계좌목록
 	@GetMapping("/list")
@@ -85,7 +85,7 @@ public class AccountController {
 	public String delete(@PathVariable ("accountId") String accountId, Model model) {
 		accountService.delete(accountId);
 		return "rdirect:/account/list";
-	}
+	}*/
 }	
 
 

@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class AccountService {
-	private final AccountRepository accountRepository;
+	/*private final AccountRepository accountRepository;
 	private final BankService bankService;
 	
 	public List<AccountDto> accountList(){
@@ -47,7 +47,7 @@ public class AccountService {
 		AccountEntity accountEntity = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("error"));
 		AccountDto accountDto = AccountDto.builder()
 		        .accountId(accountEntity.getId())
-		        .user(accountEntity.getUser())
+		        .userId(accountEntity.getUser().getId())
 		        .bank(accountEntity.getBank())
 		        .accountNum(accountEntity.getAccountNum())
 		        .availableAmt(accountEntity.getAvailableAmt())
@@ -69,11 +69,7 @@ public class AccountService {
         String bankName = bankDto.getBankName();
 
         // 계좌 등록 로직을 수행합니다.
-        AccountDto accountDto = new AccountDto();
-        accountDto.setAccountNum(accountNum);
-        accountDto.setBankCode(bankCode);
-        accountDto.setBankName(bankName);
-        accountDto.setAvailableAmt(availableAmt);
+        AccountDto accountDto = new AccountDto(accountNum, bankCode, bankName, availableAmt);
 
         // 데이터베이스에 계좌를 저장합니다.
         AccountDto savedAccount = accountRepository.save(accountDto);
@@ -88,7 +84,7 @@ public class AccountService {
     }
 
     // Account 엔티티를 AccountDto로 변환하는 메서드
-    private AccountDto convertToDto(Account account) {
+    private AccountDto convertToDto(AccountEntity account) {
         AccountDto accountDto = new AccountDto();
         accountDto.setAccountId(account.getAccountId());
         accountDto.setAccountNum(account.getAccountNum());
@@ -104,7 +100,7 @@ public class AccountService {
 	
 	public void delete(AccountEntity accountEntity) {
 		accountRepository.deleteById(accountEntity);
-	}    
+	}*/
 }
 
 
