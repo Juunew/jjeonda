@@ -1,5 +1,6 @@
 package com.fintech.jjeondaproject.controller;
 
+
 import com.fintech.jjeondaproject.dto.book.BookDateQueryDto;
 import com.fintech.jjeondaproject.dto.book.BookListDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class BookController {
 
+
     private final BookTestService bookService;
+
 
     // 가계부 목록 조회
     @GetMapping("/list/{userId}")
@@ -77,5 +80,4 @@ public class BookController {
         return "book/bookEdit";
     }
 }
-
 

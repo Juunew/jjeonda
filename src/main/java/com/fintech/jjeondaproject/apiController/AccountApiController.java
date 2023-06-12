@@ -4,6 +4,7 @@ import com.fintech.jjeondaproject.common.response.ResBody;
 import com.fintech.jjeondaproject.dto.account.AccountListDto;
 import com.fintech.jjeondaproject.dto.account.AccountResDto;
 import com.fintech.jjeondaproject.service.AccountTestService;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,5 +36,6 @@ public class AccountApiController {
         List<AccountResDto> result = accountService.findMyAccountDetail(userId, bankId);
         return ResBody.success(result);
     }
+    
 }
 

@@ -1,6 +1,5 @@
 package com.fintech.jjeondaproject.apiController;
 
-
 import com.fintech.jjeondaproject.common.response.ResBody;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
