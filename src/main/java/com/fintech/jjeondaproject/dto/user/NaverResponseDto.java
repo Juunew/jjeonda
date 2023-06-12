@@ -1,11 +1,12 @@
 package com.fintech.jjeondaproject.dto.user;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class NaverResponseDto {
 	String access_token;

@@ -60,7 +60,7 @@ public class UserController {
 	}
 	@PostMapping("/agreement")
 	public String agreements(@RequestParam("agreementYn") String agreementYn, RedirectAttributes re) {
-		System.out.println("agreementYn-postmapping:"+ agreementYn);
+		log.info("agreementYn-postmapping:{}=",agreementYn);
 		re.addAttribute("agreementYn", agreementYn);
 		
 		return "redirect:/sign-up";
@@ -71,7 +71,6 @@ public class UserController {
 	@PostMapping("/checkId")
 	public boolean checkId(HttpServletRequest request) {
 		String accountId = request.getParameter("id");
-		System.out.println("accountId:"+accountId);
 		return userService.checkAccountId(accountId);
 	}
 	
@@ -80,22 +79,13 @@ public class UserController {
 	@ResponseBody
 	public String mailConfirm(@RequestParam("email") String email) throws Exception {
 	   String code = registerMail.sendSimpleMessage(email);
-	   System.out.println("인증코드 : " + code);
 	   return code;
 	}
 	
 	// 메인페이지
 	@GetMapping("/")
 	public String home(HttpServletResponse res, HttpServletRequest req) {
-		System.out.println("indexCookie:"+req.getCookies());
-		
-//		쿠키에서 jwt추출 후 jwt에서 userId빼기
-		/*
-		 * String token = jwtProvider.getJwtFromCookie(req); 
-		 * Object id = jwtProvider.getClaims(token).get("UserId"); 
-		 * System.out.println("id:"+id);
-		 */
-		
+		log.info("indexCookie:{}=",req.getCookies());
 		return "index";
 	}
 	
@@ -122,8 +112,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/auth/oauth2/naver/callback")
-	public String getProfile(@RequestParam("code") String code, @RequestParam("state") String state,
-			HttpServletResponse response) {
+	public String getProfile(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletResponse response) {
 		String naverToken = naverService.getProfile(code, state);
 		Cookie naverCookie = new Cookie("navertToken", naverToken);
 		naverCookie.setPath("/");

@@ -50,9 +50,9 @@ public class NaverService {
 										birth,
 										join.getResponse().getEmail());
 		userRepository.save(user);
-//		System.out.println("userRepository.save(user):"+userRepository.save(user));
+//		log.info("userRepository.save(user):{}=",userRepository.save(user));
 		Jwt jwt = jwtProvider.putClaim(user);
-//		System.out.println("jwt네이버서비스:"+jwt.getAccessToken());
+//		log.info("jwt네이버서비스:{}=",jwt.getAccessToken());
 		user.updateRefreshToken(jwt.getRefreshToken());
 		return jwt.getAccessToken();
 		
