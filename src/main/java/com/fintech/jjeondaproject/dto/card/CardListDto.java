@@ -1,10 +1,7 @@
 package com.fintech.jjeondaproject.dto.card;
 
-import com.fintech.jjeondaproject.entity.BankEntity;
-import com.fintech.jjeondaproject.entity.UserEntity;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -14,9 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CardListDto {
 
-    private long cardId;
-    private UserEntity user;
-    private BankEntity bank;
+    private Long cardId;
+    private Long userId;
+    private Long bankId;
     private String cardName;
     private String settlementDay;
     private LocalDateTime settlementDate;

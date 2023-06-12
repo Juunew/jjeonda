@@ -11,9 +11,10 @@ import com.fintech.jjeondaproject.entity.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Builder
+//@NoArgsConstructor
 @Data
 public class UserDto {
 	private Long id;

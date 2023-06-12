@@ -4,13 +4,13 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layout/layout}" lang="ko">
 
-<head>
-	<meta charset="UTF-8">
-</head>
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<body>
-		<form method="post" action="/books/month-plan">
+		<form th:action="@{/books/month-plan/{bookId}}" method="post">
+<!--		<form method="post" action="books/month-plan/{bookId}">-->
+				<input type="hidden" id="bookId" name="bookId" th:value="${bookId}">
+
 
 			<div class="container">
 				<h1>월간 예산 계획</h1>
@@ -20,6 +20,7 @@
 					<div class="col-6">
 						<div class="form-group">
 							<label for="month">목표 월</label>
+<!--							<input type="text" name="month" th:value="${bookMonthlyPlan.month}" class="form-control" id="month" placeholder="월">-->
 							<input type="text" class="form-control" id="month" name="month" placeholder="월">
 						</div>
 					</div>
