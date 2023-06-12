@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name="account")
 @Getter
 @Entity
-public class AccountEntity  {
+public class AccountEntity {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

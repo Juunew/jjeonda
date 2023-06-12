@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -54,13 +53,13 @@ public class JwtProvider {
 	}
 
 	private Date getExpireDateAccessToken() {
-		long accessExpireTimeMils = 1000L * 60 * 60 * 24 * 60;
-		return new Date(System.currentTimeMillis() + accessExpireTimeMils);
+		long expireTimeMils = 1000 * 60 * 60 * 24 * 60;
+		return new Date(System.currentTimeMillis() + expireTimeMils);
 	}
 	
 	private Date getExpireDateRefreshToken() {
-		long refreshExpireTimeMils = 1000L * 60 * 60 * 24 * 60;
-		return new Date(System.currentTimeMillis() + refreshExpireTimeMils);
+		long expireTimeMils = 1000L * 60 * 60 * 24 * 60;
+		return new Date(System.currentTimeMillis() + expireTimeMils);
 	}
 	
 	public String getJwtFromCookie(HttpServletRequest request) { // 쿠키에서 jwt 추출
