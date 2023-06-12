@@ -1,11 +1,11 @@
 
 $(function(){
-	$('#kakaoBtn').click(function(){
+	$('#naverBtn').click(function(){
 		$.ajax({
 			type: 'post',
-			url: '/login/kakao',
+			url: '/login/naver',
 			success:function(data){
-				console.log(data);
+				window.location.href=data;
 			}
 		})
 	})

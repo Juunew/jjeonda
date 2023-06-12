@@ -7,12 +7,15 @@ package com.fintech.jjeondaproject.util.jwt;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
+
+import com.fintech.jjeondaproject.entity.UserEntity;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -75,6 +78,16 @@ public class JwtProvider {
 		}
 		return null;
 	}
+	
+	public Jwt putClaim(UserEntity userEntity) {
+		Map<String, Object> claims = new HashMap<>();
 
+		claims.put("UserId", userEntity.getId()); // claims 내용 추가3(userPk값)
+		claims.put("UserName", userEntity.getName()); // claims 내용 추가2
+		claims.put("UserEmail", userEntity.getEmail());
+		Jwt jwt = createJwt(claims); // JWT 생성
+		
+		return jwt;
+	}
 
 }
