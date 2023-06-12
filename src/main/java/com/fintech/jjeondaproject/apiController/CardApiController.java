@@ -1,12 +1,13 @@
 package com.fintech.jjeondaproject.apiController;
 
-import com.fintech.jjeondaproject.auth.JwtProvider;
+
 import com.fintech.jjeondaproject.common.response.ResBody;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
 import com.fintech.jjeondaproject.service.BankingService;
 import com.fintech.jjeondaproject.service.CardService;
+import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CardApiController {
 
     private final CardService cardService;
+    // private final JwtProvider jwtProvider;
     private final JwtProvider jwtProvider;
 
     //    private final BankingFeign bankingFeign;

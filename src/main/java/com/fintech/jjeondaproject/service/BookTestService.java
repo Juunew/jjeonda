@@ -102,7 +102,10 @@ public class BookTestService {
         DetailBookEntity detailBook = getDetailBookInfoOrException(detailBookId);
         return BookDetailResDto.fromEntity(detailBook);
     }
-
+    // 삭제
+    public void deleteExpenditureDetail(Long detailBookId) {
+        detailBookRepository.deleteById(detailBookId);
+    }
     // 생성
     public BookDetailResDto createExpenditureDetail(BookDetailReqDto reqDto) {
         TotalBookEntity totalBook = getTotalBookInfoOrException(reqDto.getBookId());
