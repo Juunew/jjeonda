@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <!-- 가계부 조회 페이지 -->
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/layout}" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}" lang="ko">
 
 <th:block layout:fragment="content">
     <div class="container-fluid">
         <h1>가계부</h1>
         <table class="table caption-top">
-            <thead>
             <tr>
-                <th scope="col">이번 달 예산</th>
-                <th scope="col">남은 예산</th>
+                <td th:text="${books.month + ' 월 예산'}"></td>
+                <td>남은 예산</td>
             </tr>
             </thead>
             <tbody>
-            <tr th:with="bookListDto = ${books}">
-                <td th:text="${bookListDto.budget}">이번 달 예산</td>
-                <td th:text="${bookListDto.remainBudget}">남은 예산</td>
+            <tr>
+                <td th:text="${books.budget}">이번 달 예산</td>
+                <td th:text="${books.remainBudget}">남은 예산</td>
             </tr>
             </tbody>
         </table>
         <div class="btn-container">
-            <button type="button" class="btn btn-primary" onclick="location.href='/books/month-plan'">예산</button>
-            <button type="button" class="btn btn-primary">수정</button>
-            <button type="button" class="btn btn-primary" th:onclick="'location.href=\'/books/expenditure-detail/' + ${books.bookId} + '\''">작성</button>
+            <button type="button" class="btn btn-primary" th:onclick="'location.href=\'/books/month-plan/' + ${books.bookId} + '\''">예산</button>
+<!--            <button type="button" class="btn btn-primary">수정</button>-->
+            <button type="button" class="btn btn-primary" th:onclick="'location.href=\'/books/expenditure-detail/' + ${books.bookId} + '\''">작성</button><br>
         </div>
+
         <table class="table caption-top">
             <thead>
             <tr>
@@ -33,6 +31,9 @@
                 <th scope="col">사용 내역 및 용도</th>
                 <th scope="col">사용 금액</th>
                 <th scope="col">메모</th>
+                <th scope="col">수정</th>
+                <th scope="col">삭제</th>
+            </tr>
             </tr>
             </thead>
             <tbody>
@@ -41,9 +42,19 @@
                 <td th:text="${BookDetailsDto.content}">사용 내역 및 용도</td>
                 <td th:text="${BookDetailsDto.cost}">사용 금액</td>
                 <td th:text="${BookDetailsDto.memo}">메모</td>
+                <td>
+                    <a th:href="'/books/bookEdit/' + ${books.bookId}">수정</a>
+                </td>
+                <td>
+                    <a th:href="@{/delete/{id}(id=${detailBookId})}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+                </td>
+
             </tr>
             </tbody>
         </table>
     </div>
+
+
 </th:block>
+
 </html>

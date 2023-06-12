@@ -12,6 +12,8 @@
 <meta charset="UTF-8">
 <title>잔액 상세보기</title>
 </head>
+<th:block th:replace="/layout/fragments/header :: headerFragment"></th:block>
+
 <body>
 	<div class="class1" th:each="index: ${accountList}">
 		<h1 th:text="${index.accountNum}"></h1>
@@ -43,7 +45,7 @@
 			</tbody>
 		</table>
 	</div>
-	
+	<!-- footer -->
+	<th:block th:replace="/layout/fragments/footer :: footerFragment"></th:block>
 </body>
-
 </html>

@@ -15,6 +15,8 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
 
     List<CardEntity> findByBankId(long bank_id);
 
+    List<CardEntity> findByUserId(Long userId);
+
 //    Optional<CardEntity> findAllBy();
 
 //    @Query(value = "select card_id from card where id= :id", nativeQuery = true)

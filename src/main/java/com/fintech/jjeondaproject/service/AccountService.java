@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fintech.jjeondaproject.dto.account.AccountDto;
 import com.fintech.jjeondaproject.dto.account.AccountRequestDto;
+import com.fintech.jjeondaproject.dto.bank.BankDto;
 import com.fintech.jjeondaproject.entity.AccountEntity;
 import com.fintech.jjeondaproject.repository.AccountRepository;
 
@@ -19,9 +20,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-//@Transactional(readOnly=true)
 public class AccountService {
 	private final AccountRepository accountRepository;
+	private final BankService bankService;
 	
 	public List<AccountDto> accountList(){
 		List<AccountEntity> accountEntity = accountRepository.findAll();
@@ -59,12 +60,51 @@ public class AccountService {
 		        .build();
 		return accountDto;
 	}
+	
+	
+	// 계좌 등록 메서드
+    public AccountDto registerAccount(String accountNum, BankDto bankDto, Long availableAmt) {
+        // BankDto 객체에서 필요한 정보 추출
+        String bankCode = bankDto.getBankCode();
+        String bankName = bankDto.getBankName();
 
-	public static void addAccount(AccountRequestDto accountDto) {
-		
+        // 계좌 등록 로직을 수행합니다.
+        AccountDto accountDto = new AccountDto();
+        accountDto.setAccountNum(accountNum);
+        accountDto.setBankCode(bankCode);
+        accountDto.setBankName(bankName);
+        accountDto.setAvailableAmt(availableAmt);
+
+        // 데이터베이스에 계좌를 저장합니다.
+        AccountDto savedAccount = accountRepository.save(accountDto);
+
+        // 저장된 계좌 정보를 AccountDto로 변환하여 반환합니다.
+        return convertToDto(savedAccount);
+    }
+
+    // BankCode에 해당하는 은행 정보를 조회하는 메서드
+    public BankDto getBankByCode(String bankCode) {
+        return bankService.getBankByCode(bankCode);
+    }
+
+    // Account 엔티티를 AccountDto로 변환하는 메서드
+    private AccountDto convertToDto(Account account) {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setAccountId(account.getAccountId());
+        accountDto.setAccountNum(account.getAccountNum());
+        accountDto.setBankCode(account.getBankCode());
+        accountDto.setBankName(account.getBankName());
+        accountDto.setAvailableAmt(account.getAvailableAmt());
+        return accountDto;
+    }
+	
+    public void update(AccountEntity accountEntity) {
+		accountRepository.save(accountEntity);
 	}
 	
-	
+	public void delete(AccountEntity accountEntity) {
+		accountRepository.deleteById(accountEntity);
+	}    
 }
 
 

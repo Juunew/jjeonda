@@ -1,9 +1,11 @@
 package com.fintech.jjeondaproject.loginFeign;
 
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import feign.Client;
 @Configuration // 스프링의 구성 클래스임을 나타냄
+@EnableFeignClients
 public class LoginConfig {
 	@Bean
 	public Client feignClient() { // feignClient 생성

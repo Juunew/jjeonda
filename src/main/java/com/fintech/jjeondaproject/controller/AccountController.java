@@ -10,16 +10,21 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fintech.jjeondaproject.dto.account.AccountDto;
+import com.fintech.jjeondaproject.dto.account.AccountFormDto;
 import com.fintech.jjeondaproject.dto.account.AccountRequestDto;
+import com.fintech.jjeondaproject.dto.bank.BankDto;
 import com.fintech.jjeondaproject.entity.AccountEntity;
 import com.fintech.jjeondaproject.repository.AccountRepository;
+import com.fintech.jjeondaproject.repository.BankRepository;
 import com.fintech.jjeondaproject.service.AccountService;
+import com.fintech.jjeondaproject.service.BankService;
 import com.fintech.jjeondaproject.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,12 +34,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class AccountController {
 	private final AccountService accountService;
-	
-	// 천단위 콤마
-	//public static String toNumFormat(int num) {
-		 DecimalFormat df = new DecimalFormat("#,###");
-	/*  return df.format(num);
-	}	*/
 	
 	//전체계좌목록
 	@GetMapping("/list")
@@ -54,14 +53,56 @@ public class AccountController {
 	}
 
 	// 계좌 직접 추가
-	@GetMapping("/addAccount") 
-	public String AddAccount() {
-		return "account/addAccount"; 
-	}
-	 
+	@GetMapping("/addAccount/")
+    public String getAddAccountForm(Model model) {
+        List<BankDto> banks = accountService.findAllBanks();
+        model.addAttribute("banks", banks);
+        model.addAttribute("accountForm", new AccountFormDto());
+        return "account/addAccount";
+    }
 	
+    @PostMapping("/addAccount")
+    public String processAddAccountForm(@ModelAttribute("accountForm") AccountFormDto accountFormDto, RedirectAttributes redirectAttributes) {
+        BankDto bankDto = accountService.getBankByCode(accountFormDto.getBankCode());
+        if (bankDto == null) {
+            redirectAttributes.addFlashAttribute("error", "Invalid bank code");
+            return "redirect:/accounts/add";
+        }
 
+        AccountDto accountDto = accountService.registerAccount(accountFormDto.getAccountNum(), bankDto, accountFormDto.getAvailableAmt());
+        redirectAttributes.addFlashAttribute("success", "Account registered successfully");
+        return "redirect:/accounts/success";
+    }
+
+    @GetMapping("/success")
+    public String showSuccessPage() {
+        return "account/success";
+    }
+	
+	// 계좌 삭제
+	@GetMapping("delete/{accountId}")
+	public String delete(@PathVariable ("accountId") String accountId, Model model) {
+		accountService.delete(accountId);
+		return "rdirect:/account/list";
+	}
 }	
+
+
+
+
+/*
+@GetMapping("/update")
+public String updateGet(Model model) {
+	model.addAttribute("account", accountService.selectOneByAccountId(accountId));
+	return "account/update";
+}
+
+@PostMapping("/update")
+public String updatePost(AccountDto accountDto) {
+	accountService.update();
+	return "redirect:/account/list";
+}
+*/
 
 	
 		/*

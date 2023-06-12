@@ -3,9 +3,13 @@ package com.fintech.jjeondaproject.dto.book.detail;
 import com.fintech.jjeondaproject.entity.DetailBookEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public class BookDetailResDto {
 
     private Long detailBookId;
@@ -15,8 +19,8 @@ public class BookDetailResDto {
     private String memo;
     private Long bookId;
     private Long userId;
-    private String year;
-    private String month;
+    private int year;
+    private int month;
 
     public static BookDetailResDto fromEntity(DetailBookEntity detailBook) {
         return new BookDetailResDto(
@@ -27,8 +31,8 @@ public class BookDetailResDto {
                 detailBook.getMemo(),
                 detailBook.getTotalBook().getId(),
                 detailBook.getTotalBook().getUser().getId(),
-                detailBook.getTotalBook().getYear(),
-                detailBook.getTotalBook().getMonth()
+                Integer.parseInt(detailBook.getTotalBook().getYear()),
+                Integer.parseInt(detailBook.getTotalBook().getMonth())
         );
     }
 }

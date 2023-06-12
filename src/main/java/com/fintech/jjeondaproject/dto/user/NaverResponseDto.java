@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TokenResponseDto {
+@AllArgsConstructor
+public class NaverResponseDto {
 	String access_token;
 	String refresh_token;
 	String token_type;
