@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "card")
 @Getter
 @Entity
-public class CardEntity extends BaseTime{
+public class CardEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "card_id")

@@ -1,3 +1,4 @@
+/*
 package com.fintech.jjeondaproject.entity;
 
 import lombok.Getter;
@@ -13,7 +14,7 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @Getter
-@EntityListeners((BaseTime.class))
+@EntityListeners(BaseTime.class)
 @MappedSuperclass
 public abstract class BaseTime {
 
@@ -35,3 +36,4 @@ public abstract class BaseTime {
     @Column(nullable = false, length = 100)
     private String modifiedBy;
 }
+*/

@@ -17,7 +17,7 @@ import lombok.*;
 @Table(name = "book")
 @Getter
 @Entity
-public class BookEntity extends BaseTime{
+public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
