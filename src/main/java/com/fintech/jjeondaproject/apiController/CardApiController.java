@@ -7,6 +7,7 @@ import com.fintech.jjeondaproject.dto.card.CardModDto;
 import com.fintech.jjeondaproject.service.BankingService;
 import com.fintech.jjeondaproject.service.CardService;
 import com.fintech.jjeondaproject.util.jwt.JwtProvider;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@Tag(name = "Cards", description = "카드 관리 API")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/cards")
 @RestController

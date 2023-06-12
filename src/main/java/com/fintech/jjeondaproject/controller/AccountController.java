@@ -28,6 +28,7 @@ import com.fintech.jjeondaproject.service.BankService;
 import com.fintech.jjeondaproject.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequiredArgsConstructor
 @RequestMapping("/accounts")
