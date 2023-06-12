@@ -29,10 +29,7 @@ public class CardController {
 
     //전체 카드 리스트 조회
     @GetMapping("/list")
-    public String cardList(Model model, HttpServletRequest request){// , HttpServletRequest request){
-//        String cookie = jwtProvider.getJwtFromCookie(request);
-//        System.out.println("cookie" + cookie);
-
+    public String cardList(Model model, HttpServletRequest request){
         String token = jwtProvider.getJwtFromCookie(request);
         Long id = jwtProvider.getClaims(token).get("UserId", Long.class);
 
@@ -49,7 +46,6 @@ public class CardController {
         List<CardListDto> category = cardService.cardList();
         model.addAttribute("cardList", result);
         model.addAttribute("category", category);
-        System.out.println(result);
         return "card/cardList";
     }
 
@@ -60,7 +56,6 @@ public class CardController {
         List<CardListDto> category = cardService.cardList();
         model.addAttribute("cardList", cardListDto);
         model.addAttribute("category", category);
-        System.out.println(cardListDto);
         return "card/cardList";
     }
 
@@ -69,7 +64,6 @@ public class CardController {
     public String cardDetail(@PathVariable Long cardId, Model model){
         CardDto cardDto = cardService.selectOneByCardId(cardId);
         model.addAttribute("cardDetail", cardDto);
-        System.out.println(cardDto);
         return "card/cardDetail";
     }
 
@@ -77,7 +71,6 @@ public class CardController {
     public String cardEditScreen(@PathVariable Long cardId, Model model){
         CardDto cardDto = cardService.selectOneByCardId(cardId);
         model.addAttribute("cardDetail", cardDto);
-        System.out.println(cardDto);
         return "card/cardEdit";
     }
 
@@ -86,7 +79,6 @@ public class CardController {
     public String EditNickname(@PathVariable Long cardId, @RequestParam("cardName") String data, Model model){
         CardDto cardDto = cardService.changeNickname(cardId, data);
         model.addAttribute("cardDetail", cardDto);
-        System.out.println(cardDto);
         return "card/cardDetail";
     }
 

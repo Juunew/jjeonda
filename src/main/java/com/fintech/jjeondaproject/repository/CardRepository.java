@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface CardRepository extends JpaRepository<CardEntity, Long> {
     CardEntity findByCardId(Long cardId);
 
-    List<CardEntity> findByBankId(long bank_id);
+    List<CardEntity> findByBankId(Long bankId);
 
     List<CardEntity> findByUserId(Long userId);
 
