@@ -13,11 +13,16 @@ public class ProfileResponseDto {
 	public Response response;
 	
 	
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
 	public static class Response{
-		public String kakaoId;
-		public String email;
-		public String gender;
-		public String birth;
-		public String regDate;
+		String name;
+		String email;
+		String gender;
+		String birthday;
+		String birthyear;
+		String mobile;
 	}
+	
 }
