@@ -14,40 +14,27 @@
           <div class="dropdown-menu">
             <a class="dropdown-item" th:href="@{/cards/list}">전체보기</a>
 
-            <div th:each="index : ${cardList}" class="card" style="width: 18rem;">
-            <a class="dropdown-item" th:href="@{/cards/list/{bankId}(bankId=${index.bank.getId()})}" th:text="${index.bank.getBankName()}">Action</a>
+            <div th:each="index : ${category}" class="card" style="width: 18rem;">
+            <a class="dropdown-item" th:href="@{/cards/list/bank/{bankId}(bankId=${index.getBankId()})}" th:text="${index.getBankId()}">Action</a>
             </div>
           </div>
         </div>
         <div class="row">
-          <div th:each="index : ${cardList}" class="card" style="width: 18rem;">
-            <img src="/img/card/card.png" class="card-img-top" alt="My Image">
-<!--            <div class="card-body">-->
-<!--              <h5 class="card-title">Card title</h5>-->
-<!--              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--              <a th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">Link</a>-->
-<!--&lt;!&ndash;              <a href="javascript:void(0);" th:onclick="openPopup([[${index.cardId}]])">Link</a>&ndash;&gt;-->
-<!--            </div>-->
-            <a th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">Link</a>
-            <p th:text="${index.cardId}"></p>
-            <p th:text="${index.user.getId()}"></p>
-            <p th:text="${index.bank.getId()}"></p>
-            <p th:text="${index.cardName}"></p>
-            <p th:text="${index.settlementDay}"></p>
-            <p th:text="${index.settlementDate}"></p>
-            <p th:text="${index.paymentAmt}"></p>
+          <div th:each="index, stat : ${cardList}" class="card" style="width: 18rem;">
+            <img th:src="@{/img/card/card{index}.png(index=${index.getBankId()%4})}" class="card-img-top" alt="My Image">
+<!--            <img th:src="'/img/card/card' + ${stat.count%4 + 1} + '.png'" class="card-img-top" alt="My Image">-->
+            <div class="card-body">
+              <h5 class="card-title" th:text="${index.cardName}">Card title</h5>
+<!--              <p th:text="${index.cardId}"></p>-->
+<!--              <p th:text="${index.userId}"></p>-->
+<!--              <p th:text="${index.bankId}"></p>-->
+<!--              <p th:text="${index.settlementDay}"></p>-->
+<!--              <p th:text="${index.settlementDate}"></p>-->
+<!--              <p th:text="${index.paymentAmt}"></p>-->
+              <a class="btn btn-primary" th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">카드 상세 보기</a>
+            </div>
           </div>
         </div>
       </div>
-  <script>
-    function openPopup(cardId) {
-      var url = '/cards/detail/' + cardId;
-      console.log(url);
-      var popupWindow = window.open(url, '_blank', 'width=600,height=400');
-      if (popupWindow) {
-        popupWindow.focus();
-      }
-    }
-  </script>
 </th:block>
 </html>
