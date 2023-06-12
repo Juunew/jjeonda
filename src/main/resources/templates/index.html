@@ -4,15 +4,9 @@
       layout:decorate="~{layout/layout}" lang="ko">
 
 <th:block layout:fragment="content">
-<head>
-    <meta charset="UTF-8">
-    <title>Table with Account Numbers</title>
-</head>
-
 
 <div class="container-fluid">
     <button onclick="authorization()">오픈뱅킹인증하기</button>
-
 </div>
 
 <script>
@@ -29,7 +23,6 @@
         window.location.href = url;
         // var newWindow = window.open(url,"인증하기","width=800px,height=800px");
     }
-
 
 </script>
 </th:block>

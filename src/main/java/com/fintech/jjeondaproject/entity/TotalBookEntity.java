@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "total_book")
 @Getter
 @Entity
-public class TotalBookEntity {
+public class TotalBookEntity extends BaseTime{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")

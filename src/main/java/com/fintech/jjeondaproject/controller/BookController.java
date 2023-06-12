@@ -31,8 +31,12 @@ import java.util.List;
 @Controller
 public class BookController {
 
+    //스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동으로 연결해줌
+    private final BookService bookService;
+    private final BookTestService bookTestService;
 
-    private final BookTestService bookService;
+    // 레파지토리를 통해서 테이블의 데이터를 가져온다
+    private  final BookRepository bookRepository;
 
     // 가계부 목록 조회
     @GetMapping("/list/{userId}")
@@ -42,12 +46,8 @@ public class BookController {
         BookListDto bookListDto = bookService.findMyBookList(userId, queryDto);
         model.addAttribute("books", bookListDto);
 
-    //스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동으로 연결해줌
-    private final BookService bookService;
-    private final BookTestService bookTestService;
-
-    // 레파지토리를 통해서 테이블의 데이터를 가져온다
-    private  final BookRepository bookRepository;
+        return "book/bookView";
+    }
 
     @GetMapping("/view")
     public String bookViewPage(@PathVariable Long userId,
@@ -74,7 +74,7 @@ public class BookController {
     public String createMyExpenditureDetail(@ModelAttribute BookDetailReqDto reqDto,
                                             @ModelAttribute BookDateQueryDto queryDto,
                                             Model model) {
-        BookDetailResDto result = bookService.createExpenditureDetail(reqDto);
+        BookDetailResDto result = bookTestService.createExpenditureDetail(reqDto);
         model.addAttribute("result", result);
 
         Long userId = result.getUserId();
@@ -84,7 +84,7 @@ public class BookController {
     // 월간 예산 계획 페이지
     @PostMapping("/month-plan")
     public String createMyBookMonthlyPlan(@ModelAttribute BookMonthlyReqDto reqDto, Model model) {
-        BookMonthlyResDto result = bookService.createMonthlyPlan(reqDto);
+        BookMonthlyResDto result = bookTestService.createMonthlyPlan(reqDto);
         model.addAttribute("result", result);
         return "book/bookBudget";
     }

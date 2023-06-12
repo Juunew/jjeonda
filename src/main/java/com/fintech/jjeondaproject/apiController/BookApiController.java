@@ -11,9 +11,11 @@ import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyReqDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyResDto;
 import com.fintech.jjeondaproject.service.BookService;
 import com.fintech.jjeondaproject.service.BookTestService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Books", description = "가계부 관리 API")
 @RequiredArgsConstructor
 // 생성자 주입
 // final이 붙거나 @NotNull 이 붙은 필드의 생성자를 자동 생성해주는 롬복 어노테이션

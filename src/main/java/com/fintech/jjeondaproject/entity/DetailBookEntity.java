@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "detail_book")
 @Getter
 @Entity
-public class DetailBookEntity {
+public class DetailBookEntity extends BaseTime{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,39 +1,60 @@
-<!--월간 예산 계획 페이지 페이지-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layout/layout}" lang="ko">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}" lang="ko">
 
-<head>
-	<meta charset="UTF-8">
-</head>
 <th:block layout:fragment="content">
-	<div class="container-fluid">
-		<body>
-		<form method="post" action="/books/month-plan">
-
-			<div class="container">
-				<h1>월간 예산 계획</h1>
-			<div class="container">
-
-				<div class="row">
-					<div class="col-6">
-						<div class="form-group">
-							<label for="month">목표 월</label>
-							<input type="text" class="form-control" id="month" name="month" placeholder="월">
-						</div>
-					</div>
-					<div class="col-3">
-						<div class="form-group">
-							<label for="budget">목표 예산</label>
-							<input type="cash" class="form-control" id="budget" name="budget" placeholder="예산">
-						</div>
-					</div>
-				<button type="submit" class="btn btn-primary">등록</button>
-			</div>
-
-		</form>
-		</body>
-	</div>
+  <div class="container-fluid">
+    <form>
+      <div class="container">
+        <h2>계좌 추가</h2>
+        
+        <div class="accuntNum">
+          <label for="accountNum">계좌번호</label>
+          <input type="text" class="form-control" id="accountNum" name="accountNum" placeholder="계좌번호">
+        </div>
+        
+        <div class="form-group">
+          <label for="bank">은행</label>
+          <select id="bank" class="form-control">
+            <option value="">선택하세요</option>
+            <option th:each="bank : ${bankList}" th:value="${bank.bankName}" th:text="${bank.bankName}"></option>
+          </select>
+        </div>
+        
+        <div class="availableAmt">
+          <label for="availableAmt">잔액</label>
+          <input type="text" class="form-control" id="availableAmt" name="availableAmt" placeholder="잔액">
+        </div>
+        
+        <div style="display: inline-block; margin: 0 5px; float: right;">
+          <button type="submit" class="btn btn-primary">등록</button>
+        </div>
+      </div>
+    </form>
+    
+    <script>
+      // 드롭다운 메뉴
+      var bankDropdown = document.getElementById('bank');
+      // AJAX 요청 생성
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/banks', true);
+      // 요청 완료 시 처리
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          var banks = JSON.parse(xhr.responseText);
+          // 옵션 추가
+          banks.forEach(function (bank) {
+            var option = document.createElement('option');
+            option.value = bank.name;
+            option.text = bank.name;
+            bankDropdown.appendChild(option);
+          });
+        }
+      };
+      // 요청 전송
+      xhr.send();
+    </script>
+  </div>
 </th:block>
 </html>
