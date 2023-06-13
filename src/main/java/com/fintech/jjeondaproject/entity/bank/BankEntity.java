@@ -1,9 +1,10 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.bank;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 

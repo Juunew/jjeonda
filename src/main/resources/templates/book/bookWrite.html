@@ -8,13 +8,13 @@
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 <body>
-<!--	<form method="post" action="/expenditure-detail/{bookId}">-->
-		<form method="post" action="/expenditure-detail">
+
+		<form method="post" action="/books/expenditure-detail">
 		<div class="container">
 			<h1>가계부 작성</h1>
 			<div class="form-group">
 				<input type="hidden" id="bookId" name="bookId" th:value="${bookId}">
-				<input type="hidden" id="userId" name="userId" th:value="${userId}">
+
 
 				<label for="costType">유형</label>
 				<select class="form-control" id="costType" name="costType">

@@ -9,9 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class AccountDto {
-	
-	private Long accountId;			//pk
+public class NoAccountIdDto {
 	
 	private Long userId;
 	private Long bankId;
