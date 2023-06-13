@@ -22,6 +22,7 @@ public class CardService {
                         m.getCardId(),
                         m.getUser().getId(),
                         m.getBank().getId(),
+                        m.getBank().getBankName(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
@@ -30,14 +31,15 @@ public class CardService {
                 .collect(Collectors.toList());
     }
 
-    public List<CardListDto> cardListByBankId(long bankId){
+    public List<CardListDto> cardListByUserIdAndBankId(Long userId, Long bankId){
 
-        List<CardEntity> cardEntityList = cardRepository.findByBankId(bankId);
+        List<CardEntity> cardEntityList = cardRepository.findByUserIdAndBankId(userId, bankId);
         return cardEntityList.stream().
                 map(m->new CardListDto(
                         m.getCardId(),
                         m.getUser().getId(),
                         m.getBank().getId(),
+                        m.getBank().getBankName(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
@@ -48,7 +50,7 @@ public class CardService {
 
 
 
-    public CardDto selectOneByCardId(long cardId){
+    public CardDto selectOneByCardId(Long cardId){
         CardEntity cardEntity = cardRepository.findByCardId(cardId);
         CardDto cardDto = CardDto.builder()
                 .cardId(cardEntity.getCardId())
@@ -63,7 +65,7 @@ public class CardService {
     }
 
     @Transactional
-    public CardDto changeNickname(long cardId, String nickname){
+    public CardDto changeNickname(Long cardId, String nickname){
         CardEntity cardEntity = cardRepository.getById(cardId);
         cardEntity.changeNickname(nickname);
         CardDto cardDto = CardDto.builder()
@@ -85,6 +87,23 @@ public class CardService {
                         m.getCardId(),
                         m.getUser().getId(),
                         m.getBank().getId(),
+                        m.getBank().getBankName(),
+                        m.getCardName(),
+                        m.getSettlementDay(),
+                        m.getSettlementDate(),
+                        m.getPaymentAmt()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public List<CardListDto> cardListByBankId(Long bankId) {
+        List<CardEntity> cardEntityList = cardRepository.cardListByBankId(bankId);
+        return cardEntityList.stream().
+                map(m->new CardListDto(
+                        m.getCardId(),
+                        m.getUser().getId(),
+                        m.getBank().getId(),
+                        m.getBank().getBankName(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
