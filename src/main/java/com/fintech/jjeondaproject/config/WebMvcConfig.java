@@ -1,8 +1,6 @@
 package com.fintech.jjeondaproject.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,22 +17,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	private final JwtInterceptor jwtInterceptor;
 	private final UserInfoResolver userInfoResolver;
-	private final String[] excludePaths = {"/"};
+	private final String[] includePaths = {"/cards/**"};
 
 	@Override
 	public void addInterceptors(InterceptorRegistry reg) {
 		reg.addInterceptor(jwtInterceptor)
-//				.addPathPatterns(excludePaths);
-			.addPathPatterns("/auth11/**");
-				//.addPathPatterns(excludePaths);
+		   .addPathPatterns(includePaths);
+//			.addPathPatterns("/auth11/**");
+
 	}
+
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 		resolvers.add(userInfoResolver);
 	}
-	@Bean
-    public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
-        return new HiddenHttpMethodFilter();
-    }
 
 }

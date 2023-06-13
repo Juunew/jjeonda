@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.boot.web.servlet.server.CookieSameSiteSupplier;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,19 +36,19 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
-//@RequestMapping("/users")
 @Controller
+//@RequestMapping("/users")
 public class UserController {
 	private final UserService userService;
 	private final RegisterMail registerMail;
 	private final NaverService naverService;
 	private final JwtProvider jwtProvider;
-
+	
 	@GetMapping("/sign-up")
 	public String joinForm(String agreementYn) {
 		return "user/join";
 	}
-
+	
 	@PostMapping("/sign-up")
 	public String join(UserDto userDto, @RequestParam("agreementYn") String agreementYn) {
 		userDto.setAgreementYn(agreementYn);
@@ -63,10 +64,10 @@ public class UserController {
 	public String agreements(@RequestParam("agreementYn") String agreementYn, RedirectAttributes re) {
 		log.info("agreementYn-postmapping:{}=",agreementYn);
 		re.addAttribute("agreementYn", agreementYn);
-
+		
 		return "redirect:/sign-up";
 	}
-
+	
 	// ID 중복체크
 	@ResponseBody
 	@PostMapping("/checkId")
@@ -74,55 +75,62 @@ public class UserController {
 		String accountId = request.getParameter("id");
 		return userService.checkAccountId(accountId);
 	}
-
+	
 	// email 인증
 	@PostMapping("/mailConfirm")
 	@ResponseBody
 	public String mailConfirm(@RequestParam("email") String email) throws Exception {
-		String code = registerMail.sendSimpleMessage(email);
-		return code;
+	   String code = registerMail.sendSimpleMessage(email);
+	   return code;
 	}
-
+	
 	// 메인페이지
 	@GetMapping("/")
 	public String home(HttpServletResponse res, HttpServletRequest req) {
-		log.info("indexCookie:{}=",req.getCookies());
+		//log.info("@@@@@@@@@@indexCookie:{}=",req.getCookies());
 		return "index";
 	}
-
+	
 	// 로그인 페이지
 	@GetMapping("/sign-in")
 	public String loginForm() {
 		return "user/login";
 	}
-
+	
 	@PostMapping("/sign-in")
-	public String login(UserLoginDto userDto, HttpServletResponse response, HttpServletRequest request) {
-		String token = userService.signIn(userDto, request);
+	public String login(UserLoginDto userDto, HttpServletResponse response) {
+		String token = userService.signIn(userDto);
 		Cookie tokenCookie = new Cookie("JwToken",token);
 		response.addCookie(tokenCookie);
-
+		
 		return "redirect:/";
 	}
-
+	
 	// 네이버로그인
 	@PostMapping("/login/naver")
 	@ResponseBody
 	public String getCode() {
 		return naverService.getRequireUrl();
 	}
-
+	
 	@GetMapping("/auth/oauth2/naver/callback")
 	public String getProfile(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletResponse response) {
 		String naverToken = naverService.getProfile(code, state);
-		Cookie naverCookie = new Cookie("navertToken", naverToken);
+		Cookie naverCookie = new Cookie("naverToken", naverToken);
 		naverCookie.setPath("/");
 		response.addCookie(naverCookie);
-
+		
 		return "redirect:/";
-
-
 	}
-
-
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logOut(HttpServletResponse response) {
+		userService.logout(response,"JwToken");
+		userService.logout(response,"naverToken");
+		
+		return "redirect:/";
+	}
+	
+	
 }

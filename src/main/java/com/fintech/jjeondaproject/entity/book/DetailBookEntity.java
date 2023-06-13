@@ -1,7 +1,8 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.book;
 
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailModDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

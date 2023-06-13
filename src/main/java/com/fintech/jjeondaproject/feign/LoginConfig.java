@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.loginFeign;
+package com.fintech.jjeondaproject.feign;
 
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;

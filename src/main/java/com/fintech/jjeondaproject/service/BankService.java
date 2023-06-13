@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.fintech.jjeondaproject.entity.BankEntity;
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
 import com.fintech.jjeondaproject.repository.BankRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +17,5 @@ public class BankService {
 	public List<BankEntity> getAllBanks(){
 		return bankRepository.findAll();
 	}
-	
 
 }

@@ -13,6 +13,7 @@
 			<table class="table table-hover">
 				<thead class="p-3 mb-2 bg-primary text-white">
 					<tr>
+						<th>선택</th>
 						<th>번호</th>
 						<th>계좌 번호</th>
 						<th>은행</th>
@@ -23,14 +24,13 @@
 				
 				<tbody>
 					<tr th:each="index : ${accountList}">
+						<td><input type="checkbox" th:value="${index.accountId}" name="accountId" />
 						<td th:text="${index.accountId}"></td>
 						<td th:text="${index.accountNum}"></td>
-						<td th:text="${index.bank.getBankName()}"></td>
+						<td th:text="${index.bankName}"></td>
 						<td th:text="${index.availableAmt + '원'}"></td>
 						<td>
-							<!-- 	<a href= "javascript: openPopup()"  target = "_blank">상세 내역</a> -->
-							<a href="javascript:void(0);"
-							th:onclick="openPopup([[${index.accountId}]])"> 상세내역</a>
+							<a href="javascript:void(0);" th:onclick="openPopup([[${index.accountId}]])"> 상세내역</a>
 						</td>
 					</tr>
 				</tbody>
@@ -41,15 +41,15 @@
 				<button type="button" class="btn btn-primary"
 						onclick="location.href='/accounts/addAccount'">추가</button>
 				<button type="button" class="btn btn-primary"
-						onclick="location.href='/accounts/addAccount'">삭제</button>
+						onclick="location.href='/accounts/deleteAccount'">삭제</button>
 			</div>
+			
 			<script>
 				function openPopup(accountId) {
 					var url = "/accounts/detail/" + accountId;
 					var popup = window.open(url, "_blank",
 							"width=800, height=600, left=300, right=300");
-				}
-				
+				}	
 			</script>
 	</div>
 </th:block>
@@ -69,3 +69,16 @@
                         <p th:text="${index.availableAmt}"></p>
                         <p th:text="${index.tranDate}"></p>
     </div> -->
+    
+    		<!--	$(document).ready(function() {
+						$.ajax({
+							url: "/book/bookView.html", // bookView.html의 경로
+							dataType: "html",
+							success: function(response) {
+								$("#bookViewContainer").html(response);
+							},
+							error: function(xhr, status, error) {
+								console.error(error);
+							}
+						});
+					});	-->

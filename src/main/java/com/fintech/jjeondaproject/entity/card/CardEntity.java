@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
+
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
