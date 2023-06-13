@@ -4,15 +4,13 @@ import com.fintech.jjeondaproject.common.response.ResBody;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
-import com.fintech.jjeondaproject.service.BankingService;
+import com.fintech.jjeondaproject.service.OpenBankingService;
 import com.fintech.jjeondaproject.service.CardService;
 import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Tag(name = "Cards", description = "카드 관리 API")
@@ -26,7 +24,7 @@ public class CardApiController {
     private final JwtProvider jwtProvider;
 
     //    private final BankingFeign bankingFeign;
-    private final BankingService bankingService;
+    private final OpenBankingService bankingService;
 
     //전체 카드 리스트 조회
     @GetMapping("/list")
@@ -43,11 +41,11 @@ public class CardApiController {
     }
 
     //    카드사 별 보유 카드 목록
-    @GetMapping("/list/bank/{bankId}")
-    public ResBody<?> cardList(@PathVariable Long bankId){
-        List<CardListDto> result = cardService.cardListByBankId(bankId);
-        return ResBody.success(result);
-    }
+//    @GetMapping("/list/bank/{bankId}")
+//    public ResBody<?> cardList(@PathVariable Long bankId){
+//        List<CardListDto> result = cardService.cardListByBankId(bankId);
+//        return ResBody.success(result);
+//    }
 
     //    카드 별 상세 조회
     @GetMapping("/detail/{cardId}")

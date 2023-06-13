@@ -19,11 +19,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	private final JwtInterceptor jwtInterceptor;
 	private final UserInfoResolver userInfoResolver;
+	private final String[] excludePaths = {"/"};
 
 	@Override
 	public void addInterceptors(InterceptorRegistry reg) {
 		reg.addInterceptor(jwtInterceptor)
+//				.addPathPatterns(excludePaths);
 			.addPathPatterns("/auth11/**");
+				//.addPathPatterns(excludePaths);
 	}
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {

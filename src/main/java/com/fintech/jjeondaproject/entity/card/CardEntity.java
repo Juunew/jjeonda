@@ -1,5 +1,7 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.card;
 
+import com.fintech.jjeondaproject.entity.BankEntity;
+import com.fintech.jjeondaproject.entity.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

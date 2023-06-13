@@ -65,12 +65,12 @@ public class UserApiController {
 
 
 
-    @PostMapping("/sign-in")
-    public ResBody<?> login(@RequestBody UserLoginDto userDto, HttpServletResponse response) {
-        String token = userService.signIn(userDto);
-        Cookie tokenCookie = new Cookie("JwToken",token);
-		response.addCookie(tokenCookie);
-        return ResBody.success();
-    }
+//    @PostMapping("/sign-in")
+//    public ResBody<?> login(@RequestBody UserLoginDto userDto, HttpServletResponse response) {
+//        String token = userService.signIn(userDto);
+//        Cookie tokenCookie = new Cookie("JwToken",token);
+//		response.addCookie(tokenCookie);
+//        return ResBody.success();
+//    }
 
 }

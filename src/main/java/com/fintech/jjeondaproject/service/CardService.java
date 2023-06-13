@@ -2,7 +2,7 @@ package com.fintech.jjeondaproject.service;
 
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
-import com.fintech.jjeondaproject.entity.CardEntity;
+import com.fintech.jjeondaproject.entity.card.CardEntity;
 import com.fintech.jjeondaproject.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,7 @@ public class CardService {
                         m.getCardId(),
                         m.getUser().getId(),
                         m.getBank().getId(),
+                        m.getBank().getBankName(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
@@ -30,14 +31,15 @@ public class CardService {
                 .collect(Collectors.toList());
     }
 
-    public List<CardListDto> cardListByBankId(Long bankId){
+    public List<CardListDto> cardListByUserIdAndBankId(Long userId, Long bankId){
 
-        List<CardEntity> cardEntityList = cardRepository.findByBankId(bankId);
+        List<CardEntity> cardEntityList = cardRepository.findByUserIdAndBankId(userId, bankId);
         return cardEntityList.stream().
                 map(m->new CardListDto(
                         m.getCardId(),
                         m.getUser().getId(),
                         m.getBank().getId(),
+                        m.getBank().getBankName(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),
@@ -85,6 +87,7 @@ public class CardService {
                         m.getCardId(),
                         m.getUser().getId(),
                         m.getBank().getId(),
+                        m.getBank().getBankName(),
                         m.getCardName(),
                         m.getSettlementDay(),
                         m.getSettlementDate(),

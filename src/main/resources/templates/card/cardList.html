@@ -15,7 +15,7 @@
             <a class="dropdown-item" th:href="@{/cards/list}">전체보기</a>
 
             <div th:each="index : ${category}" class="card" style="width: 18rem;">
-            <a class="dropdown-item" th:href="@{/cards/list/bank/{bankId}(bankId=${index.getBankId()})}" th:text="${index.getBankId()}">Action</a>
+            <a class="dropdown-item" th:href="@{/cards/list/bank/{bankId}(bankId=${index.getBankId()})}" th:text="${index.getBankName()}">Action</a>
             </div>
           </div>
         </div>
