@@ -35,17 +35,19 @@ public class BookController {
 
         return "book/bookView";
     }
+
     // 가계부 작성 폼
     @GetMapping("/expenditure-detail/{bookId}")
-    public String getExpenditureDetailForm( @ModelAttribute BookDetailResDto bookDetailReqDto, Model model) {
+    public String getExpenditureDetailForm(@PathVariable Long bookId, Model model) {
+        model.addAttribute("bookId", bookId);
         return "book/bookWrite";
     }
 
     //가계부 작성하기
     @PostMapping("/expenditure-detail")
-    public String createMyExpenditureDetail(@ModelAttribute BookDetailReqDto bookDetailReqDto, @PathVariable("bookId") Long bookId) {
+    public String createMyExpenditureDetail(@ModelAttribute BookDetailReqDto bookDetailReqDto) {
         BookDetailResDto result = bookService.createExpenditureDetail(bookDetailReqDto);
-        return "redirect:/list/" + bookDetailReqDto.getUserId();
+        return "redirect:/books/list" + "/" + bookDetailReqDto.getBookId() + "?year=" + result.getYear() + "&month=0" + result.getMonth();
     }
 
     // 월간 예산 계획 폼
@@ -56,6 +58,7 @@ public class BookController {
         model.addAttribute("bookMonthlyPlan", bookMonthlyPlan);
         return "book/bookBudget";
     }
+
     // 월간 예산 계획 작성하기
     @PostMapping("/month-plan/{bookId}")
     public String createMyBookMonthlyPlan(@PathVariable Long bookId, @ModelAttribute BookMonthlyModDto modDto) {
@@ -65,10 +68,10 @@ public class BookController {
 
 
     //가계부 삭제
-    @GetMapping("/delete/{detailBookId}")
+    @PostMapping("/delete/{detailBookId}")
     public String deleteMyExpenditureDetail(@PathVariable Long detailBookId) {
         bookService.deleteExpenditureDetail(detailBookId);
-        return "redirect:/books/list/{userId}";
+        return "/";
     }
 
     // 가계부 수정 폼
@@ -80,4 +83,3 @@ public class BookController {
         return "book/bookEdit";
     }
 }
-

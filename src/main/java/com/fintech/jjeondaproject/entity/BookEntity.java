@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fintech.jjeondaproject.entity.UserEntity;
 import lombok.*;
 
 @Builder
