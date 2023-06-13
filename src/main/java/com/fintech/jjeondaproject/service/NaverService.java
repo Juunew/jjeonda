@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fintech.jjeondaproject.dto.user.NaverResponseDto;
 import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import com.fintech.jjeondaproject.loginFeign.LoginFeign;
 import com.fintech.jjeondaproject.loginFeign.ProfileFeign;
 import com.fintech.jjeondaproject.repository.UserRepository;

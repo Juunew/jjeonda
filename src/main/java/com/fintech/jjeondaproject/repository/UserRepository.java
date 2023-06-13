@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
 	boolean existsByAccountId(String accoundId);

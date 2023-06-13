@@ -1,11 +1,12 @@
 package com.fintech.jjeondaproject.dto.account;
 
-import com.fintech.jjeondaproject.entity.AccountEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.sql.Time;
 import java.util.Date;
+
+import com.fintech.jjeondaproject.entity.account.AccountEntity;
 
 @AllArgsConstructor
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)

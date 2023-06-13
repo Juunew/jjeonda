@@ -11,7 +11,7 @@ import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
 
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import com.fintech.jjeondaproject.exception.UserException;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.util.Encryption;

@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.user;
 
 import java.util.Date;
 import java.util.ArrayList;
