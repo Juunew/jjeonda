@@ -12,8 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
 import com.fintech.jjeondaproject.entity.bank.BankEntity;
+=======
+>>>>>>> 6de8d12d141f6708e5c515bc532a274f9c3af646
 import com.fintech.jjeondaproject.entity.BaseTime;
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
 import com.fintech.jjeondaproject.entity.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

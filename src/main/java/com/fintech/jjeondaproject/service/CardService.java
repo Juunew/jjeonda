@@ -97,7 +97,7 @@ public class CardService {
     }
 
     public List<CardListDto> cardListByBankId(Long bankId) {
-        List<CardEntity> cardEntityList = cardRepository.cardListByBankId(bankId);
+        List<CardEntity> cardEntityList = cardRepository.findByBankId(bankId);
         return cardEntityList.stream().
                 map(m->new CardListDto(
                         m.getCardId(),
