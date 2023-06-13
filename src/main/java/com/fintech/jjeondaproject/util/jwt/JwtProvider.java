@@ -66,12 +66,14 @@ public class JwtProvider {
 	}
 	
 	public String getJwtFromCookie(HttpServletRequest request) { // 쿠키에서 jwt 추출
-		Cookie[] cookies = request.getCookies(); // 쿠키에서 key값이 "JwToken"인 value 가져오기
+		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
 			for(Cookie c : cookies) {
 				String cookieName = c.getName();
 				String cookieValue = c.getValue();
-				if(cookieName.equals("JwToken")) {
+				if(cookieName.equals("JwToken")) { // 쿠키에서 key값이 "JwToken"인 value 가져오기
+					return cookieValue;
+				}else if(cookieName.equals("naverToken")){ // 쿠키에서 key값이 "naverToken"인 value 가져오기
 					return cookieValue;
 				}
 			}

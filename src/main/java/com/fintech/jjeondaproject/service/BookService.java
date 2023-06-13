@@ -7,6 +7,8 @@ import com.fintech.jjeondaproject.entity.BookEntity;
 import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
 import com.fintech.jjeondaproject.repository.BookRepository;
+import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
+import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
 import com.fintech.jjeondaproject.repository.DetailBookRepository;
 import com.fintech.jjeondaproject.repository.TotalBookRepository;
 import lombok.RequiredArgsConstructor;

@@ -3,6 +3,9 @@ package com.fintech.jjeondaproject.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -67,6 +70,13 @@ public class UserService {
 			return jwt.getAccessToken();
 		}
 		return "로그인 실패";
+	}
+
+	public void logout(HttpServletResponse response, String cookieName) {
+		Cookie cookie = new Cookie(cookieName, null);
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		
 	}
 
 }
