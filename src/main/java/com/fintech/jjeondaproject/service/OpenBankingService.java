@@ -5,6 +5,7 @@ import com.fintech.jjeondaproject.entity.openBanking.OBTokenEntity;
 import com.fintech.jjeondaproject.feign.OpenBankingFeign;
 import com.fintech.jjeondaproject.repository.openBankingRepository.OpenBankingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -13,11 +14,23 @@ public class OpenBankingService {
     private final OpenBankingRepository openBankingRepository;
     private final OpenBankingFeign openBankingFeign;
 
+    @Value ("${open-banking.client-id}")
+    String client_id;
+    @Value ("${open-banking.client-secret}")
+    String client_secret;
+    @Value ("${open-banking.redirect_uri}")
+    String redirect_uri;
+
+
+
+
     public void requestToken(String code, String scope, String state){
         OpenBankingDto openBankingDto =
-                openBankingFeign.requestToken(code,"86dd1ec4-2394-4815-963f-0e5d2c28428a"
-                        , "c3cb34d6-8b7d-4e3e-b2e7-aabf2f3d9f2d"
-                        , "http://localhost:8080/requesttoken", "authorization_code");
+                openBankingFeign.requestToken(code
+                        , client_id
+                        , client_secret
+                        , redirect_uri
+                        , "authorization_code");
 
         System.out.println("토큰responseVO : " + openBankingDto.toString());
         insertToken(openBankingDto);

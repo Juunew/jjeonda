@@ -95,4 +95,20 @@ public class CardService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public List<CardListDto> cardListByBankId(Long bankId) {
+        List<CardEntity> cardEntityList = cardRepository.cardListByBankId(bankId);
+        return cardEntityList.stream().
+                map(m->new CardListDto(
+                        m.getCardId(),
+                        m.getUser().getId(),
+                        m.getBank().getId(),
+                        m.getBank().getBankName(),
+                        m.getCardName(),
+                        m.getSettlementDay(),
+                        m.getSettlementDate(),
+                        m.getPaymentAmt()
+                ))
+                .collect(Collectors.toList());
+    }
 }
