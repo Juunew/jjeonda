@@ -1,6 +1,8 @@
 package com.fintech.jjeondaproject.apiController;
 
+import com.fintech.jjeondaproject.common.UserInfo;
 import com.fintech.jjeondaproject.common.response.ResBody;
+import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.dto.book.*;
 import com.fintech.jjeondaproject.dto.book.BookListDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailModDto;
@@ -29,10 +31,11 @@ public class BookApiController {
     private final BookTestService bookService;
 
     // 가계부 목록 조회
-    @GetMapping("/list/{userId}")
-    public ResBody<?> getMyBookList(@PathVariable Long userId,
+    @GetMapping("/list")
+    public ResBody<?> getMyBookList(@InfoUser UserInfo userInfo,
                                     @ModelAttribute BookDateQueryDto queryDto) {
-        BookListDto result = bookService.findMyBookList(userId, queryDto);
+        System.out.println("userInfo.getUserId() = " + userInfo.getUserId());
+        BookListDto result = bookService.findMyBookList(userInfo.getUserId(), queryDto);
         return ResBody.success(result);
     }
 

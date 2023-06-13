@@ -104,6 +104,7 @@ public class BookTestService {
     }
     // 삭제
     public void deleteExpenditureDetail(Long detailBookId) {
+        System.out.println("detailBookId = " + detailBookId);
         detailBookRepository.deleteById(detailBookId);
     }
     // 생성

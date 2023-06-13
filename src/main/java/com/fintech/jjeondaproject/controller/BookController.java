@@ -58,7 +58,6 @@ public class BookController {
         model.addAttribute("bookMonthlyPlan", bookMonthlyPlan);
         return "book/bookBudget";
     }
-
     // 월간 예산 계획 작성하기
     @PostMapping("/month-plan/{bookId}")
     public String createMyBookMonthlyPlan(@PathVariable Long bookId, @ModelAttribute BookMonthlyModDto modDto) {

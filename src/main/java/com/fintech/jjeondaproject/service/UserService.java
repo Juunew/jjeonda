@@ -23,6 +23,7 @@ import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -66,7 +67,7 @@ public class UserService {
 			Jwt jwt = jwtProvider.putClaim(savedUser);
 			savedUser.updateRefreshToken(jwt.getRefreshToken());
 			userRepository.save(savedUser); // refreshToken db에 저장
-			
+
 			return jwt.getAccessToken();
 		}
 		return "로그인 실패";
@@ -76,7 +77,7 @@ public class UserService {
 		Cookie cookie = new Cookie(cookieName, null);
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
-		
+
 	}
 
 }

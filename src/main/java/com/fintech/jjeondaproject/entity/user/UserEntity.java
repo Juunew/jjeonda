@@ -15,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fintech.jjeondaproject.entity.BaseTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AccessLevel;
@@ -29,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user")
 @Getter
 @Entity
-public class UserEntity {
+public class UserEntity extends BaseTime {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) // identity, sequence, table, auto
 	@Column(name = "user_id")
 	private Long id;

@@ -1,6 +1,7 @@
 package com.fintech.jjeondaproject.dto.account;
 
 import com.fintech.jjeondaproject.entity.account.AccountEntity;
+import com.fintech.jjeondaproject.entity.account.AccountEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +32,4 @@ public class AccountListDto {
                 accountEntity.getAvailableAmt()
         );
     }
-  
 }

@@ -1,11 +1,8 @@
 package com.fintech.jjeondaproject.util.jwt;
 
 import com.fintech.jjeondaproject.common.UserInfo;
-import com.fintech.jjeondaproject.common.constant.errorType.UserError;
-import com.fintech.jjeondaproject.exception.UserException;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.service.UserService;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,34 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class JwtInterceptor implements HandlerInterceptor{
 	private final JwtProvider jwtProvider;
-//	private final UserService userService;
+	private final UserService userService;
 	private final UserRepository userRepository;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 
 		String reqToken = jwtProvider.getJwtFromCookie(request); // 쿠키에서 key값이 "JwToken"인 value 가져오기
-//		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
-
+		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
+		Long userId = (Long.parseLong(jwtProvider.getClaims(reqToken).get("UserId").toString()));
 		if (reqToken == null) {
-			UserException userException = new UserException(UserError.USER_NOT_FOUND);
 			return false;
 		}
-
-		Claims claims = jwtProvider.getClaims(reqToken);
-
-		Long userId = claims.get("UserId", Long.class);
-
 		if (userId == null || !userRepository.existsById(userId) ) {
 			return false;
 		}
-
-		String accountId = claims.get("UserAccountId", String.class);
-		String userName = claims.get("UserName", String.class);
-
-		UserInfo userInfo = UserInfo.of(userId, accountId, userName);
-
-		request.setAttribute("userInfo", userInfo);
 
 		// 엑세스토큰 만료시간을 가져와서 확인하고, 만료가 되었으면 refresh토큰을 발급???
 		// accessToken 만료시, 서버에서 만료된 토큰임을 확인하면

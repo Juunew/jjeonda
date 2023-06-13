@@ -61,11 +61,11 @@ public class NaverService {
 		return jwt.getAccessToken();
 		
 	}
-	
+
 	// 소셜회원가입할 때 db에 이메일 있는지 확인하는 메소드
 	private boolean emailCheck(String email) {
 		return userRepository.existsByEmail(email);
 	}
-    
+
 	
 }
