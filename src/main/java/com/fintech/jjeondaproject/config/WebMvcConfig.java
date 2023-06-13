@@ -17,11 +17,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	private final JwtInterceptor jwtInterceptor;
 	private final UserInfoResolver userInfoResolver;
+	private final String[] includePaths = {"/cards/**"};
 
 	@Override
 	public void addInterceptors(InterceptorRegistry reg) {
 		reg.addInterceptor(jwtInterceptor)
-			.addPathPatterns("/auth11/**");
+		   .addPathPatterns(includePaths);
+//			.addPathPatterns("/auth11/**");
 
 	}
 

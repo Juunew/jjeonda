@@ -4,7 +4,7 @@ import com.fintech.jjeondaproject.common.constant.errorType.UserError;
 import com.fintech.jjeondaproject.dto.account.AccountListDto;
 import com.fintech.jjeondaproject.dto.account.AccountResDto;
 import com.fintech.jjeondaproject.entity.AccountEntity;
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import com.fintech.jjeondaproject.exception.UserException;
 import com.fintech.jjeondaproject.repository.AccountRepository;
 import com.fintech.jjeondaproject.repository.UserRepository;
