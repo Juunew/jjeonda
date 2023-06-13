@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 
 import lombok.Builder;
 import lombok.Data;

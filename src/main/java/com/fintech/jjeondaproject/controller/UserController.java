@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.boot.web.servlet.server.CookieSameSiteSupplier;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
+//@RequestMapping("/users")
 public class UserController {
 	private final UserService userService;
 	private final RegisterMail registerMail;
@@ -85,7 +87,7 @@ public class UserController {
 	// 메인페이지
 	@GetMapping("/")
 	public String home(HttpServletResponse res, HttpServletRequest req) {
-		log.info("indexCookie:{}=",req.getCookies());
+		//log.info("@@@@@@@@@@indexCookie:{}=",req.getCookies());
 		return "index";
 	}
 	
@@ -114,13 +116,20 @@ public class UserController {
 	@GetMapping("/auth/oauth2/naver/callback")
 	public String getProfile(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletResponse response) {
 		String naverToken = naverService.getProfile(code, state);
-		Cookie naverCookie = new Cookie("navertToken", naverToken);
+		Cookie naverCookie = new Cookie("naverToken", naverToken);
 		naverCookie.setPath("/");
 		response.addCookie(naverCookie);
 		
 		return "redirect:/";
+	}
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logOut(HttpServletResponse response) {
+		userService.logout(response,"JwToken");
+		userService.logout(response,"naverToken");
 		
-		
+		return "redirect:/";
 	}
 	
 	
