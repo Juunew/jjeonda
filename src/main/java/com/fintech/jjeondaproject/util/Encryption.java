@@ -6,7 +6,10 @@ import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 @Component
+@Slf4j
 public class Encryption {
 
 	private static String SALT;
@@ -18,10 +21,9 @@ public class Encryption {
 
 
 	public static String encryptSHA512(String password){
-		System.out.println("password인크립션:"+ password);
 		try {
 			if(password != null && SALT != null) {
-				System.out.println("salt:"+SALT);
+				log.info("salt:{}=",SALT);
 				MessageDigest md = MessageDigest.getInstance("SHA-512");
 				md.reset();
 				
@@ -31,8 +33,7 @@ public class Encryption {
 				
 				return String.format("%0128x", new BigInteger(1, digested));
 			} else {
-				System.out.println("salt:"+SALT);
-				System.out.println("널이야");
+				log.info("salt:{}=",SALT);
 				return "";
 			}
 		} catch (Exception e) {

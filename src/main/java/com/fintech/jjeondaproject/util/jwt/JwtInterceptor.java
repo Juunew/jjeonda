@@ -1,6 +1,8 @@
 package com.fintech.jjeondaproject.util.jwt;
 
 import com.fintech.jjeondaproject.common.UserInfo;
+import com.fintech.jjeondaproject.common.constant.errorType.UserError;
+import com.fintech.jjeondaproject.exception.UserException;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.service.UserService;
 import io.jsonwebtoken.Claims;
@@ -15,16 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class JwtInterceptor implements HandlerInterceptor{
 	private final JwtProvider jwtProvider;
-	private final UserService userService;
+//	private final UserService userService;
 	private final UserRepository userRepository;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 
 		String reqToken = jwtProvider.getJwtFromCookie(request); // 쿠키에서 key값이 "JwToken"인 value 가져오기
-		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
+//		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
 
 		if (reqToken == null) {
+			UserException userException = new UserException(UserError.USER_NOT_FOUND);
 			return false;
 		}
 

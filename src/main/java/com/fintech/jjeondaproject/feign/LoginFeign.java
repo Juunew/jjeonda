@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.loginFeign;
+package com.fintech.jjeondaproject.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

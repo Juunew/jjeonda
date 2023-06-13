@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.Date;
 
 import com.fintech.jjeondaproject.entity.BankEntity;
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 
 import lombok.*;
 
