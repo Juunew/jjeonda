@@ -1,8 +1,9 @@
 package com.fintech.jjeondaproject.repository;
 
-import com.fintech.jjeondaproject.entity.account.AccountEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.fintech.jjeondaproject.entity.account.AccountEntity;
 
 import java.util.List;
 

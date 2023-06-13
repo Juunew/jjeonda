@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.fintech.jjeondaproject.dto.user.NaverResponseDto;
 import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
 import com.fintech.jjeondaproject.entity.user.UserEntity;
-import com.fintech.jjeondaproject.loginFeign.LoginFeign;
-import com.fintech.jjeondaproject.loginFeign.ProfileFeign;
+import com.fintech.jjeondaproject.feign.LoginFeign;
+import com.fintech.jjeondaproject.feign.ProfileFeign;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.util.jwt.Jwt;
 import com.fintech.jjeondaproject.util.jwt.JwtProvider;
@@ -43,13 +43,17 @@ public class NaverService {
 		NaverResponseDto resDto = loginFeign.login("authorization_code", clientId, clientSecret, code, state);
 		String accessToken = resDto.getToken_type() + " " +resDto.getAccess_token();
 		ProfileResponseDto join = profileFeign.getProfile(accessToken);
-		String birth = join.getResponse().getBirthyear()+join.getResponse().getBirthday();
+		String birth = join.getResponse().getBirthyear()+"-"+join.getResponse().getBirthday();
 		UserEntity user = new UserEntity(join.getResponse().getName(),
 										join.getResponse().getMobile(),
 										join.getResponse().getGender(),
 										birth,
 										join.getResponse().getEmail());
-		userRepository.save(user);
+		if(emailCheck(join.getResponse().getEmail())) { // 이메일 체크 했는데 이메일이 있으면
+			log.info("이메일 있음@@@@");
+		}else {
+			userRepository.save(user);
+		}
 //		log.info("userRepository.save(user):{}=",userRepository.save(user));
 		Jwt jwt = jwtProvider.putClaim(user);
 //		log.info("jwt네이버서비스:{}=",jwt.getAccessToken());
@@ -57,6 +61,11 @@ public class NaverService {
 		return jwt.getAccessToken();
 		
 	}
-    
+
+	// 소셜회원가입할 때 db에 이메일 있는지 확인하는 메소드
+	private boolean emailCheck(String email) {
+		return userRepository.existsByEmail(email);
+	}
+
 	
 }
