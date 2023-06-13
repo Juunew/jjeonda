@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.dto.book.detail;
 
-import com.fintech.jjeondaproject.entity.DetailBookEntity;
+import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

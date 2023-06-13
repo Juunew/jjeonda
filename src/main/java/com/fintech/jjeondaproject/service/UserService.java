@@ -1,17 +1,12 @@
 package com.fintech.jjeondaproject.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fintech.jjeondaproject.common.constant.errorType.UserError;
-import com.fintech.jjeondaproject.dto.user.ProfileResponseDto;
 
 import com.fintech.jjeondaproject.dto.user.UserDto;
 import com.fintech.jjeondaproject.dto.user.UserLoginDto;
-import com.fintech.jjeondaproject.entity.UserEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import com.fintech.jjeondaproject.exception.UserException;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.util.Encryption;
@@ -20,6 +15,7 @@ import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -63,10 +59,11 @@ public class UserService {
 			Jwt jwt = jwtProvider.putClaim(savedUser);
 			savedUser.updateRefreshToken(jwt.getRefreshToken());
 			userRepository.save(savedUser); // refreshToken db에 저장
-			
+
 			return jwt.getAccessToken();
 		}
 		return "로그인 실패";
 	}
+
 
 }

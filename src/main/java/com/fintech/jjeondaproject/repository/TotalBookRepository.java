@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.repository;
 
-import com.fintech.jjeondaproject.entity.TotalBookEntity;
+import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TotalBookRepository extends JpaRepository<TotalBookEntity, Long> {

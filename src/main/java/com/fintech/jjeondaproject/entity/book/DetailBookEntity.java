@@ -1,7 +1,8 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.book;
 
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailModDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
+import com.fintech.jjeondaproject.entity.BaseTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "detail_book")
 @Getter
 @Entity
-public class DetailBookEntity {
+public class DetailBookEntity extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,9 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.book;
 
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyModDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyReqDto;
+import com.fintech.jjeondaproject.entity.BaseTime;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +18,7 @@ import java.util.List;
 @Table(name = "total_book")
 @Getter
 @Entity
-public class TotalBookEntity {
+public class TotalBookEntity extends BaseTime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
@@ -31,8 +33,6 @@ public class TotalBookEntity {
 	
 	@Column(length = 2, nullable = false)
 	private String month;
-
-	//private int totalIncome;
 
 	@Column(nullable = false)
 	private int budget;

@@ -1,5 +1,8 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.card;
 
+import com.fintech.jjeondaproject.entity.BankEntity;
+import com.fintech.jjeondaproject.entity.BaseTime;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "card")
 @Getter
 @Entity
-public class CardEntity {
+public class CardEntity extends BaseTime {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "card_id")

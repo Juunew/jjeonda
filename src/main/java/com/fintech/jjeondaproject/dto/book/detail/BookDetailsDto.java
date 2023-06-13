@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.dto.book.detail;
 
-import com.fintech.jjeondaproject.entity.DetailBookEntity;
+import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public class BookDetailsDto {
 
+    private Long detailBookId;
     private String costType;
     private int cost;
     private String content;
@@ -15,6 +16,7 @@ public class BookDetailsDto {
 
     public static BookDetailsDto fromEntity(DetailBookEntity detailBookEntity) {
         return new BookDetailsDto(
+                detailBookEntity.getId(),
                 detailBookEntity.getCostType(),
                 detailBookEntity.getCost(),
                 detailBookEntity.getContent(),

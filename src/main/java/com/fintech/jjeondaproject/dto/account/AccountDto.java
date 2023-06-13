@@ -3,9 +3,6 @@ package com.fintech.jjeondaproject.dto.account;
 import java.sql.Time;
 import java.util.Date;
 
-import com.fintech.jjeondaproject.entity.BankEntity;
-import com.fintech.jjeondaproject.entity.UserEntity;
-
 import lombok.*;
 
 @AllArgsConstructor

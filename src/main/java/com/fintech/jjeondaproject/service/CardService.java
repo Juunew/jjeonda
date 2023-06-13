@@ -2,7 +2,7 @@ package com.fintech.jjeondaproject.service;
 
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
-import com.fintech.jjeondaproject.entity.CardEntity;
+import com.fintech.jjeondaproject.entity.card.CardEntity;
 import com.fintech.jjeondaproject.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

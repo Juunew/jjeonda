@@ -9,8 +9,8 @@ import com.fintech.jjeondaproject.dto.book.detail.BookDetailResDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyModDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyReqDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyResDto;
-import com.fintech.jjeondaproject.entity.DetailBookEntity;
-import com.fintech.jjeondaproject.entity.TotalBookEntity;
+import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
+import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
 import com.fintech.jjeondaproject.exception.BookException;
 import com.fintech.jjeondaproject.repository.DetailBookRepository;
 import com.fintech.jjeondaproject.repository.TotalBookRepository;
@@ -104,6 +104,7 @@ public class BookTestService {
     }
     // 삭제
     public void deleteExpenditureDetail(Long detailBookId) {
+        System.out.println("detailBookId = " + detailBookId);
         detailBookRepository.deleteById(detailBookId);
     }
     // 생성

@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.account;
 
 import java.sql.Time;
 import java.util.Date;
@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fintech.jjeondaproject.entity.BankEntity;
+import com.fintech.jjeondaproject.entity.BaseTime;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Table(name="account")
 @Getter
 @Entity
-public class AccountEntity {
+public class AccountEntity extends BaseTime {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -1,20 +1,6 @@
 package com.fintech.jjeondaproject.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.fintech.jjeondaproject.dto.account.AccountDto;
-import com.fintech.jjeondaproject.dto.account.AccountRequestDto;
-import com.fintech.jjeondaproject.dto.bank.BankDto;
-import com.fintech.jjeondaproject.entity.AccountEntity;
-import com.fintech.jjeondaproject.repository.AccountRepository;
 
 import lombok.RequiredArgsConstructor;
 

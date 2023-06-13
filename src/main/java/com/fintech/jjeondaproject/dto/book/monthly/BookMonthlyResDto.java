@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.dto.book.monthly;
 
-import com.fintech.jjeondaproject.entity.TotalBookEntity;
+import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
