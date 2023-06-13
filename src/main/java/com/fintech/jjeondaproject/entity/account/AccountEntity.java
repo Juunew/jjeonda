@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fintech.jjeondaproject.entity.BankEntity;
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
 import com.fintech.jjeondaproject.entity.BaseTime;
 import com.fintech.jjeondaproject.entity.user.UserEntity;
 import lombok.AccessLevel;

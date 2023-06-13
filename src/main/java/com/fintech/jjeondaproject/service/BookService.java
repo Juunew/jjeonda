@@ -5,7 +5,6 @@ import com.fintech.jjeondaproject.dto.book.BookListDto;
 import com.fintech.jjeondaproject.dto.book.BookReqDto;
 import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
-import com.fintech.jjeondaproject.repository.BookRepository;
 import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
 import com.fintech.jjeondaproject.repository.DetailBookRepository;
@@ -22,7 +21,6 @@ import java.util.List;
 public class BookService {
 
     private final TotalBookRepository totalBookRepository;
-    private final DetailBookRepository detailBookRepository;
 
     @Transactional(readOnly = true)
     public BookListDto findMyBookList(Long userId, BookDateQueryDto queryDto) {
