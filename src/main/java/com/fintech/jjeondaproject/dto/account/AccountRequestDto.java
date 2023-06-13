@@ -1,6 +1,6 @@
 package com.fintech.jjeondaproject.dto.account;
 
-import com.fintech.jjeondaproject.entity.BankEntity;
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

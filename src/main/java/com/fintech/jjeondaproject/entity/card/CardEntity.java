@@ -1,4 +1,4 @@
-package com.fintech.jjeondaproject.entity;
+package com.fintech.jjeondaproject.entity.card;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
 import com.fintech.jjeondaproject.entity.user.UserEntity;
 
 import java.time.LocalDateTime;

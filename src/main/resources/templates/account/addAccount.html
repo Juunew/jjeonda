@@ -3,6 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout}" lang="ko">
 	<th:block layout:fragment="content">
+		
 	<form method="POST" action="/accounts/addAccount">
 		<div class="container">
 			<h2>계좌 추가</h2>
@@ -14,24 +15,13 @@
 			</div>
 		 	<div class="form-group">
 				<label for="bank">은행</label>
-					<select id="bank" class="form-control" required>
+					<select id="bank" class="form-control" name="bankId" required>
 						<option value="" >선택하세요</option>
 						<option th:each="bank : ${bankList}" 
-								th:value="${index.bank.getBankCode()}" 
-								th:text="${index.bank.getBankName()}"></option> 
+								th:value="${bank.Id}" 
+								th:text="${bank.BankName}"></option> 
 					</select>
 			</div> 
-			
-			  <!--  <div>
-            <label for="bankCode">Bank:</label>
-            <select id="bankCode" name="bankCode" required>
-                <option value="">Select Bank</option>
-                <!-- Iterate over the banks in the model and populate the options 
-                <c:forEach items="${banks}" var="bank">
-                    <option value="${bank.bankCode}" th:text="${bank.bankName}"> ${bank.bankName} </option>
-                </c:forEach>
-            </select>
-        </div> -->
 			
 			<div class="availableAmt">
 				<lable for="availableAmt">잔액</lable>
@@ -44,8 +34,13 @@
 			</div>
 		</div>
 	</form>
+</th:block>
+</html>
 
-	<script>
+
+
+<!--  
+	<script> 필요가없음..
 		//드롭다운 메뉴
 		var bankDropdown = document.getElementById('bank');
 		// AJAX 요청 생성
@@ -58,8 +53,8 @@
 				// 옵션 추가
 				banks.forEach(function(bank) {
 					var option = document.createElement('option');
-					option.value = index.bank.getBankCode();
-					option.text = index.bank.getBankName();
+					option.value = bank.BankCode;
+					option.text = bank.BankName;
 					bankDropdown.appendChild(option);
 				});
 			}
@@ -67,6 +62,4 @@
 		// 요청 전송
 		xhr.send();
 	</script>
-
-	</th:block>
-</html>
+-->

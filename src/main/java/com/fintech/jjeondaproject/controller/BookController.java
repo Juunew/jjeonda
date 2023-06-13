@@ -7,7 +7,7 @@ import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailResDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyModDto;
 import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyResDto;
-import com.fintech.jjeondaproject.entity.DetailBookEntity;
+import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import com.fintech.jjeondaproject.service.BookTestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
