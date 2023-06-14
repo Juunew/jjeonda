@@ -7,10 +7,21 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.fintech.jjeondaproject.common.UserInfo;
+import com.fintech.jjeondaproject.common.constant.errorType.BankError;
+import com.fintech.jjeondaproject.common.constant.errorType.UserError;
+import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.dto.account.AccountDto;
+import com.fintech.jjeondaproject.dto.account.AccountReqDto;
 import com.fintech.jjeondaproject.dto.account.NoAccountIdDto;
 import com.fintech.jjeondaproject.entity.account.AccountEntity;
+import com.fintech.jjeondaproject.entity.bank.BankEntity;
+import com.fintech.jjeondaproject.entity.user.UserEntity;
+import com.fintech.jjeondaproject.exception.BankException;
+import com.fintech.jjeondaproject.exception.UserException;
 import com.fintech.jjeondaproject.repository.AccountRepository;
+import com.fintech.jjeondaproject.repository.BankRepository;
+import com.fintech.jjeondaproject.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,9 +29,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class AccountService {
 	private final AccountRepository accountRepository;
+	private final UserRepository userRepository;
+	private final BankRepository bankRepository;
 	
-	public List<AccountDto> accountList(){
-		List<AccountEntity> accountEntity = accountRepository.findAll();
+	public List<AccountDto> accountList(UserInfo userInfo){
+		List<AccountEntity> accountEntity = accountRepository.findAllById(userInfo.getUserId());
+		
 		return accountEntity.stream().
 		        map(m->new AccountDto(
 		        		m.getId(),
@@ -54,58 +68,38 @@ public class AccountService {
 		        .tranAmt(accountEntity.getTranAmt())
 		        .tranAfterAmt(accountEntity.getTranAfterAmt())
 		        .build();
+		
 		return accountDto;
 	}
 	
-	public void addAccount(String accountNum, Long bankId, Long availableAmt) {
+	public void addAccount(AccountReqDto reqDto, UserInfo userInfo) {
+		   UserEntity user = userRepository.findById(userInfo.getUserId())
+		         .orElseThrow(() -> new UserException(UserError.USER_NOT_FOUND));
+		   BankEntity bank = bankRepository.findById(reqDto.getBankId())
+		         .orElseThrow(() -> new BankException(BankError.BANK_NOT_FOUND));
 
-		NoAccountIdDto noAccountIdDto = new NoAccountIdDto(1L, bankId,"agf", accountNum, availableAmt,
-				new Date(), new Time(System.currentTimeMillis()), "CU", "DI", 1000, 100);
-		
-		AccountEntity accountEntity = AccountEntity.builder()
-							.accountNum(noAccountIdDto.getAccountNum())
-							.availableAmt(noAccountIdDto.getAvailableAmt())
-							.tranDate(new Date())
-							.tranTime(new Time(System.currentTimeMillis()))
-							.inoutType(noAccountIdDto.getInoutType())
-							.content(noAccountIdDto.getContent())
-							.tranAmt(noAccountIdDto.getTranAmt())
-							.tranAfterAmt(noAccountIdDto.getTranAfterAmt())
-							
-							.build();
-		accountRepository.save(accountEntity);
-	}
+		   AccountEntity account = AccountEntity.builder()
+		         .user(user)
+		         .bank(bank)
+		         .accountNum(reqDto.getAccountNum())
+		         .availableAmt(reqDto.getAvailableAmt())
+		         .tranDate(new Date())
+		         .tranTime(new Time(System.currentTimeMillis()))
+		        /* .inoutType(noAccountIdDto.getInoutType())
+		         .content(noAccountIdDto.getContent())
+		         .tranAmt(noAccountIdDto.getTranAmt())
+		         .tranAfterAmt(noAccountIdDto.getTranAfterAmt())*/
+		         .build();
+		   accountRepository.save(account);
+		}
 
-	public void deleteAccount(Long accountId) {
-		accountRepository.deleteById(accountId);
+	public void deleteById(Long accountId) {
+			accountRepository.deleteById(accountId);
 	}
 	
-
-	
-//	public void deleteAccount(String accountNum, Long bankId, Long availableAmt) {
-		
-		
-//				accountRepository.deleteById();
 }
 
-/*	
-	// 계좌 등록 메서드
-    public AccountDto registerAccount(String accountNum, BankDto bankDto, Long availableAmt) {
-        // BankDto 객체에서 필요한 정보 추출
-        String bankCode = bankDto.getBankCode();
-        String bankName = bankDto.getBankName();
-
-        // 계좌 등록 로직을 수행합니다.
-        AccountDto accountDto = new AccountDto(accountNum, bankCode, bankName, availableAmt);
-
-        // 데이터베이스에 계좌를 저장합니다.
-        AccountDto savedAccount = accountRepository.save(accountDto);
-
-        // 저장된 계좌 정보를 AccountDto로 변환하여 반환합니다.
-        return convertToDto(savedAccount);
-    }
-
-    // BankCode에 해당하는 은행 정보를 조회하는 메서드
+/*	    // BankCode에 해당하는 은행 정보를 조회하는 메서드
     public BankDto getBankByCode(String bankCode) {
         return bankService.getBankByCode(bankCode);
     }
@@ -121,13 +115,6 @@ public class AccountService {
         return accountDto;
     }
 	
-    public void update(AccountEntity accountEntity) {
-		accountRepository.save(accountEntity);
-	}
-	
-	public void delete(AccountEntity accountEntity) {
-		accountRepository.deleteById(accountEntity);
-	}
 	*/
 
 // @Autowired 안쓰는 이유: 생성자로 의존성 주입을 받기때문에 (@RequiredArgsConstructor)

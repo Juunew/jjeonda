@@ -4,7 +4,6 @@ import com.fintech.jjeondaproject.dto.book.BookDateQueryDto;
 import com.fintech.jjeondaproject.dto.book.BookListDto;
 import com.fintech.jjeondaproject.entity.book.DetailBookEntity;
 import com.fintech.jjeondaproject.entity.book.TotalBookEntity;
-import com.fintech.jjeondaproject.repository.DetailBookRepository;
 import com.fintech.jjeondaproject.repository.TotalBookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import java.util.List;
 public class BookService {
 
     private final TotalBookRepository totalBookRepository;
-    private final DetailBookRepository detailBookRepository;
 
     @Transactional(readOnly = true)
     public BookListDto findMyBookList(Long userId, BookDateQueryDto queryDto) {

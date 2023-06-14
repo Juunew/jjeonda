@@ -6,12 +6,16 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fintech.jjeondaproject.common.UserInfo;
+import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.dto.account.AccountDto;
+import com.fintech.jjeondaproject.dto.account.AccountReqDto;
 import com.fintech.jjeondaproject.dto.account.NoAccountIdDto;
 import com.fintech.jjeondaproject.entity.bank.BankEntity;
 import com.fintech.jjeondaproject.service.AccountService;
@@ -28,15 +32,16 @@ public class AccountController {
 	
 	//전체계좌목록
 	@GetMapping("/list")
-	public String accountList(Model model) {
-		List<AccountDto> accountDto = accountService.accountList();
+	public String accountList(Model model,
+							 @InfoUser UserInfo userInfo) {
+		List<AccountDto> accountDto = accountService.accountList(userInfo);
 		model.addAttribute("accountList", accountDto);
 		
 		return "account/accountList";
 	}
 	
 	//상세내역 보기
-	@GetMapping("detail/{accountId}")
+	@GetMapping("/detail/{accountId}")
 	public String accountDetail(@PathVariable("accountId") String accountId, Model model) {
 		AccountDto accountDto = accountService.selectOneByAccountId(Long.parseLong(accountId));
 		model.addAttribute("accountList", Collections.singletonList(accountDto)); 
@@ -53,31 +58,44 @@ public class AccountController {
         return "account/addAccount";
     }
 	@PostMapping("/addAccount")
-	public String postAddAccountForm(@RequestParam("accountNum") String accountNum,
-									 @RequestParam("bankId") Long bankId, 
-									 @RequestParam("availableAmt") Long availableAmt ) {
-		
-		accountService.addAccount(accountNum, bankId, availableAmt);
-		return "account/accounts";
+	public String postAddAccountForm(@ModelAttribute AccountReqDto reqDto,
+									/* @ModelAttribute NoAccountIdDto noAccountIdDto,*/
+	                         		 @InfoUser UserInfo userInfo) {
+	   accountService.addAccount(reqDto, userInfo);
+	   
+	   return "account/list";
 	}
 	
 	// 계좌 삭제
-/*	@GetMapping("/deleteAccount/{accountId}")
-	public String getDeleteAccountForm(@PathVariable("accounId") Long accountId, Model model ) {
-		List<BankEntity> bankList = accountService.deleteAccount(Long accountId);
-		model.addAttribute("bankList", bankList);
-		return "account/deleteAccount";
+	@PostMapping("/deleteAccount/{accountId}")
+	public String deleteAccount(@PathVariable("accounId") Long accountId) {
+		accountService.deleteById(accountId);
+		
+		return "redirect:/account";
 	}
-	@PostMapping("/deleteAccount")
-	public String postDeleteAccountForm(@PathVariable("accountId") Long accountId) {
-		accountService.deleteAccount(accountId);
-	    return "redirect:/accounts";
-	}
-	*/
+
+	
+	
+	
+	
+/*	
+	@PostMapping("/deleteAccount/{accountId}")
+	public String deleteAccount(Model model,@RequestParam() Long[] deleteId) throws Exception{
+		try {
+			accountService.deleteById(Long accountId);
+		} catch (Exception e){
+			throw new Exception(e.getMessage());
+		}
+		return "redirect:/account/list";
+	}*/
 }	
 	
 
-		/*
+
+
+
+
+		/*	내가썼던코드
 		 * model.addAttribute("accountDetail", accountDetail(model)); return
 		 * ("/accountDetail");
 		 */

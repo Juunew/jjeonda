@@ -24,7 +24,7 @@
 				
 				<tbody>
 					<tr th:each="index : ${accountList}">
-						<td><input type="checkbox" th:value="${index.accountId}" name="accountId" />
+						<td><input type="checkbox" name="deleteId" th:value="${index.accountId}"/>
 						<td th:text="${index.accountId}"></td>
 						<td th:text="${index.accountNum}"></td>
 						<td th:text="${index.bankName}"></td>
@@ -41,14 +41,29 @@
 				<button type="button" class="btn btn-primary"
 						onclick="location.href='/accounts/addAccount'">추가</button>
 				<button type="button" class="btn btn-primary"
-						onclick="location.href='/accounts/deleteAccount'">삭제</button>
+						onclick="fnDelete()">삭제</button>
 			</div>
 			
 			<script>
+				//팝업
 				function openPopup(accountId) {
 					var url = "/accounts/detail/" + accountId;
 					var popup = window.open(url, "_blank",
 							"width=800, height=600, left=300, right=300");
+				
+				// 체크박스 delete
+				function fnDelete(){
+					let deleteCheck = $("input[name='deleteId']:checked").length;
+					if(deleteCheck > 0){
+						if(confirm("정말 삭제 하시겠습니까?")){
+							let form = $("#form");
+							form.attr("action", "account/delete");
+							form.attr("method", "post");
+							form.submit();
+						} 
+					} else{
+						alert("선택해 주세요.");
+					}
 				}	
 			</script>
 	</div>

@@ -2,7 +2,6 @@
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', 'password1', '01011111111'
 WHERE NOT EXISTS (
-
         SELECT 1 FROM USER
         WHERE account_id = 'user1'
     );
@@ -146,6 +145,7 @@ VALUES (1, 10, 1111999991, 20000, now(), current_time, 'DI', 'CU', 12300, 99132)
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
 VALUES (1, 11, 1123411111, 1000, now(), current_time, 'DI', 'CU', 5550, 12340098);
+
 
 -- CARD
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
