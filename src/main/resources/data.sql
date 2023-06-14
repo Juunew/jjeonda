@@ -2,6 +2,7 @@
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', 'password1', '01011111111'
 WHERE NOT EXISTS (
+
         SELECT 1 FROM USER
         WHERE account_id = 'user1'
     );

@@ -6,23 +6,70 @@
 <th:block layout:fragment="content">
     <div class="container-fluid">
         <h1>가계부</h1>
+        <div>
+            <label for="yearSelect">년도 선택:</label>
+            <select id="yearSelect" onchange="updateUrl()">
+                <option value="">년도</option>
+                <option value="2020">2020년</option>
+                <option value="2021">2021년</option>
+                <option value="2022">2022년</option>
+                <option value="2023">2023년</option>
+            </select>
+        </div>
+        <div>
+            <label for="monthSelect">월 선택:</label>
+            <select id="monthSelect" onchange="updateUrl()">
+                <option value="">월</option>
+                <option value="01">1월</option>
+                <option value="02">2월</option>
+                <option value="03">3월</option>
+                <option value="04">4월</option>
+                <option value="05">5월</option>
+                <option value="06">6월</option>
+                <option value="07">7월</option>
+                <option value="08">8월</option>
+                <option value="09">9월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+            </select>
+        </div>
+        <script>
+            function updateUrl() {
+                var year = document.getElementById('yearSelect').value;
+                var month = document.getElementById('monthSelect').value;
+
+                if (year !== '' && month !== '') {
+                    var url = '/books/list?year=' + year + '&month=' + month;
+                    location.href = url;
+                }
+            }
+        </script>
+
+
+
         <table class="table caption-top">
             <tr>
-                <td th:text="${books.month + ' 월 예산'}"></td>
+                <td th:text="${books != null ? (books.month != null ? books.month + ' 월 예산' : '') : '월 예산'}"></td>
                 <td>남은 예산</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td th:text="${books.budget}">이번 달 예산</td>
-                <td th:text="${books.remainBudget}">남은 예산</td>
+                <td th:text="${books?.budget} ?: ' '"></td>
+                <td th:text="${books?.remainBudget} ?: ' '"></td>
             </tr>
             </tbody>
         </table>
-        <div class="btn-container">
+        <div class="btn-container" th:if="${books != null}">
             <button type="button" class="btn btn-primary" th:onclick="'location.href=\'/books/month-plan/' + ${books.bookId} + '\''">예산</button>
             <button type="button" class="btn btn-primary" th:onclick="'location.href=\'/books/expenditure-detail/' + ${books.bookId} + '\''">작성</button><br>
         </div>
+        <div class="btn-container" th:unless="${books != null}">
+            <button type="button" class="btn btn-primary">예산</button>
+            <button type="button" class="btn btn-primary">작성</button><br>
+        </div>
+
 
         <table class="table caption-top">
             <thead>
@@ -31,28 +78,30 @@
                 <th scope="col">사용 내역 및 용도</th>
                 <th scope="col">사용 금액</th>
                 <th scope="col">메모</th>
-                <th scope="col">수정</th>
                 <th scope="col">삭제</th>
             </tr>
             </tr>
             </thead>
-            <tbody>
+
+            <tbody th:if="${books != null}">
             <tr th:each="BookDetailsDto : ${books.details}">
                 <td th:text="${BookDetailsDto.costType}">유형</td>
                 <td th:text="${BookDetailsDto.content}">사용 내역 및 용도</td>
                 <td th:text="${BookDetailsDto.cost}">사용 금액</td>
                 <td th:text="${BookDetailsDto.memo}">메모</td>
                 <td>
-                    <a th:href="'/books//expenditure-detail' + ${BookDetailsDto.detailBookId}">수정</a>
-                </td>
-                <td>
                     <form th:action="@{/books/delete/{detailBookId}(detailBookId=${BookDetailsDto.detailBookId})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?')">
                         <input type="submit" value="삭제" />
                     </form>
                 </td>
-
             </tr>
             </tbody>
+            <tbody th:unless="${books != null}">
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+            </tbody>
+
         </table>
     </div>
 
