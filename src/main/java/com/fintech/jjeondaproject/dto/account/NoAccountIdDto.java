@@ -7,7 +7,6 @@ import lombok.*;
 
 @AllArgsConstructor
 @Getter
-@Setter
 @Builder
 public class NoAccountIdDto {
 	
