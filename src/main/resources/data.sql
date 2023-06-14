@@ -1,37 +1,38 @@
 -- USER
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', 'password1', '01011111111'
-    WHERE NOT EXISTS (
+WHERE NOT EXISTS (
+
         SELECT 1 FROM USER
         WHERE account_id = 'user1'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19930915', 'user2@gmail.com', 'male', 'user2', 'user2', 'password1', '01022222222'
-    WHERE NOT EXISTS (
+WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user2'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19940215', 'user3@gmail.com', 'male', 'user3', 'user3', 'password3', '01033333333'
-    WHERE NOT EXISTS (
+WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user3'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19950315', 'user4@gmail.com', 'male', 'user4', 'user4', 'password4', '01044444444'
-    WHERE NOT EXISTS (
+WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user4'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19960415', 'user5@gmail.com', 'female', 'user5', 'user5', 'password5', '01055555555'
-    WHERE NOT EXISTS (
+WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user5'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19970515', 'user6@gmail.com', 'female', 'user6', 'user6', 'password6', '01066666666'
-    WHERE NOT EXISTS (
+WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user6'
     );

@@ -56,6 +56,7 @@ public class CardService {
                 .cardId(cardEntity.getCardId())
                 .userId(cardEntity.getUser().getId())
                 .bankId(cardEntity.getBank().getId())
+                .bankName(cardEntity.getBank().getBankName())
                 .cardName(cardEntity.getCardName())
                 .settlementDay(cardEntity.getSettlementDay())
                 .settlementDate(cardEntity.getSettlementDate())
@@ -72,6 +73,7 @@ public class CardService {
                 .cardId(cardEntity.getCardId())
                 .userId(cardEntity.getUser().getId())
                 .bankId(cardEntity.getBank().getId())
+                .bankName(cardEntity.getBank().getBankName())
                 .cardName(cardEntity.getCardName())
                 .settlementDay(cardEntity.getSettlementDay())
                 .settlementDate(cardEntity.getSettlementDate())
@@ -96,19 +98,19 @@ public class CardService {
                 .collect(Collectors.toList());
     }
 
-    public List<CardListDto> cardListByBankId(Long bankId) {
-        List<CardEntity> cardEntityList = cardRepository.findByBankId(bankId);
-        return cardEntityList.stream().
-                map(m->new CardListDto(
-                        m.getCardId(),
-                        m.getUser().getId(),
-                        m.getBank().getId(),
-                        m.getBank().getBankName(),
-                        m.getCardName(),
-                        m.getSettlementDay(),
-                        m.getSettlementDate(),
-                        m.getPaymentAmt()
-                ))
-                .collect(Collectors.toList());
-    }
+//    public List<CardListDto> cardListByBankId(Long bankId) {
+//        List<CardEntity> cardEntityList = cardRepository.findByBankId(bankId);
+//        return cardEntityList.stream().
+//                map(m->new CardListDto(
+//                        m.getCardId(),
+//                        m.getUser().getId(),
+//                        m.getBank().getId(),
+//                        m.getBank().getBankName(),
+//                        m.getCardName(),
+//                        m.getSettlementDay(),
+//                        m.getSettlementDate(),
+//                        m.getPaymentAmt()
+//                ))
+//                .collect(Collectors.toList());
+//    }
 }
