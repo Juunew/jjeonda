@@ -1,5 +1,6 @@
 package com.fintech.jjeondaproject.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -7,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.fintech.jjeondaproject.dto.openBanking.OpenBankingDto;
+import com.fintech.jjeondaproject.entity.openBanking.OBTokenEntity;
+import com.fintech.jjeondaproject.service.OpenBankingService;
 import org.springframework.boot.web.servlet.server.CookieSameSiteSupplier;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
@@ -43,6 +47,7 @@ public class UserController {
 	private final RegisterMail registerMail;
 	private final NaverService naverService;
 	private final JwtProvider jwtProvider;
+	private final OpenBankingService openBankingService;
 	
 	@GetMapping("/sign-up")
 	public String joinForm(String agreementYn) {
@@ -86,8 +91,16 @@ public class UserController {
 	
 	// 메인페이지
 	@GetMapping("/")
-	public String home(HttpServletResponse res, HttpServletRequest req) {
+	public String home(HttpServletResponse res, HttpServletRequest req, Model model) {
+
 		//log.info("@@@@@@@@@@indexCookie:{}=",req.getCookies());
+		String token = jwtProvider.getJwtFromCookie(req);
+
+		if(token != null) {
+			Long userId = Long.valueOf(jwtProvider.getClaims(token).get("UserId").toString());
+			List<OpenBankingDto> openBankingDtos = openBankingService.findByUserId(userId);
+			model.addAttribute("openBanking", openBankingDtos);
+		}
 		return "index";
 	}
 	
@@ -98,7 +111,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/sign-in")
-	public String login(UserLoginDto userDto, HttpServletResponse response) {
+	public String login(UserLoginDto userDto, HttpServletResponse response, HttpServletRequest request) {
 		String token = userService.signIn(userDto);
 		Cookie tokenCookie = new Cookie("JwToken",token);
 		response.addCookie(tokenCookie);

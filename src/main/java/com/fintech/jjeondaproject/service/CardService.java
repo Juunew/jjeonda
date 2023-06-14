@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -96,6 +98,18 @@ public class CardService {
                         m.getPaymentAmt()
                 ))
                 .collect(Collectors.toList());
+    }
+    public List<CardEntity> bankListByUserId(Long userId) {
+
+        List<Long> bankIds = cardRepository.findDistinctBankIdByUserId(userId);
+        List<CardEntity> cards = new ArrayList<>();
+        for (Long bankId : bankIds) {
+            Optional<CardEntity> cardEntityOptional = cardRepository.findFirstByBankId(bankId);
+            if(cardEntityOptional.isPresent()) {
+                cards.add(cardEntityOptional.get());
+            }
+        }
+        return cards;
     }
 
 //    public List<CardListDto> cardListByBankId(Long bankId) {

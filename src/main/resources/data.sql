@@ -1,36 +1,36 @@
 -- USER
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
-SELECT 'Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', 'password1', '01011111111'
+SELECT 'Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01011111111'
 WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user1'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
-SELECT 'Y', '19930915', 'user2@gmail.com', 'male', 'user2', 'user2', 'password1', '01022222222'
+SELECT 'Y', '19930915', 'user2@gmail.com', 'male', 'user2', 'user2', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01022222222'
 WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user2'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
-SELECT 'Y', '19940215', 'user3@gmail.com', 'male', 'user3', 'user3', 'password3', '01033333333'
+SELECT 'Y', '19940215', 'user3@gmail.com', 'male', 'user3', 'user3', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01033333333'
 WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user3'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
-SELECT 'Y', '19950315', 'user4@gmail.com', 'male', 'user4', 'user4', 'password4', '01044444444'
+SELECT 'Y', '19950315', 'user4@gmail.com', 'male', 'user4', 'user4', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01044444444'
 WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user4'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
-SELECT 'Y', '19960415', 'user5@gmail.com', 'female', 'user5', 'user5', 'password5', '01055555555'
+SELECT 'Y', '19960415', 'user5@gmail.com', 'female', 'user5', 'user5', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01055555555'
 WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user5'
     );
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
-SELECT 'Y', '19970515', 'user6@gmail.com', 'female', 'user6', 'user6', 'password6', '01066666666'
+SELECT 'Y', '19970515', 'user6@gmail.com', 'female', 'user6', 'user6', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01066666666'
 WHERE NOT EXISTS (
         SELECT 1 FROM USER
         WHERE account_id = 'user6'
@@ -132,42 +132,62 @@ INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '454', '한화손해�
 
 -- ACCOUNT
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-VALUES (1, 4, 1111111111, 3000000, now(), current_time, 'DI', 'CU', 20000, 280000);
+SELECT 1, 4, 1111111111, 3000000, now(), current_time, 'DI', 'CU', 20000, 280000 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111111111);
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-VALUES (1, 7, 1111117777, 80000000, now(), current_time, 'DI', 'CU', 3000, 8833);
+SELECT 1, 7, 1111117777, 80000000, now(), current_time, 'DI', 'CU', 3000, 8833 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111117777);
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-VALUES (1, 8, 1111118888, 7000000000, now(), current_time, 'DI', 'CU', 100000, 91919);
+SELECT 1, 8, 1111118888, 7000000000, now(), current_time, 'DI', 'CU', 100000, 91919 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111118888);
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-VALUES (1, 10, 1111999991, 20000, now(), current_time, 'DI', 'CU', 12300, 99132);
+SELECT 1, 10, 1111999991, 20000, now(), current_time, 'DI', 'CU', 12300, 99132 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111999991);
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-VALUES (1, 11, 1123411111, 1000, now(), current_time, 'DI', 'CU', 5550, 12340098);
+SELECT 1, 11, 1123411111, 1000, now(), current_time, 'DI', 'CU', 5550, 12340098 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1123411111);
 
 
 -- CARD
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-VALUES ('카드별명1', 10000, '2023-06-01 11:24:43', '05', 1, 1);
+SELECT '카드이름1', 10000, '2023-06-16 11:24:43', '17', 2, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름1');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-VALUES ('카드별명2', 20000, '2023-05-03 14:25:36', '04', 3, 2);
+SELECT '카드이름2', 13000, '2023-06-22 11:24:43', '22', 3, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름2');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-VALUES ('카드별명3', 30000, '2023-05-25 12:06:03', '08', 5, 3);
+SELECT '카드이름3', 30000, '2023-06-16 11:24:43', '17', 4, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름3');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-VALUES ('카드별명4', 40000, '2023-04-13 19:56:31', '10', 7, 4);
+SELECT '카드이름4', 60000, '2023-06-16 11:24:43', '18', 4, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름4');
+
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-VALUES ('카드별명5', 50000, '2023-05-30 20:45:51', '11', 9, 5);
+SELECT '카드이름5', 50000, '2023-06-22 11:24:43', '22', 3, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름5');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름6', 25000, '2023-06-21 11:24:43', '21', 4, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름6');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름7', 35000, '2023-06-16 11:24:43', '16', 10, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름7');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름8', 4500, '2023-06-16 11:24:43', '16', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름8');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름9', 1000, '2023-06-19 11:24:43', '19', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름9');
+
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름10', 37000, '2023-06-22 11:24:43', '22', 3, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름10');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름11', 21000, '2023-06-20 11:24:43', '20', 4, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름11');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름12', 457000, '2023-06-23 11:24:43', '24', 10, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름12');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름13', 89000, '2023-06-23 11:24:43', '25', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름13');
+INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
+SELECT '카드이름14', 46000, '2023-06-23 11:24:43', '23', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름14');
 
 -- Book
 INSERT INTO total_book (user_id, year, month, budget, remain_budget)
-VALUES (1, '2023', '06', 3000000, 3000000);
+SELECT 1, '2023', '06', 3000000, 3000000 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 1);
 
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-VALUES (1, 'FC', 100000, '주택청약', '주택청약');
+SELECT 1, 'FC', 100000, '주택청약', '주택청약' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 1);
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-VALUES (1, 'FC', 50000, '보험', '현대해상');
+SELECT 1, 'FC', 50000, '보험', '현대해상' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 2);
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-VALUES (1, 'FC', 500000, '적금', '절망적금');
+SELECT 1, 'FC', 500000, '적금', '절망적금' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 3);
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-VALUES (1, 'VC', 4500, '담배', '편의점');
+SELECT 1, 'VC', 4500, '담배', '편의점' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 4);
