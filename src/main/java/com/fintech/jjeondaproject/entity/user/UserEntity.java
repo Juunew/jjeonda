@@ -36,7 +36,7 @@ public class UserEntity extends BaseTime {
 	private Long id;
 	
 //	@NotBlank(message = "사용자ID는 필수항목입니다.")
-	@Column(nullable = false, length = 200, name = "account_id")
+	@Column(name = "account_id")
 	private String accountId;
 	
 	private String password;
@@ -51,9 +51,9 @@ public class UserEntity extends BaseTime {
 	
 	private String email;
 	
-	@Column(name = "reg_date")
-	@CreationTimestamp // update는 UpdateTimestamp
-	private Date regDate;
+//	@Column(name = "reg_date")
+//	@CreationTimestamp // update는 UpdateTimestamp
+//	private Date regDate;
 	
 	@Column(name = "agreement_yn")
 	private String agreementYn;
