@@ -1,6 +1,5 @@
 package com.fintech.jjeondaproject.service;
 
-import com.fintech.jjeondaproject.dto.openBanking.OBCardsBillsDto;
 import com.fintech.jjeondaproject.dto.openBanking.OBCardsListDto;
 import com.fintech.jjeondaproject.dto.openBanking.OpenBankingDto;
 import com.fintech.jjeondaproject.entity.openBanking.OBTokenEntity;

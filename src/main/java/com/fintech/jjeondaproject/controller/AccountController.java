@@ -34,6 +34,7 @@ public class AccountController {
 	@GetMapping("/list")
 	public String accountList(Model model,
 							 @InfoUser UserInfo userInfo) {
+		
 		List<AccountDto> accountDto = accountService.accountList(userInfo);
 		model.addAttribute("accountList", accountDto);
 		
@@ -51,33 +52,36 @@ public class AccountController {
 
 	// 계좌 직접 추가
 	@GetMapping("/addAccount")
-    public String getAddAccountForm(Model model) {
+    public String AddAccountForm(Model model) {
     	List<BankEntity> bankList = bankService.getAllBanks();
     	model.addAttribute("bankList", bankList);
 		
         return "account/addAccount";
     }
 	@PostMapping("/addAccount")
-	public String postAddAccountForm(@ModelAttribute AccountReqDto reqDto,
+	public String AddAccountForm(@ModelAttribute AccountReqDto reqDto,
 									/* @ModelAttribute NoAccountIdDto noAccountIdDto,*/
 	                         		 @InfoUser UserInfo userInfo) {
+		System.out.println("reqDto: " + reqDto.toString());
 	   accountService.addAccount(reqDto, userInfo);
 	   
-	   return "account/list";
+	   return "redirect:/accounts/list";
 	}
-	
+/*	
 	// 계좌 삭제
-	@PostMapping("/deleteAccount/{accountId}")
-	public String deleteAccount(@PathVariable("accounId") Long accountId) {
-		accountService.deleteById(accountId);
+		@PostMapping("/deleteAccount")
+		public String deleteAccount(Long accountId, @InfoUser UserInfo userInfo) {
+		accountService.deleteAccount(accountId, userInfo);
 		
-		return "redirect:/account";
+		return "redirect:/accounts/list";
 	}
-
+	*/
 	
-	
-	
-	
+		
+		
+		
+		
+		
 /*	
 	@PostMapping("/deleteAccount/{accountId}")
 	public String deleteAccount(Model model,@RequestParam() Long[] deleteId) throws Exception{
@@ -87,7 +91,8 @@ public class AccountController {
 			throw new Exception(e.getMessage());
 		}
 		return "redirect:/account/list";
-	}*/
+	}
+	*/
 }	
 	
 
@@ -95,7 +100,7 @@ public class AccountController {
 
 
 
-		/*	내가썼던코드
+		/*	
 		 * model.addAttribute("accountDetail", accountDetail(model)); return
 		 * ("/accountDetail");
 		 */

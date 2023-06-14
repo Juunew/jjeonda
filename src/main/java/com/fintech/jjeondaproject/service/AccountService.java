@@ -33,8 +33,8 @@ public class AccountService {
 	private final BankRepository bankRepository;
 	
 	public List<AccountDto> accountList(UserInfo userInfo){
-		List<AccountEntity> accountEntity = accountRepository.findAllById(userInfo.getUserId());
-		
+		List<AccountEntity> accountEntity = accountRepository.findAllByUserId(userInfo.getUserId());
+
 		return accountEntity.stream().
 		        map(m->new AccountDto(
 		        		m.getId(),
@@ -51,6 +51,7 @@ public class AccountService {
 		                m.getTranAfterAmt()
 		                ))
 		        .collect(Collectors.toList());
+		
 	}
 	
 	public AccountDto selectOneByAccountId(Long accountId) {
@@ -92,11 +93,13 @@ public class AccountService {
 		         .build();
 		   accountRepository.save(account);
 		}
-
-	public void deleteById(Long accountId) {
-			accountRepository.deleteById(accountId);
+/*
+	public void deleteAccount(Long accountId, UserInfo userInfo) {
+		AccountEntity accountEntity = accountRepository.findByIdAndUserId(accountId, userInfo.getUserId())
+				.orElseThrow(() -> new BankException(BankError.BANK_NOT_FOUND));
+		accountRepository.deleteAllById(accountId);
 	}
-	
+*/	
 }
 
 /*	    // BankCode에 해당하는 은행 정보를 조회하는 메서드
