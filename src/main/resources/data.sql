@@ -146,6 +146,7 @@ VALUES (1, 10, 1111999991, 20000, now(), current_time, 'DI', 'CU', 12300, 99132)
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
 VALUES (1, 11, 1123411111, 1000, now(), current_time, 'DI', 'CU', 5550, 12340098);
 
+
 -- CARD
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
 VALUES ('카드별명1', 10000, '2023-06-01 11:24:43', '05', 1, 1);

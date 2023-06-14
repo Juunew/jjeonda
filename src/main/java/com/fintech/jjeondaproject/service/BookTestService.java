@@ -1,5 +1,6 @@
 package com.fintech.jjeondaproject.service;
 
+import com.fintech.jjeondaproject.common.UserInfo;
 import com.fintech.jjeondaproject.common.constant.errorType.BookError;
 import com.fintech.jjeondaproject.dto.book.*;
 import com.fintech.jjeondaproject.dto.book.BookListDto;
@@ -33,9 +34,20 @@ public class BookTestService {
     //읽기 전용 트랜잭션으로 실행
     //사용자의 가계부 목록을 조회
     @Transactional(readOnly = true)
-    public BookListDto findMyBookList(Long userId, BookDateQueryDto queryDto) {
-        TotalBookEntity totalBook = totalBookRepository.findAllByUserIdAndYearAndMonth(userId, queryDto.getYear(), queryDto.getMonth());
-        List<DetailBookEntity> detailBookEntity = totalBook.getDetailBook();
+    public BookListDto findMyBookList(UserInfo userInfo, BookDateQueryDto queryDto) {
+        System.out.println("userInfo" + userInfo.getUserId());
+
+        TotalBookEntity totalBook = totalBookRepository.findAllByUserIdAndYearAndMonth(userInfo.getUserId(), queryDto.getYear(), queryDto.getMonth());
+
+        if (totalBook == null) {
+            return null;
+        }
+
+        List<DetailBookEntity> detailBookEntity = null;
+
+        if (totalBook != null) {
+            detailBookEntity = totalBook.getDetailBook();
+        }
 
         return BookListDto.fromEntities(totalBook, detailBookEntity);
     }

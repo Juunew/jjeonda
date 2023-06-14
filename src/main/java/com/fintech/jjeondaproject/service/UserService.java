@@ -43,7 +43,7 @@ public class UserService {
 				.gender(userDto.getGender())
 				.birth(userDto.getBirth())
 				.email(userDto.getEmail())
-				.regDate(userDto.getRegDate())
+				//.regDate(userDto.getRegDate())
 				.agreementYn(userDto.getAgreementYn())
 				.build();
 		userRepository.save(userEntity);

@@ -22,20 +22,29 @@
 								th:text="${bank.BankName}"></option> 
 					</select>
 			</div> 
-			
 			<div class="availableAmt">
 				<lable for="availableAmt">잔액</lable>
 				<input type="text" class="form-control" id="availableAmt"
 					name="availableAmt" placeholder="잔액">
 			</div>
-
 			<div style="display: inline-block; margin: 0 5px; float: right;">
-				<button type="submit" class="btn btn-primary">등록</button>
+				<button type="submit" class="btn btn-primary" onclick="submitForm()">등록</button>
 			</div>
+			
+			<script>
+			 function submitForm() {
+			        var form = document.getElementById("addAccountForm");
+			        
+			        form.submit();
+			    }
+			</script>
 		</div>
 	</form>
 </th:block>
 </html>
+
+
+
 
 
 

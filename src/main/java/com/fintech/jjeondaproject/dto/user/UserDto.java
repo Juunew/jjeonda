@@ -8,13 +8,15 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fintech.jjeondaproject.entity.user.UserEntity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Builder
-//@NoArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class UserDto {
 	private Long id;
@@ -29,8 +31,11 @@ public class UserDto {
 	
 	@Email
 	private String email;
-	private Date regDate;
 	private String agreementYn;
+	
+
+	
+	
 	
 //	// dto -> entity
 //	UserEntity toEntity() {

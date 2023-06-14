@@ -1,6 +1,8 @@
 package com.fintech.jjeondaproject.controller;
 
 
+import com.fintech.jjeondaproject.common.UserInfo;
+import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.dto.book.BookDateQueryDto;
 import com.fintech.jjeondaproject.dto.book.BookListDto;
 import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
@@ -26,11 +28,11 @@ public class BookController {
 
 
     // 가계부 목록 조회
-    @GetMapping("/list/{userId}")
-    public String getMyBookList(@PathVariable Long userId,
+    @GetMapping("/list")
+    public String getMyBookList(@InfoUser UserInfo userInfo,
                                 @ModelAttribute BookDateQueryDto queryDto,
                                 Model model) {
-        BookListDto bookListDto = bookService.findMyBookList(userId, queryDto);
+        BookListDto bookListDto = bookService.findMyBookList(userInfo, queryDto);
         model.addAttribute("books", bookListDto);
 
         return "book/bookView";
@@ -58,7 +60,7 @@ public class BookController {
         model.addAttribute("bookMonthlyPlan", bookMonthlyPlan);
         return "book/bookBudget";
     }
-    // 월간 예산 계획 작성하기
+    // 월간 예산 계획 수정하기
     @PostMapping("/month-plan/{bookId}")
     public String createMyBookMonthlyPlan(@PathVariable Long bookId, @ModelAttribute BookMonthlyModDto modDto) {
         BookMonthlyResDto updatedPlan = bookService.updateMonthlyPlan(bookId, modDto);
