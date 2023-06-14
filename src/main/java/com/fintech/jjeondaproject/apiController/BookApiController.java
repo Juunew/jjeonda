@@ -35,7 +35,7 @@ public class BookApiController {
     public ResBody<?> getMyBookList(@InfoUser UserInfo userInfo,
                                     @ModelAttribute BookDateQueryDto queryDto) {
         System.out.println("userInfo.getUserId() = " + userInfo.getUserId());
-        BookListDto result = bookService.findMyBookList(userInfo.getUserId(), queryDto);
+        BookListDto result = bookService.findMyBookList(userInfo, queryDto);
         return ResBody.success(result);
     }
 

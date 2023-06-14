@@ -5,17 +5,135 @@
 
 <th:block layout:fragment="content">
 <head>
-    <meta charset="UTF-8">
-    <title>Table with Account Numbers</title>
+    <style>
+.button {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 60px;
+  padding: 20px;
+  width: 800px;
+  height: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
 </head>
 
 
-<div class="container-fluid">
-    <button onclick="authorization()">오픈뱅킹인증하기</button>
+<div class="container-fluid" th:if="${#request.getCookies() != null}">
+    <button onclick="authorization()" class="button" style="vertical-align:middle"><span>오픈뱅킹인증하기</span></button>
     <button href= "/" onclick="authorization()">카드목록조회 API</button>
 
 
 </div>
+
+<div class="container" th:if="${#request.getCookies() == null}">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                        	<div class="col-lg-6">
+                            	<img src="img/user/jjeondLogin.jpg" style="height: 531.2px; width: 425px">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form id="login-form" method="post" action="/sign-in">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="id" name="accountId" placeholder="Id">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="password" name="password" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <button class="btn btn-primary btn-user btn-block" type="submit" id="loginBtn1">Login</button>
+                                        
+                                        <hr>
+                                        <!-- <button type="button" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with KaKao
+                                        </button> -->
+                                        
+                                        <button type="button" 
+                                        	class="btn btn-google btn-user btn-block" id="naverBtn" style="background-color: #03c75a">
+                                            <i class="fab fa-google fa-fw"></i> Login with Naver
+                                        </button>
+                                        
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                        
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/agreement">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+	
+	<script rel="script" src="jjeonda/user/signIn.js"></script>
+
+
+
+
 
 <script>
     function authorization() {

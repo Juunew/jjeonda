@@ -25,6 +25,7 @@ import com.fintech.jjeondaproject.service.RegisterMail;
 import com.fintech.jjeondaproject.service.UserService;
 
 import antlr.collections.List;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,7 +42,7 @@ public class UserApiController {
     public ResBody<?> join(@RequestBody @Valid UserDto userDto, @RequestParam("agreementYn") String agreementYn) {
     	userDto.setAgreementYn(agreementYn);
         userService.join(userDto);
-        return ResBody.success();
+        return ResBody.success(null);
     }
 
     @PostMapping("/agreement")

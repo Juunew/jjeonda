@@ -1,6 +1,8 @@
 package com.fintech.jjeondaproject.apiController;
 
+import com.fintech.jjeondaproject.common.UserInfo;
 import com.fintech.jjeondaproject.common.response.ResBody;
+import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
@@ -20,31 +22,20 @@ import java.util.List;
 public class CardApiController {
 
     private final CardService cardService;
-    // private final JwtProvider jwtProvider;
-    private final JwtProvider jwtProvider;
-
-    //    private final BankingFeign bankingFeign;
-    private final OpenBankingService bankingService;
 
     //전체 카드 리스트 조회
     @GetMapping("/list")
-    public ResBody<?> cardList(){
-        List<CardListDto> result = cardService.cardList();
-        return ResBody.success(result);
-    }
-
-    //(로그인한 유저) 전체 카드 리스트 조회
-    @GetMapping("/list/user/{userId}")
-    public ResBody<?> cardListByUserId(@PathVariable Long userId){
-        List<CardListDto> result = cardService.cardListByUserId(userId);
+    public ResBody<?> cardList(@InfoUser UserInfo userInfo){
+        List<CardListDto> result = cardService.cardListByUserId(userInfo.getUserId());
         return ResBody.success(result);
     }
 
     //    카드사 별 보유 카드 목록
     @GetMapping("/list/bank/{bankId}")
-    public ResBody<?> cardList(@PathVariable Long bankId){
-        List<CardListDto> result = cardService.cardListByBankId(bankId);
-        return ResBody.success(result);
+    public ResBody<?> cardList(@InfoUser UserInfo userInfo, @PathVariable Long bankId){
+        List<CardListDto> cardListDto = cardService.cardListByUserIdAndBankId(userInfo.getUserId(), bankId);
+        List<CardListDto> category = cardService.cardList();
+        return ResBody.success(cardListDto);
     }
 
     //    카드 별 상세 조회
@@ -64,7 +55,7 @@ public class CardApiController {
     // 카드 별명 완료 후 페이지
     @PutMapping("/{cardId}/nickname")
     public ResBody<?> EditNickname(@PathVariable Long cardId, @RequestBody CardModDto data){
-        CardDto result = cardService.changeNickname(cardId, data.getNickName());
+        CardDto result = cardService.changeNickname(cardId, data.getCardName());
         return ResBody.success(result);
     }
 
