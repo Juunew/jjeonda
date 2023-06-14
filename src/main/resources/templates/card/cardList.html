@@ -31,7 +31,7 @@
 <!--              <p th:text="${index.settlementDay}"></p>-->
 <!--              <p th:text="${index.settlementDate}"></p>-->
 <!--              <p th:text="${index.paymentAmt}"></p>-->
-              <a class="btn btn-primary" th:href="@{/cards/detail/{cardId}(cardId=${index.cardId})}">카드 상세 보기</a>
+              <a class="btn btn-primary" th:href="@{/cards/detail/{cardId}(cardId=${index.getCardId()})}">카드 상세 보기</a>
             </div>
           </div>
         </div>

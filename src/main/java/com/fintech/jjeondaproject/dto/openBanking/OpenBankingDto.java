@@ -18,4 +18,5 @@ public class OpenBankingDto {
     private String refresh_token;
     private String scope;
     private String user_seq_no;
+    private Long user_id;
 }
