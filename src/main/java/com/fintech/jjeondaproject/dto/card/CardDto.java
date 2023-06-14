@@ -12,6 +12,7 @@ public class CardDto {
     private Long cardId;
     private Long userId;
     private Long bankId;
+    private String bankName;
     private String cardName;
     private String settlementDay;
     private LocalDateTime settlementDate;

@@ -6,11 +6,10 @@
 <th:block layout:fragment="content">
     <div class="container-lg">
         <div class="d-flex justify-content-between my-3">
-            <form id="cardForm" method="post" th:action="@{/cards/{cardId}/nickname(cardId=${cardDetail.getCardId()})}">
-                <input type="hidden" name="_method" value="put" />
+            <div>
                 <input type="text" id="cardName" name="cardName" class="h2" th:value="${cardDetail.getCardName()}">
                 <button class="btn btn-primary" type="submit" id="editButton">저장</button>
-            </form>
+            </div>
         </div>
 
         <table class="table table-borderless">
@@ -39,30 +38,33 @@
         </table>
     </div>
 
-<!--    <script th:inline="javascript">-->
-<!--        document.getElementById("editButton").addEventListener("click", function() {-->
-<!--            var cardName = document.getElementById("cardName").value;-->
-<!--            var cardId = [[${cardDetail.getCardId()}]];-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script>
+        /*<![CDATA[*/
+        $(document).ready(function() {
+            $('#editButton').click(function(e) {
+                e.preventDefault(); // prevent the form from being submitted
 
-<!--            var xhr = new XMLHttpRequest();-->
-<!--            xhr.open("PUT", "/cards/" + cardId + "/nickname");-->
-<!--            xhr.setRequestHeader("Content-Type", "application/json");-->
+                var cardId = [[${cardDetail.getCardId}]];
+                var cardName = $('#cardName').val();
+                console.log(cardId + " " + cardName);
 
-<!--            var data = {-->
-<!--                nickName: cardName-->
-<!--            };-->
-
-<!--            xhr.send(JSON.stringify(data));-->
-
-
-
-<!--            xhr.onreadystatechange = function() {-->
-<!--                if (xhr.readyState === 4 && xhr.status === 200) {-->
-<!--                    // 수정 성공한 경우의 처리-->
-<!--                }-->
-<!--            };-->
-<!--        });-->
-<!--    </script>-->
+                $.ajax({
+                    url: '/cards/' + cardId + '/nickname',
+                    method: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ cardName: cardName }),
+                    success: function(response) {
+                        window.location.href = "http://localhost:8080/cards/detail/"+cardId;
+                    },
+                    error: function(xhr, status, error) {
+                        // handle errors here
+                    }
+                });
+            });
+        });
+        /*]]>*/
+    </script>
 
 </th:block>
 </html>

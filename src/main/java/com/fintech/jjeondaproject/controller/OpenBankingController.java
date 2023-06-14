@@ -1,5 +1,7 @@
 package com.fintech.jjeondaproject.controller;
 
+import com.fintech.jjeondaproject.common.UserInfo;
+import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.service.OpenBankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,8 @@ public class OpenBankingController {
 
     //open_banking Accesstoken 받기
     @GetMapping("/requesttoken")
-    public String requesttoken(@RequestParam("code") String code,
+    public String requesttoken(@InfoUser UserInfo userInfo,
+                               @RequestParam("code") String code,
                                @RequestParam("scope") String scope,
                                @RequestParam("state") String state
     ) {
@@ -22,10 +25,14 @@ public class OpenBankingController {
         System.out.println("state : " + state);
 
 //        BankCodeDto = bankingService.findClientSecret();
-        openBankingService.requestToken(code, scope, state);
+        openBankingService.requestToken(userInfo.getUserId(), code, scope, state);
 
         return "index";
     }
+
+    // Tokken을 이용한 카드 정보 가져오기(우리가 필요한 것만)
+//    @GetMapping
+//    public
 
 
 //    @GetMapping("/cardList")

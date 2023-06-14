@@ -6,5 +6,5 @@ import lombok.Setter;
 
 @Data
 public class CardModDto {
-    private String nickName;
+    private String cardName;
 }
