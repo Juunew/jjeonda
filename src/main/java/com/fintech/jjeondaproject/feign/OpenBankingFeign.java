@@ -21,10 +21,10 @@ public interface OpenBankingFeign {
 									   @RequestParam("redirect_uri") String redirect_uri,
 									   @RequestParam("grant_type") String grant_type);
 
-	@GetMapping(path = "/v2.0/cards")//, produces = "application/json")
-	public OBCardsListDto requestCardsList(@RequestHeader("Authorization") String accessToken,
-										   @RequestParam String bank_tran_id,
-										   @RequestParam String user_seq_no,
-										   @RequestParam String bank_code_std,
-										   @RequestParam String member_bank_code);
+//	@GetMapping(path = "/v2.0/cards")//, produces = "application/json")
+//	public OBCardsListDto requestCardsList(@RequestHeader("Authorization") String accessToken,
+//										   @RequestParam String bank_tran_id,
+//										   @RequestParam String user_seq_no,
+//										   @RequestParam String bank_code_std,
+//										   @RequestParam String member_bank_code);
 }

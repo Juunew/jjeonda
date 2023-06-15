@@ -1,6 +1,5 @@
 package com.fintech.jjeondaproject.service;
 
-import com.fintech.jjeondaproject.dto.openBanking.OBCardsBillsDto;
 import com.fintech.jjeondaproject.dto.openBanking.OBCardsListDto;
 import com.fintech.jjeondaproject.dto.openBanking.OpenBankingDto;
 import com.fintech.jjeondaproject.entity.openBanking.OBTokenEntity;
@@ -9,6 +8,9 @@ import com.fintech.jjeondaproject.repository.openBankingRepository.OpenBankingRe
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -70,8 +72,19 @@ public class OpenBankingService {
         openBankingRepository.save(oBTokenEntity);
     }
 
+    public List<OpenBankingDto> findByUserId(Long userId) {
 
-
+        List<OBTokenEntity> obTokenEntityList = openBankingRepository.findByUserId(userId);
+        return obTokenEntityList.stream().
+                map(m->new OpenBankingDto(
+                        m.getAccessToken(),
+                        String.valueOf(m.getExpiresIn()),
+                        m.getRefreshToken(),
+                        String.valueOf(m.getUserSeqNo()),
+                        m.getUserId()
+                ))
+                .collect(Collectors.toList());
+    }
 
 
 //    public String getToken(long i) {

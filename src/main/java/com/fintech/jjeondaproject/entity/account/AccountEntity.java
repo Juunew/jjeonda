@@ -54,16 +54,16 @@ public class AccountEntity extends BaseTime {
 	@Column(nullable=false)
 	private Time tranTime;			//거래시각
 	
-	@Column(nullable=false)
+	@Column
 	private String inoutType;		//입출금구분
 	
-	@Column(nullable=false)
+	@Column
 	private String content;			//사용처
 	
-	@Column(nullable=false)
+	@Column
 	private int tranAmt;			//거래금액
 	
-	@Column(nullable=false)
+	@Column
 	private int tranAfterAmt;		//거래후잔액
 
 	

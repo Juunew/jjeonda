@@ -3,6 +3,7 @@ package com.fintech.jjeondaproject.controller;
 import com.fintech.jjeondaproject.common.UserInfo;
 import com.fintech.jjeondaproject.config.annotation.InfoUser;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
+import com.fintech.jjeondaproject.entity.card.CardEntity;
 import com.fintech.jjeondaproject.util.jwt.JwtProvider;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
@@ -25,7 +26,8 @@ public class CardController {
     @GetMapping("/list")
     public String cardList(@InfoUser UserInfo userInfo, Model model){
         List<CardListDto> cardListDto = cardService.cardListByUserId(userInfo.getUserId());
-        List<CardListDto> category = cardService.cardList();
+        List<CardEntity> category = cardService.bankListByUserId(userInfo.getUserId());
+        System.out.println("long :" + category.toString());
         model.addAttribute("cardList", cardListDto);
         model.addAttribute("category", category);
         return "card/cardList";
@@ -35,7 +37,7 @@ public class CardController {
     @GetMapping("/list/bank/{bankId}")
     public String cardList(@InfoUser UserInfo userInfo, @PathVariable Long bankId, Model model){
         List<CardListDto> cardListDto = cardService.cardListByUserIdAndBankId(userInfo.getUserId(), bankId);
-        List<CardListDto> category = cardService.cardList();
+        List<CardEntity> category = cardService.bankListByUserId(userInfo.getUserId());
         model.addAttribute("cardList", cardListDto);
         model.addAttribute("category", category);
         return "card/cardList";

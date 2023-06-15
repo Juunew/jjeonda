@@ -15,13 +15,13 @@
             <a class="dropdown-item" th:href="@{/cards/list}">전체보기</a>
 
             <div th:each="index : ${category}" class="card" style="width: 18rem;">
-            <a class="dropdown-item" th:href="@{/cards/list/bank/{bankId}(bankId=${index.getBankId()})}" th:text="${index.getBankName()}">Action</a>
+            <a class="dropdown-item" th:href="@{/cards/list/bank/{bankId}(bankId=${index.bank.getId()})}" th:text="${index.bank.getBankName()}">Action</a>
             </div>
           </div>
         </div>
         <div class="row">
           <div th:each="index, stat : ${cardList}" class="card" style="width: 18rem;">
-            <img th:src="@{/img/card/card{index}.png(index=${index.getBankId()%4})}" class="card-img-top" alt="My Image">
+            <img th:src="@{/img/card/card{index}.png(index=${index.getBankId()})}" class="card-img-top" alt="My Image">
 <!--            <img th:src="'/img/card/card' + ${stat.count%4 + 1} + '.png'" class="card-img-top" alt="My Image">-->
             <div class="card-body">
               <h5 class="card-title" th:text="${index.cardName}">Card title</h5>

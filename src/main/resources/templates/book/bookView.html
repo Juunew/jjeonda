@@ -44,6 +44,14 @@
                     location.href = url;
                 }
             }
+
+            function confirmCheck() {
+                // form 밑에 있는 값을 넣어주면됨.
+                //document.getElementById("year").value = document.getElementById('yearSelect').value
+                //document.getElementById("month").value = document.getElementById('monthSelect').value
+                alert(document.getElementById("year").value);
+                return confirm('정말 삭제하시겠습니까?')
+            }
         </script>
 
 
@@ -90,7 +98,10 @@
                 <td th:text="${BookDetailsDto.cost}">사용 금액</td>
                 <td th:text="${BookDetailsDto.memo}">메모</td>
                 <td>
-                    <form th:action="@{/books/delete/{detailBookId}(detailBookId=${BookDetailsDto.detailBookId})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?')">
+                    <form th:action="@{/books/delete/{detailBookId}(detailBookId=${BookDetailsDto.detailBookId})}" method="post" onsubmit="return confirmCheck()">
+                        <!-- 현재 년도/ 현재 월 -->
+                        <input type="hidden" id="year" name="year" th:value="${year}">
+                        <input type="hidden" id="month" name="month" th:value="${month}">
                         <input type="submit" value="삭제" />
                     </form>
                 </td>
