@@ -4,33 +4,37 @@
 	layout:decorate="~{layout/layout}" lang="ko">
 <style>
 	div > h1{
-	text-align: center;
+		text-align: center;
 	}
-</style>
+	
+	.Amt{
+		text-align: center;
+	}
+	</style>
 <th:block layout:fragment="content">
 	<div class="container-fluid">
 		<h1>전체 계좌</h1>
 			<table class="table table-hover">
 				<thead class="p-3 mb-2 bg-primary text-white">
 					<tr>
-						<th>선택</th>
-						<th>번호</th>
-						<th>계좌 번호</th>
-						<th>은행</th>
-						<th>잔액</th>
-						<th>상세보기</th>
+						<th style="text-align:center; width:1%" >선택</th>
+						<th style="text-align:center; width:2%">번호</th>
+						<th style="text-align:center; width:10%">계좌 번호</th>
+						<th style="text-align:center; width:5%">은행</th>
+						<th style="text-align:center; width:5%">잔액(원)</th>
+						<th style="text-align:center; width:5%">상세보기</th>
 					</tr>
 				</thead>
 				
 				<tbody>
-				<form id="form" >
+				<form id="form"  align="center">
 					<tr th:each="index : ${accountList}">
-						<td><input type="checkbox" name="deleteId" th:value="${index.accountId}"/>
-						<td th:text="${index.accountId}"></td>
-						<td th:text="${index.accountNum}"></td>
-						<td th:text="${index.bankName}"></td>
-						<td th:text="${index.availableAmt + '원'}"></td>
-						<td>
+						<td style="text-align:center;"><input type="checkbox" name="deleteId" th:value="${index.accountId}"/>
+						<td th:text="${index.accountId}" style="text-align: center;"></td>
+						<td th:text="${index.accountNum}" style="text-align: center;"></td>
+						<td th:text="${index.bankName}" style="text-align: center;"></td>
+						<td th:text="${#numbers.formatInteger(index.availableAmt, 3, 'COMMA')}" style="text-align: right;"></td>
+						<td style="text-align: center;">
 							<a href="javascript:void(0);" th:onclick="openPopup([[${index.accountId}]])"> 상세내역</a>
 						</td>
 					</tr>
@@ -71,43 +75,3 @@
 	</div>
 </th:block>
 </html>
-
-
-
-<!-- <td th:text="${account.bank.getId()}"></td>
-			<td th:text="${account.accountNum}"></td>
-			<td th:text="${account.bank.getBankName()}"></td>
-			<td th:text="${account.availableAmt}"></td> -->
-<!-- <div th:each="index : ${accountList}" >
-                        <p th:text="${index.accountId}"></p>
-                        <p th:text="${index.user.getUserId()}"></p>
-                        <p th:text="${index.bank.getId()}"></p>
-                        <p th:text="${index.accountNum}"></p>
-                        <p th:text="${index.availableAmt}"></p>
-                        <p th:text="${index.tranDate}"></p>
-    </div> -->
-    
-    
-    			<!-- 페이징 버튼 
-<div th:if="${pageCount > 1}">
-    <nav>
-        <ul class="pagination">
-            <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
-                <a class="page-link" th:href="@{/accounts?page=1}">First</a>
-            </li>
-            <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
-                <a class="page-link" th:href="@{/accounts?page=${currentPage - 1}}">Previous</a>
-            </li>
-            <li th:each="pageNum : ${#numbers.sequence(1, pageCount)}" th:classappend="${currentPage == pageNum} ? active">
-                <a class="page-link" th:href="@{/accounts?page=${pageNum}}" th:text="${pageNum}"></a>
-            </li>
-            <li class="page-item" th:classappend="${currentPage == pageCount} ? disabled">
-                <a class="page-link" th:href="@{/accounts?page=${currentPage + 1}}">Next</a>
-            </li>
-            <li class="page-item" th:classappend="${currentPage == pageCount} ? disabled">
-                <a class="page-link" th:href="@{/accounts?page=${pageCount}}">Last</a>
-            </li>
-        </ul>
-    </nav>
-</div>
--->

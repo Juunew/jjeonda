@@ -60,6 +60,7 @@ public class AccountService {
 		        .accountId(accountEntity.getId())
 		        .userId(accountEntity.getUser().getId())
 		        .bankId(accountEntity.getBank().getId())
+		        .bankName(accountEntity.getBank().getBankName())
 		        .accountNum(accountEntity.getAccountNum())
 		        .availableAmt(accountEntity.getAvailableAmt())
 		        .tranDate(accountEntity.getTranDate())
