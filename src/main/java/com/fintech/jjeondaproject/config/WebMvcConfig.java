@@ -19,7 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	private final JwtInterceptor jwtInterceptor;
 	private final UserInfoResolver userInfoResolver;
-	private final String[] includePaths = {"/cards/**"};
+	private final String[] includePaths = {"/cards/**","/books/**","/accounts/**"};
 
 	@Override
 	public void addInterceptors(InterceptorRegistry reg) {
