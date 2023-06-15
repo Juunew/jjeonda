@@ -7,7 +7,7 @@
     <div class="container-lg">
     <div class="d-flex justify-content-between my-3">
         <h2 class="h2" th:text="${cardDetail.getCardName()}">h2. Bootstrap heading</h2>
-        <a class="btn btn-primary" th:href="@{/cards/edit/{cardId}(cardId=${cardDetail.getCardId()})}">카드정보 수정</a>
+        <a class="btn btn-primary" th:href="@{/cards/edit/{cardId}(cardId=${cardDetail.getCardId()})}" style="margin-right: 30%;">카드정보 수정</a>
     </div>
 
     <!--    <div class="container-fluid d-flex flex-column align-items-center justify-content-center">-->
@@ -33,27 +33,27 @@
         </thead>
         <tbody>
         <tr class="py-1">
-            <th scope="row"></th>
+            <th scope="row" style="width:10%;"></th>
             <td style="width: 30%;">은행 : </td>
-            <td th:text="${cardDetail.getBankName()} + ' 은행'"></td>
+            <td th:text="${cardDetail.getBankName()} + ' 은행'" style="width:10%; text-align: right;"></td>
             <td></td>
         </tr>
         <tr class="py-1">
             <th scope="row"></th>
-            <td style="width: 30%;">결제 예정일 : </td>
-            <td th:text="${cardDetail.getSettlementDay() + '일'}"></td>
+            <td >결제 예정일 : </td>
+            <td th:text="${cardDetail.getSettlementDay() + '일'}" style="text-align: right;"></td>
             <td></td>
         </tr>
         <tr class="py-1">
             <th scope="row"></th>
-            <td style="width: 30%;">실제 결제일 : </td>
-            <td th:text="${cardDetail.getSettlementDate()}"></td>
+            <td>실제 결제일 : </td>
+            <td th:text="${cardDetail.getSettlementDate()}" style="text-align: right;"></td>
             <td></td>
         </tr>
         <tr class="py-1">
             <th scope="row"></th>
-            <td style="width: 30%;">결제 예정 금액 : </td>
-            <td th:text="${cardDetail.getPaymentAmt()}"></td>
+            <td>결제 예정 금액 : </td>
+            <td th:text="${cardDetail.getPaymentAmt()}" style="text-align: right;"></td>
             <td></td>
         </tr>
         </tbody>
