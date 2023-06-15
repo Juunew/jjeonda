@@ -39,7 +39,7 @@ public class BookApiController {
         return ResBody.success(result);
     }
 
-    // 월간 예산 계획
+    // 월간 예산 계획 -> 기능 안됐음
     @PostMapping("/month-plan")
     public ResBody<?> createMyBookMonthlyPlan(@RequestBody BookMonthlyReqDto reqDto) {
         BookMonthlyResDto result = bookService.createMonthlyPlan(reqDto);
