@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fintech.jjeondaproject.entity.account.AccountEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
@@ -21,10 +22,13 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
     List<AccountEntity> findTranDetailByUserIdAndBankId(Long userId, Long bankId);
 
 	List<AccountEntity> findAllById(Long userId);
+
+	List<AccountEntity> findByIdAndUserId(Long accountId, Long userId);
 	
-	@Transactional
-	@Modifying
-	@Query(value = DELETE_ACCOUNT, nativeQuery = true)
-	public int deleteAccount(@Param("deleteAccount") Long[] deleteAccount);
+	
+//	@Transactional
+//	@Modifying
+//	@Query(value = DELETE_ACCOUNT, nativeQuery = true)
+//	public int deleteAccount(@Param("deleteAccount") Long[] deleteAccount);
 }
 
