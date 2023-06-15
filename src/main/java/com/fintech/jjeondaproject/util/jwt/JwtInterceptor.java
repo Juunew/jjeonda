@@ -21,12 +21,16 @@ public class JwtInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 
 		String reqToken = jwtProvider.getJwtFromCookie(request); // 쿠키에서 key값이 "JwToken"인 value 가져오기
-		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
-		Long userId = (Long.parseLong(jwtProvider.getClaims(reqToken).get("UserId").toString()));
 		if (reqToken == null) {
+			response.sendRedirect("/sign-in"); // reqToken이 없으면 sign-in으로 보내라
 			return false;
 		}
+		
+		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
+		Long userId = (Long.parseLong(jwtProvider.getClaims(reqToken).get("UserId").toString()));
+			
 		if (userId == null || !userRepository.existsById(userId) ) {
+			response.sendRedirect("/sign-up"); // reqToken이 없으면 sign-in으로 보내라
 			return false;
 		}
 

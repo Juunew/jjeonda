@@ -146,48 +146,113 @@ SELECT 1, 3, '111-121-1598', 111432, now(), current_time, 'VC', '네이버페이
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
 SELECT 1, 81, '46-914710-44785', 180000, now(), current_time, 'FC', '교보실속 종신보험', 100000, 80000 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = '46-914710-44785');
 
-
 -- CARD
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름1', 10000, '2023-06-16 11:24:43', '17', 2, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름1');
+SELECT '주 카드', 10000, '2023-06-16 11:24:43', '17', 2, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '주 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름2', 13000, '2023-06-22 11:24:43', '22', 3, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름2');
+SELECT '편의점 할인 카드', 13000, '2023-06-22 11:24:43', '22', 3, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '편의점 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름3', 30000, '2023-06-16 11:24:43', '17', 4, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름3');
+SELECT '대중교통 할인 카드', 30000, '2023-06-16 11:24:43', '17', 4, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '대중교통 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름4', 60000, '2023-06-16 11:24:43', '18', 4, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름4');
+SELECT '신용 카드', 60000, '2023-06-16 11:24:43', '18', 4, 1 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '신용 카드');
 
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름5', 50000, '2023-06-22 11:24:43', '22', 3, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름5');
+SELECT '주 카드', 50000, '2023-06-22 11:24:43', '22', 3, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '주 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름6', 25000, '2023-06-21 11:24:43', '21', 4, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름6');
+SELECT '마트 할인 카드', 25000, '2023-06-21 11:24:43', '21', 4, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '마트 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름7', 35000, '2023-06-16 11:24:43', '16', 10, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름7');
+SELECT '신용카드', 35000, '2023-06-16 11:24:43', '16', 10, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '신용카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름8', 4500, '2023-06-16 11:24:43', '16', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름8');
+SELECT '대중교통 할인 카드', 4500, '2023-06-16 11:24:43', '16', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '대중교통 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름9', 1000, '2023-06-19 11:24:43', '19', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름9');
+SELECT '안 쓰는 카드', 1000, '2023-06-19 11:24:43', '19', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '안 쓰는 카드');
 
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름10', 37000, '2023-06-22 11:24:43', '22', 3, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름10');
+SELECT '주 카드', 37000, '2023-06-22 11:24:43', '22', 3, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '주 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름11', 21000, '2023-06-20 11:24:43', '20', 4, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름11');
+SELECT '대중교통 할인 카드', 21000, '2023-06-20 11:24:43', '20', 4, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '대중교통 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름12', 457000, '2023-06-23 11:24:43', '24', 10, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름12');
+SELECT '편의점 할인 카드', 457000, '2023-06-23 11:24:43', '24', 10, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '편의점 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름13', 89000, '2023-06-23 11:24:43', '25', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름13');
+SELECT '카카오 할인 카드', 89000, '2023-06-23 11:24:43', '25', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카카오 할인 카드');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름14', 46000, '2023-06-23 11:24:43', '23', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름14');
+SELECT '신용 카드', 46000, '2023-06-23 11:24:43', '23', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '신용 카드');
 
--- Book
+-- 2023년 1월
 INSERT INTO total_book (user_id, year, month, budget, remain_budget)
-SELECT 1, '2023', '06', 3000000, 3000000 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 1);
+SELECT 1, '2023', '01', 5000000, 295500 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 1);
 
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-SELECT 1, 'FC', 100000, '주택청약', '주택청약' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 1);
+SELECT 1, 'FC', 100000, '주택청약_1월', '주택청약_1월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 1);
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-SELECT 1, 'FC', 50000, '보험', '현대해상' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 2);
+SELECT 1, 'FC', 50000, '보험_1월', '현대해상_1월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 2);
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
-SELECT 1, 'FC', 500000, '적금', '절망적금' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 3);
+SELECT 1, 'FC', 50000, '적금_1월', '자유적금_1월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 3);
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
 SELECT 1, 'VC', 4500, '담배', '편의점' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 4);
+
+-- 2023년 2월
+INSERT INTO total_book (user_id, year, month, budget, remain_budget)
+SELECT 1, '2023', '02', 5000000, 295500 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 2);
+
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 2, 'FC', 100000, '주택청약_2월', '주택청약_2월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 5);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 2, 'FC', 50000, '보험_2월', '현대해상_2월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 6);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 2, 'FC', 50000, '적금_2월', '자유적금_2월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 7);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 2, 'VC', 4500, '카페', '스타벅스' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 8);
+
+-- 2023년 3월
+INSERT INTO total_book (user_id, year, month, budget, remain_budget)
+SELECT 1, '2023', '03', 5000000, 294000 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 3);
+
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 3, 'FC', 100000, '주택청약_3월', '주택청약_3월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 9);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 3, 'FC', 50000, '보험_3월', '현대해상_3월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 10);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 3, 'FC', 50000, '적금_3월', '자유적금_3월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 11);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 3, 'VC', 6000, '점심식사', '구내식당' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 12);
+
+-- 2023년 4월
+INSERT INTO total_book (user_id, year, month, budget, remain_budget)
+SELECT 1, '2023', '04', 5000000, 265500 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 4);
+
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 4, 'FC', 100000, '주택청약_4월', '주택청약_4월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 13);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 4, 'FC', 50000, '보험_4월', '현대해상_4월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 14);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 4, 'FC', 50000, '적금_4월', '자유적금_4월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 15);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 4, 'VC', 30000, '생일선물', '친구' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 16);
+
+-- 2023년 5월
+INSERT INTO total_book (user_id, year, month, budget, remain_budget)
+SELECT 1, '2023', '05', 5000000, 298000 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 5);
+
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 5, 'FC', 100000, '주택청약_5월', '주택청약_5월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 17);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 5, 'FC', 50000, '보험_5월', '현대해상_5월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 18);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 5, 'FC', 50000, '적금_5월', '자유적금_5월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 19);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 5, 'VC', 2000, '바나나킥', '편의점' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 20);
+
+-- 2023년 6월
+INSERT INTO total_book (user_id, year, month, budget, remain_budget)
+SELECT 1, '2023', '06', 5000000, 295500 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 6);
+
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 6, 'FC', 100000, '주택청약_6월', '주택청약_6월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 21);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 6, 'FC', 50000, '보험_6월', '현대해상_6월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 22);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 6, 'FC', 50000, '적금_6월', '자유적금_6월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 23);
+INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
+SELECT 6, 'VC', 4500, '담배_6월', '편의점 메모_6월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 24);
+

@@ -2,6 +2,7 @@ package com.fintech.jjeondaproject.controller;
 
 import com.fintech.jjeondaproject.common.UserInfo;
 import com.fintech.jjeondaproject.config.annotation.InfoUser;
+import com.fintech.jjeondaproject.dto.card.CardDetailDto;
 import com.fintech.jjeondaproject.dto.card.CardModDto;
 import com.fintech.jjeondaproject.entity.card.CardEntity;
 import com.fintech.jjeondaproject.util.jwt.JwtProvider;
@@ -46,16 +47,16 @@ public class CardController {
     //    카드 별 상세 조회
     @GetMapping("/detail/{cardId}")
     public String cardDetail(@PathVariable Long cardId, Model model){
-        CardDto cardDto = cardService.selectOneByCardId(cardId);
-        model.addAttribute("cardDetail", cardDto);
+        CardDetailDto cardDetailDto = cardService.cardDetailByCardId(cardId);
+        model.addAttribute("cardDetail", cardDetailDto);
         return "card/cardDetail";
     }
 
     //카드 별명 수정 페이지
     @GetMapping("/edit/{cardId}")
     public String cardEditScreen(@PathVariable Long cardId, Model model){
-        CardDto cardDto = cardService.selectOneByCardId(cardId);
-        model.addAttribute("cardDetail", cardDto);
+        CardDetailDto cardDetailDto = cardService.cardDetailByCardId(cardId);
+        model.addAttribute("cardDetail", cardDetailDto);
         return "card/cardEdit";
     }
 

@@ -1,5 +1,6 @@
 package com.fintech.jjeondaproject.service;
 
+import com.fintech.jjeondaproject.dto.card.CardDetailDto;
 import com.fintech.jjeondaproject.dto.card.CardDto;
 import com.fintech.jjeondaproject.dto.card.CardListDto;
 import com.fintech.jjeondaproject.entity.card.CardEntity;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +57,8 @@ public class CardService {
 
     public CardDto selectOneByCardId(Long cardId){
         CardEntity cardEntity = cardRepository.findByCardId(cardId);
+
+
         CardDto cardDto = CardDto.builder()
                 .cardId(cardEntity.getCardId())
                 .userId(cardEntity.getUser().getId())
@@ -65,6 +70,29 @@ public class CardService {
                 .paymentAmt(cardEntity.getPaymentAmt())
                 .build();
         return cardDto;
+    }
+
+    public CardDetailDto cardDetailByCardId(Long cardId){
+        CardEntity cardEntity = cardRepository.findByCardId(cardId);
+
+        LocalDateTime settlementDate = cardEntity.getSettlementDate(); // 이 부분은 실제로는 cardDetail.getSettlementDate()로부터 받은 값으로 대체해야 합니다.
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formattedDate = settlementDate.format(formatter);
+
+        String formattedPaymentAmt = String.format("%,d 원", cardEntity.getPaymentAmt());
+
+
+        CardDetailDto cardDetailDto = CardDetailDto.builder()
+                .cardId(cardEntity.getCardId())
+                .userId(cardEntity.getUser().getId())
+                .bankId(cardEntity.getBank().getId())
+                .bankName(cardEntity.getBank().getBankName())
+                .cardName(cardEntity.getCardName())
+                .settlementDay(cardEntity.getSettlementDay())
+                .settlementDate(formattedDate)
+                .paymentAmt(formattedPaymentAmt)
+                .build();
+        return cardDetailDto;
     }
 
     @Transactional
