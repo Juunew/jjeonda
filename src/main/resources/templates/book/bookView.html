@@ -57,15 +57,16 @@
 
 
         <table class="table caption-top">
+            <thead class="p-3 mb-2 bg-primary text-white">
             <tr>
-                <td th:text="${books != null ? (books.month != null ? books.month + ' 월 예산' : '') : '월 예산'}"></td>
-                <td>남은 예산</td>
+                <td th:text="${books != null ? (books.month != null ? books.month + ' 월 예산' : '') : '월 예산'}" style="text-align: center;"></td>
+                <td style="text-align: center;">남은 예산</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td th:text="${books?.budget} ?: ' '"></td>
-                <td th:text="${books?.remainBudget} ?: ' '"></td>
+                <td th:text="${books != null ? #numbers.formatInteger(books.budget, 3, 'COMMA') : ''}" style="text-align: center;"></td>
+                <td th:text="${books != null ? #numbers.formatInteger(books.remainBudget, 3, 'COMMA') : ''}" style="text-align: center;"></td>
             </tr>
             </tbody>
         </table>
@@ -77,26 +78,35 @@
             <button type="button" class="btn btn-primary">예산</button>
             <button type="button" class="btn btn-primary">작성</button><br>
         </div>
-
+        <br>
+        <h5>FC : 고정 지출 / VC : 변동 지출</h5>
+        <br>
 
         <table class="table caption-top">
-            <thead>
+            <colgroup>
+                <col style="width: 10%;">
+                <col style="width: 40%;">
+                <col style="width: 10%;">
+                <col style="width: 25%;">
+                <col style="width: 15%;">
+            </colgroup>
+            <thead class="p-3 mb-2 bg-primary text-white">
             <tr>
-                <th scope="col">유형</th>
-                <th scope="col">사용 내역 및 용도</th>
-                <th scope="col">사용 금액</th>
-                <th scope="col">메모</th>
-                <th scope="col">삭제</th>
-            </tr>
+                <th scope="col" style="text-align: center;">유형</th>
+                <th scope="col" style="text-align: center;">사용 내역 및 용도</th>
+                <th scope="col" style="text-align: center;">사용 금액(원)</th>
+                <th scope="col" style="text-align: center;">메모</th>
+                <th scope="col" style="text-align: center;">   </th>
             </tr>
             </thead>
-
             <tbody th:if="${books != null}">
             <tr th:each="BookDetailsDto : ${books.details}">
-                <td th:text="${BookDetailsDto.costType}">유형</td>
-                <td th:text="${BookDetailsDto.content}">사용 내역 및 용도</td>
-                <td th:text="${BookDetailsDto.cost}">사용 금액</td>
-                <td th:text="${BookDetailsDto.memo}">메모</td>
+                <td th:text="${BookDetailsDto.costType}" style="text-align: center;">유형</td>
+                <td th:text="${BookDetailsDto.content}" style="text-align: center;">사용 내역 및 용도</td>
+<!--                <td th:text="${BookDetailsDto.cost}" style="text-align: right;">사용 금액(원)</td>-->
+                <td th:text="${#numbers.formatInteger(BookDetailsDto.cost, 3, 'COMMA')}" style="text-align: right;">사용 금액(원)</td>
+<!--                <div data-th-text="${#numbers.formatInteger(result.totalPrice, 3, 'COMMA') + '원'}"></div>-->
+                <td th:text="${BookDetailsDto.memo}" style="text-align: center;">메모</td>
                 <td>
                     <form th:action="@{/books/delete/{detailBookId}(detailBookId=${BookDetailsDto.detailBookId})}" method="post" onsubmit="return confirmCheck()">
                         <!-- 현재 년도/ 현재 월 -->
@@ -112,8 +122,8 @@
                 <td colspan="6"></td>
             </tr>
             </tbody>
-
         </table>
+
     </div>
 
 
