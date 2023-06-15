@@ -132,19 +132,19 @@ INSERT INTO BANK (BANK_CODE, BANK_NAME, CARD_CODE) SELECT '454', '한화손해�
 
 -- ACCOUNT
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-SELECT 1, 4, 1111111111, 3000000, now(), current_time, 'DI', 'CU', 20000, 280000 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111111111);
+SELECT 1, 4, '465101-01-123456', 313500, now(), current_time, 'VC', '메가mgc커피_KBPay', 15000, 298500 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = '465101-01-123456');
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-SELECT 1, 7, 1111117777, 80000000, now(), current_time, 'DI', 'CU', 3000, 8833 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111117777);
+SELECT 1, 20, '1001-333-74589', 1000000, now(), current_time, 'VC', '이니시스(일반)', 200000, 800000 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = '1001-333-74589');
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-SELECT 1, 8, 1111118888, 7000000000, now(), current_time, 'DI', 'CU', 100000, 91919 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111118888);
+SELECT 1, 11, '301-0123-9876-11', 191919, now(), current_time, 'VC', '씨유 (CU) 양평점', 100000, 91919 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = '301-0123-9876-11');
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-SELECT 1, 10, 1111999991, 20000, now(), current_time, 'DI', 'CU', 12300, 99132 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1111999991);
+SELECT 1, 3, '111-121-1598', 111432, now(), current_time, 'VC', '네이버페이', 12300, 99132 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = '111-121-1598');
 
 INSERT INTO account (user_id, bank_id, account_num, available_amt, tran_date, tran_time, inout_type, content, tran_amt, tran_after_amt)
-SELECT 1, 11, 1123411111, 1000, now(), current_time, 'DI', 'CU', 5550, 12340098 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = 1123411111);
+SELECT 1, 81, '46-914710-44785', 180000, now(), current_time, 'FC', '교보실속 종신보험', 100000, 80000 WHERE NOT EXISTS(SELECT 1 FROM account WHERE account_num = '46-914710-44785');
 
 
 -- CARD
