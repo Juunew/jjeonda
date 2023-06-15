@@ -7,7 +7,7 @@
 <head>
     <style>
 .button {
-  display: inline-block;
+
   border-radius: 6px;
   background-color: #f4511e;
   border: none;
@@ -51,10 +51,11 @@
 
 
 <div class="container-fluid" th:if="${#request.getCookies() != null}">
-    <button onclick="authorization()" class="button" style="vertical-align:middle"><span>오픈뱅킹인증하기</span></button>
-    <button href= "/" onclick="authorization()">카드목록조회 API</button>
-
-
+    <h1>안녕 JJEONDA</h1>
+    <div id = "bankingButton" th:if="${openBanking.isEmpty()}">
+        <button onclick="authorization()" class="button" style="vertical-align:middle"><span>오픈뱅킹 인증하기</span></button>
+        <p class="h5">* 저희 서비스를 이용하려면 오픈뱅킹을 인증해주세요~</p>
+    </div>
 </div>
 
 <div class="container" th:if="${#request.getCookies() == null}">

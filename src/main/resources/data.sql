@@ -169,15 +169,16 @@ INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_
 SELECT '카드이름9', 1000, '2023-06-19 11:24:43', '19', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름9');
 
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름10', 37000, '2023-06-22 11:24:43', '22', 3, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름10');
+SELECT '카드이름10', 37000, '2023-06-22 11:24:43', '22', 3, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름10');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름11', 21000, '2023-06-20 11:24:43', '20', 4, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름11');
+SELECT '카드이름11', 21000, '2023-06-20 11:24:43', '20', 4, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름11');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름12', 457000, '2023-06-23 11:24:43', '24', 10, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름12');
+SELECT '카드이름12', 457000, '2023-06-23 11:24:43', '24', 10, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름12');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름13', 89000, '2023-06-23 11:24:43', '25', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름13');
+SELECT '카드이름13', 89000, '2023-06-23 11:24:43', '25', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름13');
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
-SELECT '카드이름14', 46000, '2023-06-23 11:24:43', '23', 40, 2 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름14');
+SELECT '카드이름14', 46000, '2023-06-23 11:24:43', '23', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름14');
+
 
 -- Book
 INSERT INTO total_book (user_id, year, month, budget, remain_budget)

@@ -27,7 +27,7 @@ public class OpenBankingController {
 //        BankCodeDto = bankingService.findClientSecret();
         openBankingService.requestToken(userInfo.getUserId(), code, scope, state);
 
-        return "index";
+        return "redirect:/";
     }
 
     // Tokken을 이용한 카드 정보 가져오기(우리가 필요한 것만)

@@ -24,14 +24,26 @@
             <tbody>
             <tr class="py-1">
                 <th scope="row"></th>
+                <td style="width: 30%;">은행 : </td>
+                <td th:text="${cardDetail.getBankName()} + ' 은행'"></td>
+                <td></td>
+            </tr>
+            <tr class="py-1">
+                <th scope="row"></th>
                 <td style="width: 30%;">결제 예정일 : </td>
-                <td th:text="${cardDetail.getSettlementDay()}"></td>
+                <td th:text="${cardDetail.getSettlementDay() + '일'}"></td>
+                <td></td>
+            </tr>
+            <tr class="py-1">
+                <th scope="row"></th>
+                <td style="width: 30%;">실제 결제일 : </td>
+                <td th:text="${cardDetail.getSettlementDate()}"></td>
                 <td></td>
             </tr>
             <tr class="py-1">
                 <th scope="row"></th>
                 <td style="width: 30%;">결제 예정 금액 : </td>
-                <td th:text="${cardDetail.getPaymentAmt()}"></td>
+                <td th:text="${cardDetail.getPaymentAmt()} + ' 원'"></td>
                 <td></td>
             </tr>
             </tbody>
