@@ -33,8 +33,8 @@ public class AccountService {
 	private final BankRepository bankRepository;
 	
 	public List<AccountDto> accountList(UserInfo userInfo){
-		List<AccountEntity> accountEntity = accountRepository.findAllById(userInfo.getUserId());
-		
+		List<AccountEntity> accountEntity = accountRepository.findAllByUserId(userInfo.getUserId());
+
 		return accountEntity.stream().
 		        map(m->new AccountDto(
 		        		m.getId(),
@@ -51,6 +51,7 @@ public class AccountService {
 		                m.getTranAfterAmt()
 		                ))
 		        .collect(Collectors.toList());
+		
 	}
 	
 	public AccountDto selectOneByAccountId(Long accountId) {
@@ -85,19 +86,24 @@ public class AccountService {
 		         .availableAmt(reqDto.getAvailableAmt())
 		         .tranDate(new Date())
 		         .tranTime(new Time(System.currentTimeMillis()))
-		        /* .inoutType(noAccountIdDto.getInoutType())
+		       /*  .inoutType(noAccountIdDto.getInoutType())
 		         .content(noAccountIdDto.getContent())
 		         .tranAmt(noAccountIdDto.getTranAmt())
-		         .tranAfterAmt(noAccountIdDto.getTranAfterAmt())*/
+		         .tranAfterAmt(noAccountIdDto.getTranAfterAmt()) */
 		         .build();
 		   accountRepository.save(account);
 		}
 
-	public void deleteById(Long accountId) {
-			accountRepository.deleteById(accountId);
+	public void deleteAccount(Long accountId) {
+			AccountEntity account = accountRepository.findById(accountId)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid account ID: " + accountId));
+		accountRepository.delete(account);
 	}
 	
 }
+
+
+
 
 /*	    // BankCode에 해당하는 은행 정보를 조회하는 메서드
     public BankDto getBankByCode(String bankCode) {
