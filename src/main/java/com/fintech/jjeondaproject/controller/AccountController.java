@@ -67,15 +67,16 @@ public class AccountController {
 	   
 	   return "redirect:/accounts/list";
 	}
-/*	
+	
 	// 계좌 삭제
-		@PostMapping("/deleteAccount")
-		public String deleteAccount(Long accountId, @InfoUser UserInfo userInfo) {
-		accountService.deleteAccount(accountId, userInfo);
+	@PostMapping("/deleteAccount")
+	public String deleteAccount(@RequestParam("deleteId")Long accountId) {
+		System.out.println("accountID = " + accountId);
+		accountService.deleteAccount(accountId);
 		
 		return "redirect:/accounts/list";
 	}
-	*/
+	
 	
 		
 		

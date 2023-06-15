@@ -23,6 +23,7 @@
 				</thead>
 				
 				<tbody>
+				<form id="form" >
 					<tr th:each="index : ${accountList}">
 						<td><input type="checkbox" name="deleteId" th:value="${index.accountId}"/>
 						<td th:text="${index.accountId}"></td>
@@ -33,6 +34,7 @@
 							<a href="javascript:void(0);" th:onclick="openPopup([[${index.accountId}]])"> 상세내역</a>
 						</td>
 					</tr>
+				</form>
 				</tbody>
 			</table>
 			
@@ -57,7 +59,7 @@
 					if(deleteCheck > 0){
 						if(confirm("정말 삭제 하시겠습니까?")){
 							let form = $("#form");
-							form.attr("action", "account/delete");
+							form.attr("action", "deleteAccount");
 							form.attr("method", "post");
 							form.submit();
 						} 

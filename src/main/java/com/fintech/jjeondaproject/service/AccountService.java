@@ -86,21 +86,24 @@ public class AccountService {
 		         .availableAmt(reqDto.getAvailableAmt())
 		         .tranDate(new Date())
 		         .tranTime(new Time(System.currentTimeMillis()))
-		        /* .inoutType(noAccountIdDto.getInoutType())
+		       /*  .inoutType(noAccountIdDto.getInoutType())
 		         .content(noAccountIdDto.getContent())
 		         .tranAmt(noAccountIdDto.getTranAmt())
-		         .tranAfterAmt(noAccountIdDto.getTranAfterAmt())*/
+		         .tranAfterAmt(noAccountIdDto.getTranAfterAmt()) */
 		         .build();
 		   accountRepository.save(account);
 		}
-/*
-	public void deleteAccount(Long accountId, UserInfo userInfo) {
-		AccountEntity accountEntity = accountRepository.findByIdAndUserId(accountId, userInfo.getUserId())
-				.orElseThrow(() -> new BankException(BankError.BANK_NOT_FOUND));
-		accountRepository.deleteAllById(accountId);
+
+	public void deleteAccount(Long accountId) {
+			AccountEntity account = accountRepository.findById(accountId)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid account ID: " + accountId));
+		accountRepository.delete(account);
 	}
-*/	
+	
 }
+
+
+
 
 /*	    // BankCode에 해당하는 은행 정보를 조회하는 메서드
     public BankDto getBankByCode(String bankCode) {
