@@ -23,6 +23,7 @@
 				</thead>
 				
 				<tbody>
+				<form id="form" >
 					<tr th:each="index : ${accountList}">
 						<td><input type="checkbox" name="deleteId" th:value="${index.accountId}"/>
 						<td th:text="${index.accountId}"></td>
@@ -33,6 +34,7 @@
 							<a href="javascript:void(0);" th:onclick="openPopup([[${index.accountId}]])"> 상세내역</a>
 						</td>
 					</tr>
+				</form>
 				</tbody>
 			</table>
 			
@@ -50,14 +52,14 @@
 					var url = "/accounts/detail/" + accountId;
 					var popup = window.open(url, "_blank",
 							"width=800, height=600, left=300, right=300");
-				
+				}
 				// 체크박스 delete
 				function fnDelete(){
 					let deleteCheck = $("input[name='deleteId']:checked").length;
 					if(deleteCheck > 0){
 						if(confirm("정말 삭제 하시겠습니까?")){
 							let form = $("#form");
-							form.attr("action", "account/delete");
+							form.attr("action", "deleteAccount");
 							form.attr("method", "post");
 							form.submit();
 						} 
@@ -85,15 +87,27 @@
                         <p th:text="${index.tranDate}"></p>
     </div> -->
     
-    		<!--	$(document).ready(function() {
-						$.ajax({
-							url: "/book/bookView.html", // bookView.html의 경로
-							dataType: "html",
-							success: function(response) {
-								$("#bookViewContainer").html(response);
-							},
-							error: function(xhr, status, error) {
-								console.error(error);
-							}
-						});
-					});	-->
+    
+    			<!-- 페이징 버튼 
+<div th:if="${pageCount > 1}">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+                <a class="page-link" th:href="@{/accounts?page=1}">First</a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+                <a class="page-link" th:href="@{/accounts?page=${currentPage - 1}}">Previous</a>
+            </li>
+            <li th:each="pageNum : ${#numbers.sequence(1, pageCount)}" th:classappend="${currentPage == pageNum} ? active">
+                <a class="page-link" th:href="@{/accounts?page=${pageNum}}" th:text="${pageNum}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == pageCount} ? disabled">
+                <a class="page-link" th:href="@{/accounts?page=${currentPage + 1}}">Next</a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == pageCount} ? disabled">
+                <a class="page-link" th:href="@{/accounts?page=${pageCount}}">Last</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+-->

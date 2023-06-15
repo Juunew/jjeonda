@@ -179,6 +179,7 @@ SELECT '카드이름13', 89000, '2023-06-23 11:24:43', '25', 40, 3 WHERE NOT EXI
 INSERT INTO CARD (card_name, payment_amt, settlement_date, settlement_day, bank_id, user_id)
 SELECT '카드이름14', 46000, '2023-06-23 11:24:43', '23', 40, 3 WHERE NOT EXISTS (SELECT 1 FROM CARD WHERE card_name = '카드이름14');
 
+
 -- Book
 INSERT INTO total_book (user_id, year, month, budget, remain_budget)
 SELECT 1, '2023', '06', 3000000, 3000000 WHERE NOT EXISTS (SELECT 1 FROM total_book WHERE book_id = 1);
