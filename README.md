@@ -1,11 +1,9 @@
 # 프로젝트 소개
 
-----
 오픈뱅킹 API를 활용한 개인 통합 자산 관리 플랫폼
 
 # 프로젝트 개발 기간
 
----
 2023.05.24 ~ 2023.06.15 (1차 개발 완료)
 
 2023.06.19 ~ (Refactoring)
@@ -17,7 +15,6 @@
 
 # 1차 개발 내용
 
----
 - 각 기능 별 CRUD
   - 기능 1 : 로그인 및 회원가입
   - 기능 2 : 가계부
@@ -26,7 +23,6 @@
 
 # 프로젝트 사용 기술
 
----
 <div> 
 <h3>Development</h3>
 
@@ -66,10 +62,8 @@
 
 # 프로젝트 ERD
 
----
 ![쩐다.png](..%2F..%2FDownloads%2Ffintech-project%2F%EC%82%B0%EC%B6%9C%EB%AC%BC%2F%EC%A9%90%EB%8B%A4.png)
 
 # 프로젝트 유스케이스
 
----
 ![유스케이스.png](..%2F..%2FDownloads%2Ffintech-project%2F%EC%82%B0%EC%B6%9C%EB%AC%BC%2F%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4.png)
