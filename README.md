@@ -13,7 +13,7 @@
 
 1차 로드맵
 
-![로드맵.png](..%2F..%2FDownloads%2Ffintech-project%2F%EC%82%B0%EC%B6%9C%EB%AC%BC%2F%EB%A1%9C%EB%93%9C%EB%A7%B5.png)
+![로드맵.png](./images/loadmap.png)
 
 # 1차 개발 내용
 
@@ -67,9 +67,9 @@
 # 프로젝트 ERD
 
 ---
-![쩐다.png](..%2F..%2FDownloads%2Ffintech-project%2F%EC%82%B0%EC%B6%9C%EB%AC%BC%2F%EC%A9%90%EB%8B%A4.png)
+![쩐다.png](./images/erd.png)
 
 # 프로젝트 유스케이스
 
 ---
-![유스케이스.png](..%2F..%2FDownloads%2Ffintech-project%2F%EC%82%B0%EC%B6%9C%EB%AC%BC%2F%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4.png)
+![유스케이스.png](./images/usecase.png)
