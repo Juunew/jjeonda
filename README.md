@@ -63,7 +63,7 @@
 # 프로젝트 ERD
 
 ---
-![쩐다.png](..%2F..%2FDownloads%2Ffintech-project%2F%EC%82%B0%EC%B6%9C%EB%AC%BC%2F%EC%A9%90%EB%8B%A4.png)
+![쩐다.png](./images/erd.png)
 
 # 프로젝트 유스케이스
 
