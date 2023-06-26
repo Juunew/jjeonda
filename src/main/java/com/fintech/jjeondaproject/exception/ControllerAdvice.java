@@ -15,9 +15,15 @@ public class ControllerAdvice {
         return ResBody.error(e.getMessage());
     }
 
+    @ExceptionHandler(value = JwtException.class)
+    public ResBody<?> jwtExceptionHandler(JwtException e) {
+        log.info("Jwt Error = {}", e.toString());
+        return ResBody.error(e.getMessage());
+    }
+/*
     @ExceptionHandler(value = BookException.class)
     public ResBody<?> bookExceptionHandler(BookException e) {
         log.info("Book Error = {}", e.toString());
         return ResBody.error(e.getMessage());
-    }
+    }*/
 }

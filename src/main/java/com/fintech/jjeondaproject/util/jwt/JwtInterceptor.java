@@ -1,49 +1,36 @@
 package com.fintech.jjeondaproject.util.jwt;
 
-import com.fintech.jjeondaproject.common.UserInfo;
+import com.fintech.jjeondaproject.common.constant.errorType.JwtError;
+import com.fintech.jjeondaproject.exception.JwtException;
 import com.fintech.jjeondaproject.repository.UserRepository;
 import com.fintech.jjeondaproject.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component
 @RequiredArgsConstructor
+@Component
 public class JwtInterceptor implements HandlerInterceptor{
-	private final JwtProvider jwtProvider;
-	private final UserService userService;
-	private final UserRepository userRepository;
+
+	private final JwtUtil jwtUtil;
+
+	@Value("${jwt.secret-key}")
+	private String secretKey;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+		String token = request.getHeader("Authorization");
+		Long userId = jwtUtil.getUserId(token, secretKey);
 
-		String reqToken = jwtProvider.getJwtFromCookie(request); // 쿠키에서 key값이 "JwToken"인 value 가져오기
-		if (reqToken == null) {
-			response.sendRedirect("/sign-in"); // reqToken이 없으면 sign-in으로 보내라
-			return false;
+		if (!jwtUtil.validate(token, userId, secretKey) && token == null) {
+			throw new JwtException(JwtError.INVALID_JWT_TOKEN);
 		}
-		
-		System.out.println("interceptor_UserId:"+jwtProvider.getClaims(reqToken).get("UserId"));
-		Long userId = (Long.parseLong(jwtProvider.getClaims(reqToken).get("UserId").toString()));
-			
-		if (userId == null || !userRepository.existsById(userId) ) {
-			response.sendRedirect("/sign-up"); // reqToken이 없으면 sign-in으로 보내라
-			return false;
-		}
-
-		// 엑세스토큰 만료시간을 가져와서 확인하고, 만료가 되었으면 refresh토큰을 발급???
-		// accessToken 만료시, 서버에서 만료된 토큰임을 확인하면
-		// 서버는 클라이언트에게 refreshToken 요구.
-		// 클라이언트는 AccessToken 재발급을 위해 AccessToken과 RefreshToken을 전송
-		// 서버는 전달받은 RefreshToken이 유효한지 확인하고, db에 저장해두었던 refreshToken과 비교
-		// 유효한 refreshToken이면 accessToken을 재발급.
-		// refreshToken도 만료됐다면 로그인을 다시 하고 Access토큰과 Refresh 토큰을 새로 발급
 
 		return true;
-
 	}
 
 

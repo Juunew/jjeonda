@@ -1,30 +1,12 @@
 package com.fintech.jjeondaproject.entity.user;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
+import com.fintech.jjeondaproject.dto.user.UserReqDto;
 import com.fintech.jjeondaproject.entity.BaseTime;
-import org.hibernate.annotations.CreationTimestamp;
+import com.fintech.jjeondaproject.util.encrypt.Encryption;
+import lombok.*;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "user")
@@ -35,7 +17,6 @@ public class UserEntity extends BaseTime {
 	@Column(name = "user_id")
 	private Long id;
 	
-//	@NotBlank(message = "사용자ID는 필수항목입니다.")
 	@Column(name = "account_id")
 	private String accountId;
 	
@@ -50,29 +31,31 @@ public class UserEntity extends BaseTime {
 	private String birth;
 	
 	private String email;
-	
-//	@Column(name = "reg_date")
-//	@CreationTimestamp // update는 UpdateTimestamp
-//	private Date regDate;
-	
+
 	@Column(name = "agreement_yn")
 	private String agreementYn;
-	
-	@Column(name = "refresh_token")
-	private String refreshToken;
-	
-	public void updateRefreshToken(String refreshToken) {
-		this.refreshToken = refreshToken;
-	}
 
-	public UserEntity(String name, String phone, String gender, String birth, String email) {
+	private UserEntity(String accountId, String password, String name, String phone, String gender, String birth, String email, String agreementYn) {
+		this.accountId = accountId;
+		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.gender = gender;
 		this.birth = birth;
 		this.email = email;
+		this.agreementYn = agreementYn;
 	}
-	
-	
 
+	public static UserEntity of(UserReqDto reqDto) {
+		return new UserEntity(
+				reqDto.getAccountId(),
+				Encryption.encryptSHA512(reqDto.getPassword()),
+				reqDto.getName(),
+				reqDto.getPhone(),
+				reqDto.getGender(),
+				reqDto.getBirth(),
+				reqDto.getEmail(),
+				reqDto.getAgreementYn()
+		);
+	}
 }

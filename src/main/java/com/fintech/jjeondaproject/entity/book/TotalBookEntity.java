@@ -1,7 +1,5 @@
 package com.fintech.jjeondaproject.entity.book;
 
-import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyModDto;
-import com.fintech.jjeondaproject.dto.book.monthly.BookMonthlyReqDto;
 import com.fintech.jjeondaproject.entity.BaseTime;
 import com.fintech.jjeondaproject.entity.user.UserEntity;
 import lombok.AccessLevel;
@@ -43,27 +41,4 @@ public class TotalBookEntity extends BaseTime {
 	@OneToMany(mappedBy = "totalBook")
 	private List<DetailBookEntity> detailBook = new ArrayList<>();
 
-	public TotalBookEntity(String year, String month, int budget, int remainBudget) {
-		this.year = year;
-		this.month = month;
-		this.budget = budget;
-		this.remainBudget = remainBudget;
-	}
-
-	public static TotalBookEntity of(BookMonthlyReqDto reqDto) {
-		return new TotalBookEntity(
-				reqDto.getYear(),
-				reqDto.getMonth(),
-				reqDto.getBudget(),
-				reqDto.getBudget()
-		);
-	}
-
-	public void updateBudget(BookMonthlyModDto modDto) {
-		this.budget = modDto.getBudget();
-	}
-
-	public void updateRemainBudget(int remainBudget) {
-		this.remainBudget = remainBudget;
-	}
 }

@@ -13,14 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 public class UserInfo {
 
     private Long userId;
+    private String accountId;
     private String userName;
-    private String userEmail;
 
-    public static UserInfo of(Long userId, String userName, String userEmail) {
+
+    public static UserInfo of(Long userId, String accountId, String userName) {
         return new UserInfo(
                 userId,
-                userName,
-                userEmail
+                accountId,
+                userName
         );
     }
 }
