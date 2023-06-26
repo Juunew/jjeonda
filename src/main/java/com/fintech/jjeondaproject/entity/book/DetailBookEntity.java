@@ -1,7 +1,5 @@
 package com.fintech.jjeondaproject.entity.book;
 
-import com.fintech.jjeondaproject.dto.book.detail.BookDetailModDto;
-import com.fintech.jjeondaproject.dto.book.detail.BookDetailReqDto;
 import com.fintech.jjeondaproject.entity.BaseTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -38,28 +36,5 @@ public class DetailBookEntity extends BaseTime {
     private String content;
     private String memo;
 
-    public DetailBookEntity(TotalBookEntity totalBook, String costType, int cost, String content, String memo) {
-        this.totalBook = totalBook;
-        this.costType = costType;
-        this.cost = cost;
-        this.content = content;
-        this.memo = memo;
-    }
 
-    public static DetailBookEntity of(BookDetailReqDto detailReqDto, TotalBookEntity totalBook) {
-        return new DetailBookEntity(
-                totalBook,
-                detailReqDto.getCostType(),
-                detailReqDto.getCost(),
-                detailReqDto.getContent(),
-                detailReqDto.getMemo()
-        );
-    }
-
-    public void updateExpenditureDetail(BookDetailModDto modDto) {
-        this.costType = modDto.getCostType();
-        this.cost = modDto.getCost();
-        this.content = modDto.getContent();
-        this.memo = modDto.getMemo();
-    }
 }

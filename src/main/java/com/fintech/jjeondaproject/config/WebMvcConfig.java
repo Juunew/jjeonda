@@ -17,19 +17,25 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-	private final JwtInterceptor jwtInterceptor;
-	private final UserInfoResolver userInfoResolver;
-	private final String[] includePaths = {"/cards/**","/books/**","/accounts/**"};
+    private final JwtInterceptor jwtInterceptor;
+    private final UserInfoResolver userInfoResolver;
+    private final List<String> includePathList =
+            List.of(
+                    "/cards/**",
+                    "/books/**",
+                    "/accounts/**"
+            );
 
-	@Override
-	public void addInterceptors(InterceptorRegistry reg) {
-		reg.addInterceptor(jwtInterceptor)
-		   .addPathPatterns(includePaths);
-	}
 
-	@Override
-	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-		resolvers.add(userInfoResolver);
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry reg) {
+        reg.addInterceptor(jwtInterceptor)
+                .addPathPatterns(includePathList);
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(userInfoResolver);
+    }
 
 }

@@ -1,4 +1,4 @@
--- USER
+/*-- USER
 INSERT INTO USER (agreement_yn, birth, email, gender, account_id, name, password, phone)
 SELECT 'Y', '19920915', 'user1@gmail.com', 'male', 'user1', 'user1', '9155e12944e03fc6206c77af9a0335aee0cb4546d98de19beba2f53beb69c71862605b7323d0699146b32c6f8a63777a2f487d81173dfb312eeaee70d66843e7', '01011111111'
 WHERE NOT EXISTS (
@@ -256,3 +256,4 @@ SELECT 6, 'FC', 50000, '적금_6월', '자유적금_6월' WHERE NOT EXISTS (SELE
 INSERT INTO detail_book (book_id, cost_type, cost, content, memo)
 SELECT 6, 'VC', 4500, '담배_6월', '편의점 메모_6월' WHERE NOT EXISTS (SELECT 1 FROM detail_book WHERE detail_id = 24);
 
+*/

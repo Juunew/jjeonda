@@ -2,9 +2,10 @@ package com.fintech.jjeondaproject.config;
 
 import com.fintech.jjeondaproject.common.UserInfo;
 import com.fintech.jjeondaproject.config.annotation.InfoUser;
-import com.fintech.jjeondaproject.util.jwt.JwtProvider;
+import com.fintech.jjeondaproject.util.jwt.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -18,8 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class UserInfoResolver implements HandlerMethodArgumentResolver {
 
-    private final HttpServletRequest request;
-    private final JwtProvider jwtProvider;
+    private final JwtUtil jwtUtil;
+
+    @Value("${jwt.secret-key}")
+    private String key;
+
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -31,13 +35,9 @@ public class UserInfoResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        String token = jwtProvider.getJwtFromCookie(request);
-        Claims claims = jwtProvider.getClaims(token);
+        HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
+        String token = request.getHeader("Authorization");
 
-        return UserInfo.of(
-                claims.get("UserId", Long.class),
-                claims.get("UserName", String.class),
-                claims.get("UserEmail", String.class)
-        );
+        return jwtUtil.parseTokenToUserInfo(token, key);
     }
 }
