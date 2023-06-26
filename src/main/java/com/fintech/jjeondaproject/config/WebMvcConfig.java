@@ -25,8 +25,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry reg) {
 		reg.addInterceptor(jwtInterceptor)
 		   .addPathPatterns(includePaths);
-//			.addPathPatterns("/auth11/**");
-
 	}
 
 	@Override
