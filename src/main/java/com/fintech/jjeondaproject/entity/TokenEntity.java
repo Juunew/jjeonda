@@ -23,4 +23,13 @@ public class TokenEntity {
 
     @Column(name = "refresh_token", nullable = false)
     private String refreshToken;
+
+    private TokenEntity(Long userId, String refreshToken) {
+        this.userId = userId;
+        this.refreshToken = refreshToken;
+    }
+
+    public static TokenEntity of(Long userId, String refreshToken) {
+        return new TokenEntity(userId, refreshToken);
+    }
 }

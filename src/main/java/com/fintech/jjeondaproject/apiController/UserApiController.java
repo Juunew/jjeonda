@@ -1,7 +1,9 @@
 package com.fintech.jjeondaproject.apiController;
 
 import com.fintech.jjeondaproject.common.response.ResBody;
+import com.fintech.jjeondaproject.dto.user.login.LoginReqDto;
 import com.fintech.jjeondaproject.dto.user.UserReqDto;
+import com.fintech.jjeondaproject.dto.user.login.UserResDto;
 import com.fintech.jjeondaproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,5 +22,11 @@ public class UserApiController {
     public ResBody<?> createUser(@RequestBody UserReqDto reqDto) {
         Long userId = userService.createUser(reqDto);
         return ResBody.success(userId);
+    }
+
+    @PostMapping("/sign-in")
+    public ResBody<?> loginUser(@RequestBody LoginReqDto reqDto) {
+        UserResDto result = userService.loginUser(reqDto);
+        return ResBody.success(result);
     }
 }
